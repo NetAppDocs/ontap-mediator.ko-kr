@@ -1,0 +1,80 @@
+---
+permalink: install/verify-install-task.html 
+sidebar: sidebar 
+keywords: mediator, new, release, update, install, verify, verification 
+summary: ONTAP Mediator를 설치한 후에 ONTAP Mediator가 실행 중인지 확인해야 합니다. 
+---
+= ONTAP Mediator 설치 상태를 확인하십시오.
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+ONTAP Mediator를 설치한 후 정상적으로 실행되는지 확인하십시오.
+
+.단계
+. ONTAP Mediator의 상태를 확인하십시오:
++
+[source, cli]
+----
+systemctl status ontap_mediator
+----
++
+....
+ ontap_mediator.service - ONTAP Mediator
+Loaded: loaded (/etc/systemd/system/ontap_mediator.service; enabled; vendor preset: disabled)
+Active: active (running) since Mon 2022-04-18 10:41:49 EDT; 1 weeks 0 days ago
+Process: 286710 ExecStop=/bin/kill -s INT $MAINPID (code=exited, status=0/SUCCESS)
+Main PID: 286712 (uwsgi)
+Status: "uWSGI is ready"
+Tasks: 3 (limit: 49473)
+Memory: 139.2M
+CGroup: /system.slice/ontap_mediator.service
+      ├─286712 /opt/netapp/lib/ontap_mediator/pyenv/bin/uwsgi --ini /opt/netapp/lib/ontap_mediator/uwsgi/ontap_mediator.ini
+      ├─286716 /opt/netapp/lib/ontap_mediator/pyenv/bin/uwsgi --ini /opt/netapp/lib/ontap_mediator/uwsgi/ontap_mediator.ini
+      └─286717 /opt/netapp/lib/ontap_mediator/pyenv/bin/uwsgi --ini /opt/netapp/lib/ontap_mediator/uwsgi/ontap_mediator.ini
+....
+. SCST 상태를 확인하십시오:
++
+[source, cli]
+----
+systemctl status mediator-scst
+----
++
+
+NOTE: ONTAP Mediator 1.12 이상 버전을 HTTPS만 지원하도록 설치한 경우 SCST 패키지가 설치되지 않으므로 이 단계를 건너뛸 수 있습니다.
+
++
+....
+   Loaded: loaded (/etc/systemd/system/mediator-scst.service; enabled; vendor preset: disabled)
+   Active: active (running) since Mon 2022-04-18 10:41:47 EDT; 1 weeks 0 days ago
+  Process: 286595 ExecStart=/etc/init.d/scst start (code=exited, status=0/SUCCESS)
+ Main PID: 286662 (iscsi-scstd)
+    Tasks: 1 (limit: 49473)
+   Memory: 1.2M
+   CGroup: /system.slice/mediator-scst.service
+           └─286662 /usr/local/sbin/iscsi-scstd
+....
+. ONTAP Mediator에서 사용하는 포트를 확인하십시오:
++
+[source, cli]
+----
+netstat -anlt | grep -E '3260|31784'
+----
++
+....
+         tcp   0   0 0.0.0.0:31784   0.0.0.0:*      LISTEN
+
+         tcp   0   0 0.0.0.0:3260    0.0.0.0:*      LISTEN
+
+         tcp6  0   0 :::3260         :::*           LISTEN
+....
+
+
+.다음 단계
+ONTAP Mediator 설치 및 검증이 완료되면 다음과 같은 설치 후 구성 작업을 진행할 수 있습니다:
+
+* link:../use-mediator-snapmirror-metrocluster-task.html["SnapMirror 활성 동기화 및 MetroCluster IP를 위해 ONTAP Mediator를 사용하십시오."]
+* link:../administer/configure-ontap-mediator-attributes.html["ONTAP Mediator 속성 구성"] (선택 사항)
+

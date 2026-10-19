@@ -1,0 +1,981 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<blocks>
+  <block id="d41d8cd98f00b204e9800998ecf8427e" category="doc"></block>
+  <block id="cbfd7219fd814c56c9349bea1cd0273f" category="list-text">ONTAP 9.19.1 및 ONTAP Mediator 1.12 버전부터는 iSCSI 및 HTTPS 지원 또는 HTTPS만 지원하는 ONTAP Mediator 설치 옵션을 선택할 수 있습니다. HTTPS만 지원하는 ONTAP Mediator를 설치하는 경우 SCST 패키지는 설치되지 않습니다.</block>
+  <block id="0575e131726193c75dc0eb99beb88ea3" category="list-text">SCST가 설치된 ONTAP Mediator 1.11 이하 버전에서 업그레이드할 때 HTTPS 전용 옵션을 선택하면 SCST 패키지가 제거되고 새 ONTAP Mediator 버전에는 SCST 패키지가 포함되지 않습니다.</block>
+  <block id="c2cbdc82e4189820757400b0b29fe4e3" category="inline-link-macro">ONTAP Mediator를 사용하여 여러 MetroCluster IP 구성을 모니터링합니다</block>
+  <block id="442806089728577c5b60cf2b841585f0" category="list-text">ONTAP Mediator를 사용하여 여러 MetroCluster IP 구성을 모니터링하려는 경우 지원 여부는 Mediator 유형, ONTAP 버전 및 운영 체제에 따라 다릅니다. 자세한 내용은 <block ref="23c736ffefe2c88d617ae89ae44b32de" category="inline-link-macro-rx"></block>을 참조하십시오.</block>
+  <block id="b9fc3e6281faea5f565f838d0ad8ac27" category="list-text">HTTPS만 지원하는 ONTAP Mediator 설치는 다음과 같은 사용 사례에 한해 지원됩니다.</block>
+  <block id="22ebf50baa22eca107164392e48fabe5" category="list-text">ONTAP Mediator를 SnapMirror 액티브 동기화 클러스터 모니터링에만 사용할 계획입니다.</block>
+  <block id="600eacd6fe25558a0c82252384d81f42" category="list-text">ONTAP Mediator를 HTTPS로 구성하여 하나 이상의 MetroCluster IP 구성을 모니터링할 계획입니다.</block>
+  <block id="5c0107c7074b648b29cf8ffe18d6c548" category="list-text">다음 시나리오에서는 ONTAP Mediator를 iSCSI 및 HTTPS 지원과 함께 설치해야 합니다.</block>
+  <block id="bfe28f43d7920f3b051733daec7239a9" category="list-text">하나 이상의 MetroCluster IP 구성을 모니터링하기 위해 ONTAP Mediator를 iSCSI로 구성할 계획입니다.</block>
+  <block id="81a351229b28c8dda23ec54f5e12b053" category="summary">ONTAP Mediator 사용자 이름과 비밀번호를 변경하십시오.</block>
+  <block id="ffd4e84b0c713b5d306a8604b70684ad" category="doc">ONTAP Mediator 사용자 이름과 비밀번호를 변경하세요</block>
+  <block id="9b74280bb338bd9b9e107eaebe5ffa9e" category="paragraph">ONTAP Mediator가 설치된 Linux 호스트에서 ONTAP Mediator 사용자 이름 또는 암호를 변경하십시오.</block>
+  <block id="c83d74305ef42bd4af6545e82f5fe9de" category="section-title">사용자 이름을 변경하십시오</block>
+  <block id="8680e9191aca7e5a1ea025ee0ab3b1ac" category="paragraph">다음 절차에 따라 사용자 이름을 변경할 수 있습니다.</block>
+  <block id="bbe48fb854ea022537208eeeff822f91" category="paragraph-title">이 작업 정보</block>
+  <block id="d9ad92650bab84bc917500672a9e9b4a" category="paragraph">ONTAP Mediator를 설치한 Linux 호스트에서 이 작업을 수행하십시오.</block>
+  <block id="e3bdaded12d38863b3e782d2277f8891" category="paragraph">이 명령에 접근할 수 없는 경우, 다음 예시와 같이 전체 경로를 사용하여 명령을 실행해야 할 수 있습니다:</block>
+  <block id="6b650cfd5a5122af7703db2cfff2b455" category="paragraph"><block ref="92d0578e497049745d0c01a458589875" prefix="" category="inline-code"></block></block>
+  <block id="f3a29486bed19a90f2da6d007818b427" category="paragraph-title">단계</block>
+  <block id="493069b37797535af86a5daa9bd2e352" category="paragraph">다음 옵션 중 하나를 선택하여 사용자 이름을 변경하십시오:</block>
+  <block id="db1bf0163f01878ecdb6508c5a1963a8" category="list-text">*옵션 (a)*: <block ref="bcb7a5e5c3c1afa1dc68fdb6a8454578" prefix=" " category="inline-code"></block> 명령어를 실행하고 다음 예시와 같이 프롬프트에 응답하십시오.</block>
+  <block id="02f05e79b3d0e82a5234e1a84fa7513b" category="list-text">*옵션 (b)*: 다음 명령을 실행하십시오.</block>
+  <block id="b41c8853c66915bd8a05346255719968" category="paragraph"><block ref="58f165e9498e1484664fdb063b7e6a5d" prefix="" category="inline-code"></block></block>
+  <block id="879a24c528558b692532fbee190699f3" category="section-title">비밀번호를 변경하십시오</block>
+  <block id="dad372818931af8f6b039297072eecf9" category="paragraph">다음 절차에 따라 비밀번호를 변경할 수 있습니다.</block>
+  <block id="183b2aa3a5eb88aeb88e71147b8bcf77" category="paragraph"><block ref="ba521b806beb44396f87bbc58c6fcd4d" prefix="" category="inline-code"></block></block>
+  <block id="0fea72913528353e02baddfe85a03e5e" category="paragraph">다음 옵션 중 하나를 선택하여 비밀번호를 변경하십시오:</block>
+  <block id="76766dc9febdc808b65c4d6c09dcd445" category="list-text">*옵션 (a)*: <block ref="a312499e3a816ecc68bdb7b49bea6e87" prefix=" " category="inline-code"></block> 명령을 실행하고 다음 예와 같이 프롬프트에 응답하십시오:</block>
+  <block id="9aa5de2139a053a72ab617fb5e3c11fe" category="paragraph"><block ref="98f6e1466fd4a2b0eab60035322554df" prefix="" category="inline-code"></block></block>
+  <block id="de736e5e212b3386a25bc3c67f2f84d4" category="paragraph">예시에서는 비밀번호가 "mediator1"에서 "mediator2"로 변경되는 것을 보여줍니다.</block>
+  <block id="2730bf83f7e580f95a8a41fbc88580d3" category="summary">인증서 관련 설정 및 호스트 측 구성 재정의를 포함하여 ONTAP Mediator 속성을 구성합니다.</block>
+  <block id="551115cc1e16b044befb6a3243ac9e1a" category="doc">ONTAP Mediator 속성 구성</block>
+  <block id="e157cb939ce87b5c3ae877bd0d947e52" category="paragraph">인증서 관련 설정 및 구성 재정의 등 ONTAP Mediator 호스트 측 속성을 구성할 수 있습니다.</block>
+  <block id="e9a1e6efbcb08097f04a06af109c2bee" category="section-title">ONTAP Mediator 구성 가능 설정</block>
+  <block id="ec3e1b1fc1be2a3dee9811cb41dc4365" category="paragraph">ONTAP Mediator는 여러 구성 가능한 설정을 지원합니다. 이러한 설정의 기본값은 <block ref="e3f1d2df1657c34833364a52d4b29d60" prefix=" " category="inline-code"></block>읽기 전용 파일에 제공됩니다. 해당 파일의 위치는 다음과 같습니다.</block>
+  <block id="cdfebc1d2257e18b26403478e4a7ef13" category="paragraph"><block ref="27a6b24601b63526ffca2fd1c5f9a5c4" prefix="" category="inline-code"></block></block>
+  <block id="d41105b4b1c23e8032ba635977fa7cbe" category="paragraph"><block ref="e69236eb2aa5b1455dc0f88753a8a1a2" prefix=" " category="inline-code"></block>에 입력된 모든 값은 기본값을 재정의하며 모든 ONTAP Mediator 업그레이드에서 유지됩니다.</block>
+  <block id="ee1ed33eed3c77405d3c2e44814e71dc" category="paragraph"><block ref="e69236eb2aa5b1455dc0f88753a8a1a2" prefix=" " category="inline-code"></block>을(를) 수정한 후 ONTAP Mediator를 다시 시작하십시오:</block>
+  <block id="b20afa451962a4a89f44f6efe4b1f663" category="paragraph">이 섹션에서 설명하는 ONTAP Mediator 속성은 필요에 따라 수정할 수 있습니다.</block>
+  <block id="9abd5e5d8c92b77e89fe99d6a22f9fb4" category="admonition">ONTAP Mediator 업그레이드 중에는 수정된 값이 유지되지 않으므로 <block ref="5b85df10091f3a4731397680ace5150b" prefix=" " category="inline-code"></block>의 다른 기본값은 변경하지 않아야 합니다.</block>
+  <block id="647e170e473051ea5251319743869311" category="paragraph">ONTAP Mediator의 속성을 수정하려면 필요한 변수를 <block ref="e69236eb2aa5b1455dc0f88753a8a1a2" prefix=" " category="inline-code"></block> 파일에 복사하여 기본 설정을 재정의하면 됩니다.</block>
+  <block id="629b314391c0b713d93f2b13fe348e3a" category="section-title">타사 SSL 인증서를 설치하십시오</block>
+  <block id="597fd96e2f0c623d144b4e32f6fbd7b2" category="paragraph">ONTAP Mediator 구성 파일을 수정하여 기본 자체 서명 인증서를 타사 SSL 인증서로 교체할 수 있습니다.</block>
+  <block id="ef6b5d23136b7b42218ed88b623442fa" category="paragraph">기본 제공되는 자체 서명 인증서를 타사 SSL 인증서로 교체하려면 다음 파일에서 특정 속성을 수정해야 합니다.</block>
+  <block id="2bb880432559be9984bc0c72699ae3e3" category="list-text"><block ref="91f698a7212f808ea1123f2fea7d684b" prefix="" category="inline-code"></block></block>
+  <block id="1565ae452cd6adb2eb24f8753ed243ad" category="list-text"><block ref="ea8a01a633dad65525408f18e3468ce8" prefix="" category="inline-code"></block></block>
+  <block id="344ff8a01d6a0d72ad69850ba2c0e366" category="paragraph">이 파일들의 변수는 ONTAP Mediator에서 사용하는 인증서 파일을 제어하는 데 사용됩니다.</block>
+  <block id="edb7de5345c0e13b445ca56a1ac41e47" category="open-title">ONTAP Mediator 1.9 이상 버전</block>
+  <block id="79ffbf47d40a281743c65e59441d38ed" category="paragraph">다음 표에 나열된 기본 변수들이 <block ref="91f698a7212f808ea1123f2fea7d684b" prefix=" " category="inline-code"></block> 파일에 포함되어 있습니다.</block>
+  <block id="47c14840d8e15331fa420b9b2f757cd9" category="cell">변수</block>
+  <block id="ac70412e939d72a9234cdebb1af5867b" category="cell">경로</block>
+  <block id="bf8325bce10f222020fd7b8d4602d4d3" category="cell"><block ref="57ec7fe7e85d1196b9f133d14ea5b50d" prefix="" category="inline-code"></block></block>
+  <block id="897f4bfa411b4245ae31bc8e3d1d88b8" category="cell"><block ref="943f304d27c96449b074acfef39d133e" prefix="" category="inline-code"></block></block>
+  <block id="22e1cde3232327f36bc921263d0a8c9d" category="cell"><block ref="0df75c07b8443071d006ab81cad1a19d" prefix="" category="inline-code"></block></block>
+  <block id="2758e25f0b8bb3de5a3c30b8ce4525a6" category="cell"><block ref="c65e9f7c554af033c2b73c5a83f1e7fa" prefix="" category="inline-code"></block></block>
+  <block id="262749066af01f516214278e050ef02c" category="cell"><block ref="b8cd01813c5850a747e7a03c9dcb43ed" prefix="" category="inline-code"></block></block>
+  <block id="79cdeee005ca5064a450aa9ef1ae18df" category="cell"><block ref="8ee42ff393569e4c87640afe7ad72eb9" prefix="" category="inline-code"></block></block>
+  <block id="49dbcc7bd23f4e4f0144c51341c44036" category="cell"><block ref="a93e5ca6615891464275e325959beec1" prefix="" category="inline-code"></block></block>
+  <block id="6f6695649f9b6014c70f92c313fd8013" category="cell"><block ref="65d1d0dc2a1684b55d4b2d5d90847b82" prefix="" category="inline-code"></block></block>
+  <block id="a780fb5a6e2df4b430ec43aadd19d88f" category="cell"><block ref="432981cc26072c8b71f348991372737a" prefix="" category="inline-code"></block></block>
+  <block id="1edc7128a431d68241f38ade1ac2fefb" category="cell"><block ref="de46684e29a8704962ca37c4b05c343b" prefix="" category="inline-code"></block></block>
+  <block id="7ed69a1af9eb2ba26fdfd574a10acbab" category="cell"><block ref="3eb6e362d6ee628d7e79b5f4c7d79b93" prefix="" category="inline-code"></block></block>
+  <block id="88b2037a4b0dc9513d3aace604e4c310" category="cell"><block ref="d6723e7cd6735df68d1ce4c704c29a04" prefix="" category="inline-code"></block></block>
+  <block id="8f416b7fc29226a6ec9a0edb5bc3a378" category="cell"><block ref="4deedfabe1bb050cf3ccf7940dd2299c" prefix="" category="inline-code"></block></block>
+  <block id="1b3ed17a5da4568b1e74752551893220" category="cell"><block ref="1a86fe500b18ed2639445da5d84f32b3" prefix="" category="inline-code"></block></block>
+  <block id="8c78455e7853a5805ba377f212a3d2cd" category="list-text"><block ref="3eb6e362d6ee628d7e79b5f4c7d79b93" prefix="" category="inline-code"></block>은(는) 클라이언트 인증서의 만료일을 설정하는 데 사용됩니다. 최대값은 3년(1095일)입니다.</block>
+  <block id="123ff385092339630627508baaba29b5" category="list-text"><block ref="4deedfabe1bb050cf3ccf7940dd2299c" prefix="" category="inline-code"></block>는 서명된 클라이언트 인증서의 암호입니다.</block>
+  <block id="6b3a15758e109c232a26b3fda20a66f8" category="paragraph">다음 표에 나열된 기본 변수들이 <block ref="ea8a01a633dad65525408f18e3468ce8" prefix=" " category="inline-code"></block> 파일에 포함되어 있습니다.</block>
+  <block id="1a8d14801d9b2bf482cb845b57500ad9" category="cell"><block ref="80eec318a13ef13c13e489b6b09462cd" prefix="" category="inline-code"></block></block>
+  <block id="e01c4ad98ac71439b1798b8a6f289dcd" category="cell"><block ref="8521272c5e36e1911c5d65be9dd77b78" prefix="" category="inline-code"></block></block>
+  <block id="924f0dc2963f2e4930b13d461565e506" category="open-title">ONTAP Mediator 1.8 이하 버전</block>
+  <block id="97c30e4ac53088a286f42d19ee9d9073" category="cell"><block ref="9f6e24bb776ac0c6a5b1dd6b9562153e" prefix="" category="inline-code"></block></block>
+  <block id="503ad3e0a576a09c22b6feba7d66cf56" category="cell"><block ref="b1bbabc3962f067d7560bf21dde6f309" prefix="" category="inline-code"></block></block>
+  <block id="cb134f392c4d0aa6710f4456a02bc961" category="cell"><block ref="3992f7b26c8265ef3170e116f4cecf97" prefix="" category="inline-code"></block></block>
+  <block id="a8682e40084aff131c1879da3c28f925" category="inline-link-macro">자체 서명 인증서를 신뢰할 수 있는 타사 인증서로 교체하십시오</block>
+  <block id="b432cbc63f8f23dd766bb934f8061c0e" category="paragraph">이러한 속성을 수정하는 경우 변경 사항을 적용하려면 ONTAP Mediator를 다시 시작하십시오. 기본 인증서를 타사 인증서로 교체하는 방법에 대한 자세한 지침은 <block ref="19d6c597abdd80f79976f4da429b7478" category="inline-link-macro-rx"></block>를 참조하십시오.</block>
+  <block id="a8715bc71bf10ffa141c96014e6e1b5a" category="section-title">암호 공격 방지 구성</block>
+  <block id="f3b19cb494ae5805e5d432a2c68e2762" category="paragraph">다음 설정은 무차별 대입 암호 추측 공격으로부터 보호 기능을 제공합니다.</block>
+  <block id="62fba1aa669809e97f238fe69df1a130" category="paragraph">이 기능을 활성화하려면 <block ref="4b3ac529a0322730fbd4caa88ac35504" prefix=" " category="inline-code"></block> 및 <block ref="6652a2fd00b5788d986853f4ca1177da" prefix=" " category="inline-code"></block>에 값을 설정하십시오.</block>
+  <block id="fd05d7f6bfc90e815087880e8e915b43" category="open-title">예:</block>
+  <block id="e68a1c38a1c3725bc0a540b95c3e6573" category="list-text">5분 동안 추측할 시간을 주고, 그 후 실패 횟수를 0으로 재설정하십시오:</block>
+  <block id="fb58a56b46c01a608befa2320220edce" category="paragraph"><block ref="40638591ab864bfd323b9a6bae832cec" prefix="" category="inline-code"></block></block>
+  <block id="0f22d3ab47fbb2e64b5f8308303a3f91" category="list-text">지정된 시간 내에 5회 실패가 발생하면 계정을 잠급니다:</block>
+  <block id="48d73da8f79a72cf25d5b784709f63d0" category="paragraph"><block ref="82aa509ee4d1aefe835dee48b9e85a9d" prefix="" category="inline-code"></block></block>
+  <block id="d3f45699c3cca0360355653eadd9e8b2" category="list-text">각 시도를 거부하기 전에 발생하는 지연 시간을 설정하여 공격 속도를 늦춤으로써 무차별 대입 암호 추측 공격의 영향을 줄이십시오.</block>
+  <block id="1313dde9f6f7cbcf96c9b7d2d2c55b00" category="paragraph"><block ref="8331e69d84dce846e983d6fb853c0efe" prefix="" category="inline-code"></block></block>
+  <block id="8eee9530f18fd4502c14333a8fa634c2" category="section-title">암호 복잡성 규칙 구성</block>
+  <block id="8538f5516c3390d120f112ba785c0d5e" category="paragraph">다음 필드는 ONTAP Mediator API 사용자 계정의 암호 복잡성 규칙을 제어합니다.</block>
+  <block id="05a0f4a9cdd230da8ed1dd3c9ccf21c6" category="paragraph">여유 공간 임계값과 예약된 로그 공간 등 ONTAP Mediator 디스크 및 로그 공간 설정을 구성합니다.</block>
+  <block id="e6673f4ba313ad7b30ea0265b8648fb7" category="section-title">여유 공간 임계값 구성</block>
+  <block id="7e5b0f4794c111d0d1ed355bfe658ef7" category="paragraph"><block ref="830cb05a6559165dbc1304e2037166d6" prefix=" " category="inline-code"></block> 디스크에 필요한 여유 공간을 제어하는 설정이 있습니다.</block>
+  <block id="7c7ba4e1165c7da971891c8211786847" category="paragraph">공간이 설정된 임계값보다 낮으면 서비스는 경고 이벤트를 발생시킵니다.</block>
+  <block id="1b976038e0ada2a588befcd87f7f2b5f" category="section-title">예약된 로그 공간 구성</block>
+  <block id="57a1637486addcd7d582355818b2e5f9" category="paragraph"><block ref="4f65be6f3118139f91d1a99a0e2970a7" prefix=" " category="inline-code"></block> 기능은 특정 설정으로 제어됩니다. 기본적으로 ONTAP Mediator 설치 시 로그를 위한 별도의 디스크 공간이 생성됩니다. 설치 프로그램은 ONTAP Mediator 로깅 전용으로 사용될 총 700MB 디스크 공간의 새로운 고정 크기 파일을 생성합니다.</block>
+  <block id="483a161e3c550a0200596eaf01e55c98" category="paragraph">이 기능을 비활성화하고 기본 디스크 공간을 사용하려면 다음 단계를 수행하십시오:</block>
+  <block id="c2ce45175ca8950f883e67704883e279" category="list-text">다음 파일에서 RESERVE_LOG_SPACE 값을 1에서 0으로 변경하십시오:</block>
+  <block id="6d62667a25ff374fde5ee10b46a460a8" category="paragraph"><block ref="560d71441d77d911d67d928e865ecf68" prefix="" category="inline-code"></block></block>
+  <block id="337d79852891a37d41285c9101c3fff4" category="list-text">다음 명령을 실행합니다.</block>
+  <block id="a6ed2a36dc066a9b96c5467179bda3e7" category="list-text">ONTAP Mediator를 재시작하십시오:</block>
+  <block id="a34161761c8f5f134f2b6fe0550fb4b1" category="paragraph">해당 기능을 다시 활성화하려면 값을 0에서 1로 변경하고 Mediator를 다시 시작하십시오.</block>
+  <block id="3657da51f66de8aea117e931c518357d" category="admonition">디스크 공간을 전환해도 기존 로그는 삭제되지 않습니다. 이전의 모든 로그는 백업된 후, 디스크 공간을 전환하고 Mediator를 재시작하면 현재 디스크 공간으로 이동됩니다.</block>
+  <block id="cc783e4faca71ddaebf128bb0a6f3a71" category="summary">최적의 성능을 위해 ONTAP Mediator의 호스트 운영 체제를 정기적으로 유지 관리하십시오.</block>
+  <block id="59c90bc71e61fe6255d6a090dfe0f055" category="doc">ONTAP Mediator의 호스트 운영 체제 유지 관리</block>
+  <block id="3a6bd4cbd727b091e7d6329da745bf6f" category="paragraph">최적의 성능을 달성하려면 ONTAP Mediator의 호스트 OS를 정기적으로 유지 관리해야 합니다.</block>
+  <block id="9d7c242d76c4dae57d49c3855b53c743" category="section-title">호스트를 재부팅하십시오</block>
+  <block id="3aa35da732912373b020bb8dd0e16c65" category="paragraph">클러스터가 정상 상태일 때만 호스트를 재부팅하십시오. ONTAP Mediator가 오프라인 상태인 동안에는 클러스터가 장애에 대응할 수 없습니다. 재부팅하기 전에 유지 관리 시간을 설정하십시오.</block>
+  <block id="c2d40c9ee1899f7a284a35ed8adbfd0f" category="paragraph">ONTAP Mediator는 재부팅 중에 자동으로 재개되어 이전에 구성된 ONTAP 클러스터와의 관계를 다시 설정합니다.</block>
+  <block id="5756c6081356e49ce79efa81861a034c" category="section-title">호스트 패키지 업데이트</block>
+  <block id="d0f7da7fbac9ea5d94713fef96fc7a53" category="paragraph">커널을 제외한 모든 라이브러리 또는 yum 패키지를 업데이트하십시오. 변경 사항을 적용하기 위해 필요한 경우 호스트를 재부팅하십시오. 호스트를 재부팅하기 전에 서비스 기간을 예약하십시오.</block>
+  <block id="b1e6166ef4d368ef1387afdcc88f4209" category="paragraph"><block ref="964ff658eeb150fa1ca6d823c1c0c1a7" prefix=" " category="inline-code"></block> 패키지를 설치하는 경우 <block ref="1af4b6d809a2f3d882d975f4b893400f" prefix=" " category="inline-code"></block> 명령을 사용하여 패키지 변경 사항으로 인해 재부팅이 필요한지 확인하십시오.</block>
+  <block id="2b5b303cbf870be224133429b788c867" category="paragraph">ONTAP Mediator 종속성 업데이트 후 변경 사항이 즉시 적용되지 않으므로 재부팅하십시오.</block>
+  <block id="140bb4303ab896a9bcf9adc269119ad5" category="section-title">호스트 OS 커널을 업그레이드하십시오</block>
+  <block id="54e056e21182615e81de8ba30b967eea" category="paragraph">SCST는 사용 중인 커널에 맞게 컴파일되어야 합니다. OS를 업데이트하려면 유지보수 시간을 예약해야 합니다.</block>
+  <block id="135b308ed83c53f1516b7c754566d1c4" category="paragraph-title">시작하기 전에</block>
+  <block id="cda6042617dc27a0f8e468ab324f9f81" category="paragraph">ONTAP Mediator와 함께 SCST 패키지를 설치할 경우 다음과 같은 요구 사항이 적용됩니다.</block>
+  <block id="a5de7cc43792f40cfbb1b622b1f0f043" category="list-text">커널을 제외한 모든 라이브러리 패키지를 업데이트할 수 있지만, ONTAP Mediator에 변경 사항을 적용하려면 재부팅해야 할 수 있습니다. 재부팅이 필요한 경우 다운타임을 예약하십시오.</block>
+  <block id="6a567d6ab1c0238448ba2ccad80fc386" category="inline-link-macro">ONTAP Mediator 버전 매트릭스</block>
+  <block id="a3a2ec40d2b4e76162e6af6e724f932e" category="list-text">OS 커널을 최신 상태로 유지해야 합니다. <block ref="389c1fb641d3aaf401923546abbc22e9" category="inline-link-macro-rx"></block>에 나열된 지원되는 버전으로 커널 코어를 업그레이드하십시오. 시스템을 재부팅해야 하므로 운영 중단에 대비하여 유지보수 윈도우를 계획하십시오.</block>
+  <block id="bfc2082df312f1a20bbf56b3e8cccd56" category="list-text">재부팅하기 전에 SCST 커널 모듈을 제거한 다음, 재부팅 후에 다시 설치하십시오.</block>
+  <block id="d9efd5d2185a2134d2f488a0f6aad1f2" category="list-text">커널 OS 업그레이드를 시작하기 전에 재설치할 지원되는 버전의 SCST를 준비하십시오.</block>
+  <block id="6d02a1136ef56b4443c2cbbd411daa36" category="admonition">HTTPS만 지원하는 ONTAP Mediator 1.12 이상을 설치한 경우 SCST 패키지가 설치되지 않으며 ONTAP Mediator에 영향을 주지 않고 호스트 OS 커널을 업그레이드할 수 있습니다. 업그레이드 지침은 호스트 OS 설명서를 참조하십시오.</block>
+  <block id="a2431719c27ad3c402a4477b9ea4adda" category="paragraph">호스트 운영체제 커널을 업그레이드하려면 다음 단계를 따르십시오.</block>
+  <block id="d278aad9be542d15b42d2b30e3ac0701" category="inline-link-macro">OS 지원 매트릭스</block>
+  <block id="b6063dac41de2d52ed474e4d9fabe0bd" category="admonition">커널을 업그레이드하기 전에 운영 체제 및 ONTAP Mediator 버전이 호환되는지 확인하십시오. 지원되는 버전은 <block ref="058749601eb54e478aa450c293860a26" category="inline-link-macro-rx"></block>을(를) 참조하십시오.</block>
+  <block id="79d1d486e26a453a1c5f215947272048" category="list-text">ONTAP Mediator를 중지하십시오.</block>
+  <block id="9fb88e0364e94d0aa278c673a3a8cab2" category="list-text">SCST 패키지를 제거하십시오. <block ref="e56523834199041052b3698f535ddc03" category="inline-xref-macro-rx"></block>을 참조하십시오. (SCST는 업그레이드 메커니즘을 제공하지 않습니다.)</block>
+  <block id="78b70bd60c1bade2bbb1fb773ce8757e" category="list-text">운영 체제를 업그레이드하고 재부팅하십시오.</block>
+  <block id="553a12407d542c9c7043358d944be5f4" category="list-text">SCST 패키지를 다시 설치하십시오.</block>
+  <block id="1e72d86d10efb6ebdd1b36e23e0cc427" category="list-text">ONTAP Mediator를 다시 활성화하십시오.</block>
+  <block id="06a506684cb2c3bfd5061f1fe42cd4e1" category="section-title">호스트 유지보수 수행</block>
+  <block id="5c112c71d95d5039637bd2f6418a13f4" category="paragraph">가상 머신 커널을 업그레이드하면 SCST 모듈과의 호환성 문제가 발생할 수 있습니다. SCST를 수동으로 제거한 후 다시 설치하십시오.</block>
+  <block id="a978fb84a573d0649748dbda2fe3917d" category="admonition">HTTPS만 지원하는 ONTAP Mediator 1.12 이상을 설치한 경우 SCST 패키지가 설치되지 않으므로 이 작업을 건너뛸 수 있습니다.</block>
+  <block id="c9c46624787ac272453436f8dc37bccb" category="section-title">1단계: SCST 제거</block>
+  <block id="78174c183f41ff3908f8d5d7d5471eca" category="paragraph">SCST를 제거하려면 사용 중인 ONTAP Mediator 버전에 맞는 tar 번들을 사용하십시오.</block>
+  <block id="ae1c2adc256b05ae24ceb4904f3a194e" category="list-text">다음 표에 나와 있는 적절한 SCST 번들을 다운로드하고 압축을 해제하십시오.</block>
+  <block id="644527e9d9c1a8bb90a8f8a39545cffa" category="cell">이 버전에서는 ...</block>
+  <block id="b276107c9d73049059267e1d24384dfc" category="cell">이 tar 번들을 사용하십시오...</block>
+  <block id="807c8ea4ce44aafe8182c967e6cb3009" category="paragraph">ONTAP Mediator 1.12.1</block>
+  <block id="74ce5c6b8baa0bd670dbd1088b4b1d8b" category="paragraph">scst-3.10.tar.gz</block>
+  <block id="7babcd6c4640d6743d1d48f5ebf033ba" category="paragraph">ONTAP Mediator 1.12</block>
+  <block id="292c47135b1e053b7a4f5bc4dc7aebe6" category="paragraph">ONTAP Mediator 1.11</block>
+  <block id="b95953786a64a5657ba5f60dfefb49f9" category="paragraph">scst-3.9.tar.gz</block>
+  <block id="608fc56e87abfaa82d44d7681baa229c" category="paragraph">ONTAP Mediator 1.10</block>
+  <block id="b24bb37649c6604fb9286ec5a196e2a2" category="paragraph">ONTAP Mediator 1.9.1</block>
+  <block id="622247fa57d791be9f00522e1c9ce4f7" category="paragraph">scst-3.8.0.tar.bz2</block>
+  <block id="65e29e624ae972c250adba95d719e611" category="paragraph">ONTAP Mediator 1.9</block>
+  <block id="a88346cb59bbb38033cc3f7631b6e8ad" category="paragraph">ONTAP Mediator 1.8</block>
+  <block id="8cbd490b0f2e835ef4e1645dc4707d94" category="paragraph">ONTAP Mediator 1.7</block>
+  <block id="4f285c03dc70e26d8b8e7412c5bdc560" category="paragraph">scst-3.7.0.tar.bz2</block>
+  <block id="0c21ff608448410826399ad92d205830" category="paragraph">ONTAP Mediator 1.6</block>
+  <block id="c5d7de55c34e668641e1a528a37b6436" category="paragraph">ONTAP Mediator 1.5</block>
+  <block id="09b297a1a4bcca67652dedc57df1e202" category="paragraph">scst-3.6.0.tar.bz2</block>
+  <block id="21b1af0acdaa98f7c573b54a229cef88" category="paragraph">ONTAP Mediator 1.4</block>
+  <block id="2efaff17f9f038bd5fee7667c4108632" category="paragraph">ONTAP Mediator 1.3</block>
+  <block id="2ee3187dff8a572a21ab1372b84d56de" category="paragraph">scst-3.5.0.tar.bz2</block>
+  <block id="c165c61d0648f135a001e9e856403475" category="paragraph">ONTAP Mediator 1.1</block>
+  <block id="b8ae26a58e496434fcb2936bd1835ca2" category="paragraph">scst-3.4.0.tar.bz2</block>
+  <block id="0e458c5773568b59ce235d487e83fed4" category="paragraph">ONTAP Mediator 1.0</block>
+  <block id="da02a9a3a48ef89c860cd295ea9d498e" category="paragraph">scst-3.3.0.tar.bz2</block>
+  <block id="6bc6f3bb34973f06e2944152e06b3e57" category="inline-link-macro">SCST sourceforge 다운로드</block>
+  <block id="83d381c65682ea10a3c5cb2ea4039419" category="list-text"><block ref="01e2d9408f7c9eaee7ff8a3ac55816e7" category="inline-link-macro-rx"></block>에서 오픈 소스 패키지에 액세스하십시오.</block>
+  <block id="e38a0a20f45973c886cd2a9fb8801de3" category="list-text">*출시 버전 다운로드*를 선택하십시오.</block>
+  <block id="64ec64425c8d283a8cb03364513f8b18" category="list-text">번들을 VM에 압축 해제하십시오.</block>
+  <block id="295383c5bd4aaac8973af7107aed6abe" category="list-text"><block ref="e61b996e82eb1138ee09c1f3d9d7fe5c" prefix=" " category="inline-code"></block> 디렉터리에서 다음 제거 명령을 실행하십시오:</block>
+  <block id="8593afb42fff6936fbbfeccc0ab49aab" category="list-text"><block ref="06a9e7c972b3c74893e99636e502b737" prefix="" category="inline-code"></block></block>
+  <block id="a8410b860b63d17f89061e1e28036877" category="list-text"><block ref="1334f64f34ef689863389bf1052589e3" prefix="" category="inline-code"></block></block>
+  <block id="f870e7c10088703a9737f928794c4407" category="list-text"><block ref="f542261f75ac52008cd7c93b22095159" prefix="" category="inline-code"></block></block>
+  <block id="510e52bce66f7c7182ea060d2ce27766" category="list-text"><block ref="c1d27a6f6981a5a429653f5fed110eab" prefix="" category="inline-code"></block></block>
+  <block id="7e1b9a49ba57aa1bde00fe09f716ef2d" category="list-text"><block ref="fa35632194ce8b583801f20ab41b1e99" prefix="" category="inline-code"></block></block>
+  <block id="07520f190e3e2a2eafd27e363c80ebac" category="list-text"><block ref="7cf7958feb71acb49afb343b4d4d79b2" prefix="" category="inline-code"></block></block>
+  <block id="59d3d0e6555886f1ade3687218842cd3" category="section-title">2단계: SCST 설치</block>
+  <block id="a0daba2143953e8c062cfa7c0ed9710c" category="inline-xref">SCST 테이블</block>
+  <block id="e84f09c1950fdbb6fa633ab80e98c9d2" category="paragraph">SCST를 수동으로 설치하려면 설치된 ONTAP Mediator 버전에 사용되는 SCST tar 번들이 필요합니다(<block ref="7df230741ad687ff62210ec23c02b714" category="inline-xref-macro-rx"></block> 참조).</block>
+  <block id="3c1b791c2302f702e882dbddffcd8e0c" category="list-text">ONTAP Mediator를 설치하기 전에 이 단계를 수행하십시오. 사용 중인 SCST 버전이 ONTAP Mediator 설치 프로그램에 포함된 버전보다 최신인 경우 설치 프로그램은 이 단계를 건너뜁니다.</block>
+  <block id="df877f9ba2a64b9c65a9ebce87d47895" category="list-text">경우에 따라 업그레이드된 운영 체제에 SCST를 기본 설치하는 과정에서 업그레이드된 운영 체제에 필요한 패치 때문에 설치가 실패할 수 있습니다.</block>
+  <block id="1cdf890a814b27389ca73efb6ef1b2a0" category="paragraph">ONTAP Mediator 1.12.1부터 설치가 실패하는 경우, <block ref="711a32ad400471be43668bfcda3244b2" prefix=" " category="inline-code"></block>에 있는 SCST 복구 툴을 사용하여 설치를 복구할 수 있습니다.</block>
+  <block id="cbaf49dde1c8c8a64598acebeddd8885" category="paragraph">업그레이드된 운영 체제에 패치가 필요한 경우, 해당 도구에는 ONTAP Mediator 패키지에 포함된 SCST 버전에 맞는 패치가 들어 있습니다. 이 <block ref="60141085cb46333d90d906cb4f6b2bed" prefix=" " category="inline-code"></block>도구는 메인 설치 프로그램과는 별개의 독립 실행형 툴이며 ONTAP Mediator <block ref="05d1190d81e37d06607cc19e21f63ea7" prefix=" " category="inline-code"></block>파일 내에 포함되어 있습니다. ONTAP Mediator의 설치 또는 업그레이드 경로에는 영향을 미치지 않습니다.</block>
+  <block id="af237f12f033ed7a1541ed09941bd49a" category="list-text"><block ref="e61b996e82eb1138ee09c1f3d9d7fe5c" prefix=" " category="inline-code"></block> 디렉터리에서 다음 설치 명령을 실행하십시오:</block>
+  <block id="219be29168daa439833c6dec3204ab8a" category="list-text"><block ref="15b729bfacb674677c02d36e67cccd31" prefix="" category="inline-code"></block></block>
+  <block id="d62b340c8804af5b986f34042c421807" category="list-text"><block ref="7b0b9f99b1782da526b64f9c7d2cbfda" prefix="" category="inline-code"></block></block>
+  <block id="035c4c41a051e50df34e008a35f193c3" category="list-text"><block ref="de45ef00651d6d63e4b3d70e555aeb96" prefix="" category="inline-code"></block></block>
+  <block id="51bf1342c02a1aa7f473006f5c4e03dd" category="list-text"><block ref="eb27a945bae77a00e7110a9d66641ad3" prefix="" category="inline-code"></block></block>
+  <block id="9bb2fdee7568658389f23ffceb122d2b" category="list-text"><block ref="4257f02e0cc0cdc1a062518badc38798" prefix="" category="inline-code"></block></block>
+  <block id="03f148fb355081942edbed6cacd558ef" category="paragraph">처음 설치하는 경우 ONTAP Mediator를 사전 설치하려면 다음 단계로 진행하기 전에 다음 명령을 실행하십시오.</block>
+  <block id="87055910cc61d08f9e025801764f05db" category="paragraph"><block ref="ef04324829dcd0814b9758eddb1cdef3" prefix="" category="inline-code"></block></block>
+  <block id="bd7d101a7e592e89568ef4a3a9e6854c" category="list-text"><block ref="337c365bf15e4037b2d44f1d33bf8b42" prefix="" category="inline-code"></block></block>
+  <block id="24071e7a1bd2a0c2b695eb49e38c2cf3" category="list-text"><block ref="cc05e5a8166865ea5604111743b13c0f" prefix="" category="inline-code"></block></block>
+  <block id="f1654e0e0503cd7c2bb9fe4aa5a1e585" category="admonition">최초 설치 시 ONTAP Mediator보다 먼저 SCST를 사전 설치한 경우 이 단계를 건너뛰십시오. 설치 프로그램이 관련 SCST 패치를 적용합니다.</block>
+  <block id="87bf5adc2c3567a5a481065537a8a6c5" category="list-text">선택적으로, 보안 부팅이 활성화된 경우 재부팅하기 전에 다음 단계를 수행하십시오:</block>
+  <block id="3c057675c20e59ed95b565b162d77abe" category="list-text"><block ref="cc96446bbab924b6866fde0c8bc3afda" prefix=" " category="inline-code"></block>, <block ref="e61b996e82eb1138ee09c1f3d9d7fe5c" prefix=" " category="inline-code"></block> 및 <block ref="941fd93c7fd820c94b632750866d5069" prefix=" " category="inline-code"></block> 모듈에 대한 각 파일 이름을 결정하십시오:</block>
+  <block id="f3f1f01c7600a99d9ae5ff3385707568" category="list-text">커널 릴리스를 확인하십시오:</block>
+  <block id="186531353ecb000c1f2fe442a51e6875" category="list-text">커널로 각 모듈 파일에 서명하십시오:</block>
+  <block id="34ae6a6ef163543442224fb0ceb8d288" category="list-text">펌웨어와 함께 UEFI 키를 설치하십시오.</block>
+  <block id="a1447b47ea4085f23bc9d607d9c14ca4" category="paragraph">UEFI 키 설치 지침은 다음 위치에 있습니다:</block>
+  <block id="099fd32c4706f1e8a51d4db6a91e066b" category="paragraph"><block ref="ba63683ba255fd905f17b826e9f54ffc" prefix="" category="inline-code"></block></block>
+  <block id="f41b1dc94c3aba47479be014a28c177f" category="paragraph">생성된 UEFI 키는 다음 위치에 있습니다:</block>
+  <block id="b7c392ffdd9cf474a112f06afa55aae0" category="paragraph"><block ref="9810e5358ed1383c40727cce3f3461f6" prefix="" category="inline-code"></block></block>
+  <block id="dd5f279d7429dfef139125512e345a36" category="list-text">시스템을 재부팅하십시오:</block>
+  <block id="a0aba6ae1d604e993dbdc4de925448a0" category="paragraph"><block ref="2b755b30293f2f9f79ec1c86ab0943f2" prefix="" category="inline-code"></block></block>
+  <block id="cded85f36d484db29e116f6a9a8e01ed" category="section-title">호스트 이름 또는 IP에 대한 호스트 변경 사항</block>
+  <block id="44ffcd7d55d0d07a3d3b0f89b0ee9761" category="list-text">ONTAP Mediator를 설치한 후 호스트 이름이나 IP 주소가 변경되어 자체 서명된 인증서가 더 이상 유효하지 않은 경우에만 이 작업을 수행하십시오.</block>
+  <block id="54bcd9cb0a4155f6f26f22c8451d8f3b" category="list-text">임시 자체 서명 인증서를 신뢰할 수 있는 타사 인증서로 교체한 후에는 이 작업을 사용하여 인증서를 다시 생성하지 _않습니다_. 자체 서명 인증서가 없는 경우 이 절차를 사용할 수 없습니다.</block>
+  <block id="48c7c41b72e1d678923ce3571aa65b2d" category="paragraph-title">단계</block>
+  <block id="b00b7c9c02e0327f24065677de5525f2" category="paragraph">현재 호스트에 대한 임시 자체 서명 인증서를 생성합니다:</block>
+  <block id="05ed664a4c02ae9ac2b15dfab017e810" category="paragraph"><block ref="2511bb06268eb4b527117280c3871164" prefix="" category="inline-code"></block></block>
+  <block id="ecb59f9593697a45aed1640c4de73429" category="summary">호스트 이름이나 IP 주소가 변경될 때 임시 자체 서명 인증서를 다시 생성합니다.</block>
+  <block id="2d8cdd73cc8da78b74df80aa1652ba34" category="doc">ONTAP Mediator 호스트용 임시 자체 서명 인증서를 다시 생성합니다.</block>
+  <block id="ea10d4fdf639b3decb3b2c9bca5136ba" category="paragraph">호스트 이름이나 IP 주소 변경으로 기존 인증서가 무효화될 경우 현재 호스트에 대한 임시 자체 서명 인증서를 다시 생성합니다.</block>
+  <block id="5bca328affb656481bc77c4e8c48f53a" category="admonition">이 절차는 ONTAP Mediator 1.7 이상 버전이 실행되는 시스템에서만 지원됩니다.</block>
+  <block id="e46aded5b2472eb9faebc8cb2cf98373" category="list-text">ONTAP Mediator를 설치한 후 호스트의 호스트 이름이나 IP 주소가 변경되어 생성된 자체 서명 인증서가 더 이상 유효하지 않게 된 경우에만 이 작업을 수행할 수 있습니다.</block>
+  <block id="bbfce4a0935459743e38b520fec810c3" category="list-text">임시 자체 서명 인증서를 신뢰할 수 있는 타사 인증서로 교체한 후에는 이 작업을 사용하여 인증서를 다시 생성해서는 _안_ 됩니다. 자체 서명 인증서가 없으면 이 절차가 실패합니다.</block>
+  <block id="7eac04f7b7766b6a33a6a26d981f6c59" category="paragraph">현재 호스트에 대한 새 임시 자체 서명 인증서를 다시 생성하려면 다음 단계를 수행하십시오:</block>
+  <block id="0a8fdf83e28a8dc39e912c474334b44e" category="summary">ONTAP Mediator의 자체 서명 인증서를 신뢰할 수 있는 인증서로 교체하십시오.</block>
+  <block id="6b87026f6cb12ce4bf41f8ed3268e6c8" category="doc">ONTAP Mediator 자체 서명 인증서를 신뢰할 수 있는 타사 인증서로 교체하십시오</block>
+  <block id="983451d7831507a3bbf97015d5d34eb5" category="paragraph">사용 환경에서 지원하는 경우, 자체 서명 인증서를 인증 기관에서 발급한 신뢰할 수 있는 인증서로 교체하십시오.</block>
+  <block id="45c66c3c0ef652ff0c9b5c1f5d00aa71" category="inline-link-macro">NetApp Bugs Online 버그 ID CONTAP-243278</block>
+  <block id="9362ebfda0513d76c1ef6259b6c66ad2" category="list-text">타사 인증서는 ONTAP 9.16.1 버전부터, 그리고 일부 이전 ONTAP 패치 릴리스에서만 지원됩니다. <block ref="c3f5363ff997720d7b052ed0f3c93792" category="inline-link-macro-rx"></block>을(를) 참조하십시오.</block>
+  <block id="859dae41a742318e640253da8c4ed08d" category="list-text">타사 인증서는 ONTAP Mediator 1.7 이상 버전이 실행되는 시스템에서만 지원됩니다.</block>
+  <block id="fdb6703b425f6ed6b89d5f9e5f0e440d" category="list-text">생성된 자체 서명 인증서를 신뢰할 수 있는 하위 인증 기관(CA)에서 발급받은 인증서로 교체해야 하는 경우 이 작업을 수행할 수 있습니다. 이를 위해서는 신뢰할 수 있는 공개 키 인프라(PKI) 기관에 대한 접근 권한이 있어야 합니다.</block>
+  <block id="a26ccd79220ab4360a7a81457547dc13" category="list-text">다음 이미지는 각 ONTAP Mediator 인증서의 용도를 보여줍니다.</block>
+  <block id="94e806de183ce500a0629f347038b0fe" category="inline-image-macro">ONTAP Mediator 인증서 용도</block>
+  <block id="73d48dee74134ef6c6aecc8f5c9cbb91" category="paragraph"><block ref="73d48dee74134ef6c6aecc8f5c9cbb91" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="d66b2a29817b16bdbbb8d71c79897999" category="list-text">다음 이미지는 웹 서버 설정 및 ONTAP Mediator 설정에 대한 구성을 보여줍니다.</block>
+  <block id="19d6c22739385d66614ac5b0e48dc967" category="inline-image-macro">웹 서버 설정 및 ONTAP Mediator 설정 구성</block>
+  <block id="f7551ad44e63bc48cc0dac80c95a7f55" category="paragraph"><block ref="f7551ad44e63bc48cc0dac80c95a7f55" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="dba666eb7025fd9dfe4c84f5a8e0e54e" category="section-title">1단계: CA 인증서를 발급하는 제3자 기관으로부터 인증서를 발급받으십시오.</block>
+  <block id="f0d6329976f366cd4f00549b59ca848f" category="paragraph">다음 절차에 따라 PKI 기관으로부터 인증서를 발급받을 수 있습니다.</block>
+  <block id="e9d98eada7bb032e2bccc5d63028b931" category="paragraph">다음 예는 자체 서명 인증서 액터를 <block ref="881d8f2cbcd6ad648cada905bdcf8f06" prefix=" " category="inline-code"></block>에 위치한 타사 인증서 액터로 교체하는 방법을 보여줍니다.</block>
+  <block id="c9956fa1c0a791ae05a571b2df4050dd" category="paragraph">이 예시는 ONTAP Mediator에 필요한 인증서의 필수 요건을 설명합니다. PKI 기관으로부터 인증서를 발급받는 방법은 이 절차와 다를 수 있습니다. 비즈니스 요구 사항에 맞게 절차를 조정하십시오.</block>
+  <block id="3b805c009116852ea35624254e9b001f" category="list-text">PKI 기관에서 인증서를 생성하는 데 사용할 개인 키<block ref="af1e9ae0e498fd55e57eee6b13df7e90" prefix=" " category="inline-code"></block> 및 구성 파일<block ref="b63fc2fe55e71700434cd5dded845bbe" prefix=" " category="inline-code"></block>을 생성합니다.</block>
+  <block id="078654b98ff43f835605ec78f6adb0be" category="list-text">개인 키를 생성합니다<block ref="af1e9ae0e498fd55e57eee6b13df7e90" prefix=" " category="inline-code"></block>:</block>
+  <block id="0a52730597fb4ffa01fc117d9e71e3a9" category="paragraph-title">예</block>
+  <block id="6fab83b9d1c9427f391dafe409e73cb9" category="paragraph"><block ref="60beaf4a3e4e76ba2e0b5199e966b4a5" prefix="" category="inline-code"></block></block>
+  <block id="f6d17dedd790171d3abb0c639b3d74af" category="list-text">구성 파일<block ref="b63fc2fe55e71700434cd5dded845bbe" prefix=" " category="inline-code"></block>(<block ref="603163ce5e8659fa810255687a12d61f" prefix=" " category="inline-code"></block>에 위치)은 생성된 인증서가 반드시 가져야 하는 속성을 정의합니다.</block>
+  <block id="1877dfd2b98048327da6bbcc3eb9d209" category="list-text">개인 키와 구성 파일을 사용하여 인증서 서명 요청을 생성합니다<block ref="04c87081fa56c700d4ba49025b161bc8" prefix=" " category="inline-code"></block>:</block>
+  <block id="81eeab9506186e2dca8faefa78d54067" category="paragraph-title">예:</block>
+  <block id="69d199a7c8145036757b6867017a48f9" category="paragraph"><block ref="45f5019e4e2a45f13b8879039781e0ea" prefix="" category="inline-code"></block></block>
+  <block id="bbb3450060c68da2b55513c4d4183554" category="list-text">인증서 서명 요청<block ref="04c87081fa56c700d4ba49025b161bc8" prefix=" " category="inline-code"></block>을 PKI 기관에 보내 서명을 받으십시오.</block>
+  <block id="49061425c8c421638894d4c46acccff9" category="paragraph">PKI 기관은 요청을 확인하고<block ref="6888bcca92c1656b9638da22d1c88a83" prefix=" " category="inline-code"></block>에 서명하여 인증서<block ref="9e1f34d274d54e077ab71c2c0fe0badd" prefix=" " category="inline-code"></block>를 생성합니다. 또한 PKI 기관에서<block ref="9e1f34d274d54e077ab71c2c0fe0badd" prefix=" " category="inline-code"></block> 인증서에 서명한<block ref="f93035d1d7d45fa37bc8cf1cd447ea1b" prefix=" " category="inline-code"></block> 인증서를 받아야 합니다.</block>
+  <block id="cab2ce77875f7b918e94536e619c0d8c" category="inline-link-macro">SnapMirror 활성 동기화를 위해 ONTAP Mediator 및 클러스터를 구성합니다.</block>
+  <block id="f193834bd92e229bc0f4dabb3e14b64b" category="inline-link-macro">ONTAP Mediator를 MetroCluster IP 구성에 맞게 구성합니다</block>
+  <block id="f4df551a174de171c7ab796a88be6440" category="admonition">HTTPS로 구성된 ONTAP Mediator를 사용하는 SnapMirror 활성 동기화 클러스터 및 MetroCluster IP 구성의 경우, ONTAP 클러스터에 <block ref="9e1f34d274d54e077ab71c2c0fe0badd" prefix=" " category="inline-code"></block> 및 <block ref="f93035d1d7d45fa37bc8cf1cd447ea1b" prefix=" " category="inline-code"></block> 인증서를 추가해야 합니다. <block ref="969d110dc2acd5c775ecdf40865c816b" category="inline-link-macro-rx"></block> 및 <block ref="17fdc58adf7488af5cac0a397597b31a" category="inline-link-macro-rx"></block>을(를) 참조하십시오.</block>
+  <block id="0e8039485c980e9122c09d51876bf864" category="list-text">PKI 기관에서 인증서를 생성하는 데 사용할 개인 키<block ref="006bb7652a42584eed616d6cab6b5942" prefix=" " category="inline-code"></block> 및 구성 파일<block ref="b63fc2fe55e71700434cd5dded845bbe" prefix=" " category="inline-code"></block>을 생성합니다.</block>
+  <block id="6e1407359fec929f717684929f6b4257" category="list-text">개인 키를 생성합니다<block ref="006bb7652a42584eed616d6cab6b5942" prefix=" " category="inline-code"></block>:</block>
+  <block id="a8d490bade5ae1bf3adce74e8a81f7a3" category="paragraph"><block ref="6db526989015dac4a4325b5b6a3b7ba2" prefix="" category="inline-code"></block></block>
+  <block id="0a33f290561c82221dfda732ba7c8bb7" category="list-text">개인 키와 구성 파일을 사용하여 인증서 서명 요청을 생성합니다<block ref="740015385df511c8015f75b5c6069152" prefix=" " category="inline-code"></block>:</block>
+  <block id="86117ec4fb14b54878d13941affd978b" category="list-text">인증서 서명 요청<block ref="740015385df511c8015f75b5c6069152" prefix=" " category="inline-code"></block>을 PKI 기관에 보내 서명을 받으십시오.</block>
+  <block id="6e5b4b37bdceed4d2bb7ef87ea444a99" category="paragraph">PKI 기관은 요청을 확인하고<block ref="6888bcca92c1656b9638da22d1c88a83" prefix=" " category="inline-code"></block>에 서명하여 인증서<block ref="017ce4f89360621e0345c257b6136b21" prefix=" " category="inline-code"></block>를 생성합니다. 또한 PKI 기관으로부터<block ref="017ce4f89360621e0345c257b6136b21" prefix=" " category="inline-code"></block> 인증서에 서명한<block ref="f93035d1d7d45fa37bc8cf1cd447ea1b" prefix=" " category="inline-code"></block> 인증서를 받아야 합니다.</block>
+  <block id="35406e31af2f4f3839350d4b14955d79" category="admonition">SnapMirror 활성 동기화 클러스터의 경우 ONTAP 클러스터에 <block ref="017ce4f89360621e0345c257b6136b21" prefix=" " category="inline-code"></block> 및 <block ref="f93035d1d7d45fa37bc8cf1cd447ea1b" prefix=" " category="inline-code"></block> 인증서를 추가해야 합니다. <block ref="969d110dc2acd5c775ecdf40865c816b" category="inline-link-macro-rx"></block>을(를) 참조하십시오.</block>
+  <block id="056a80f7d7d413f4f924266b3128c6ea" category="section-title">2단계: 제3자 CA 인증서를 사용하여 서명함으로써 서버 인증서를 생성합니다.</block>
+  <block id="0c65a7f7bfe735e5466712884856bba1" category="paragraph">서버 인증서는 개인 키<block ref="af1e9ae0e498fd55e57eee6b13df7e90" prefix=" " category="inline-code"></block> 및 제3자 인증서<block ref="9e1f34d274d54e077ab71c2c0fe0badd" prefix=" " category="inline-code"></block>로 서명되어야 합니다. 또한 구성 파일<block ref="84cb52bb17b32e87a0316b550e728d41" prefix=" " category="inline-code"></block>에는 OpenSSL에서 발급한 서버 인증서에 필요한 속성을 지정하는 특정 속성이 포함되어 있습니다.</block>
+  <block id="5762acaab0546d38c14fded50d8851b0" category="paragraph">다음 명령어를 사용하여 서버 인증서를 생성할 수 있습니다.</block>
+  <block id="5b597d33ee913b4dd82df326a9a0df99" category="list-text">서버 인증서 서명 요청(CSR)을 생성하려면 <block ref="d1310db41b53a4ee6e7ef6b2111028ed" prefix=" " category="inline-code"></block> 폴더에서 다음 명령을 실행하십시오:</block>
+  <block id="beaa867526f567c96f6b3a81806a5014" category="paragraph"><block ref="80383e076d8d43cb8f3d687ea7d86718" prefix="" category="inline-code"></block></block>
+  <block id="d7bbf2a9256f7a93507c182af62bdba7" category="list-text">[[step_2_intermediate_info_v9]]CSR에서 서버 인증서를 생성하려면 <block ref="d1310db41b53a4ee6e7ef6b2111028ed" prefix=" " category="inline-code"></block> 폴더에서 다음 명령을 실행하십시오:</block>
+  <block id="901fe5a6df712b84b225bb7dd8d3c951" category="admonition">이 파일들은 PKI 기관에서 가져온 것입니다. 다른 인증서 이름을 사용하는 경우, <block ref="9e1f34d274d54e077ab71c2c0fe0badd" prefix=" " category="inline-code"></block> 및 <block ref="af1e9ae0e498fd55e57eee6b13df7e90" prefix=" " category="inline-code"></block>를 해당 파일 이름으로 바꾸십시오.</block>
+  <block id="9a7b7618cc37cc5e828264dec6ce253a" category="paragraph"><block ref="722c3b45efbfda611e47611e4899aaf2" prefix="" category="inline-code"></block></block>
+  <block id="cc1e839f1c6e83b66a14b6fef505f123" category="list-text"><block ref="877efcd6cbcff5bef5736a55041d38cf" prefix=" " category="inline-code"></block> 옵션은 <block ref="41799a9f1cb27f52842c90e3f9f9efdf" prefix=" " category="inline-code"></block> 파일을 생성하는 데 사용됩니다.</block>
+  <block id="2becae461be61f9e490c5f374223162b" category="paragraph">서버 인증서는 개인 키<block ref="006bb7652a42584eed616d6cab6b5942" prefix=" " category="inline-code"></block> 및 제3자 인증서<block ref="017ce4f89360621e0345c257b6136b21" prefix=" " category="inline-code"></block>로 서명되어야 합니다. 또한 구성 파일<block ref="84cb52bb17b32e87a0316b550e728d41" prefix=" " category="inline-code"></block>에는 OpenSSL에서 발급한 서버 인증서에 필요한 속성을 지정하는 특정 속성이 포함되어 있습니다.</block>
+  <block id="d2e434afaca634f2f0aeaad1469acad4" category="list-text">[[step_2_intermediate_info_v8]]CSR에서 서버 인증서를 생성하려면 <block ref="d1310db41b53a4ee6e7ef6b2111028ed" prefix=" " category="inline-code"></block> 폴더에서 다음 명령을 실행하십시오:</block>
+  <block id="590640d89a0fa21e04be87bd7b642332" category="admonition">이 파일들은 PKI 기관에서 가져온 것입니다. 다른 인증서 이름을 사용하는 경우, <block ref="017ce4f89360621e0345c257b6136b21" prefix=" " category="inline-code"></block> 및 <block ref="006bb7652a42584eed616d6cab6b5942" prefix=" " category="inline-code"></block>를 해당 파일 이름으로 바꾸십시오.</block>
+  <block id="9f7f816da9d37c41376b5880935464ad" category="paragraph"><block ref="22a542367f1f4e0cd4ac3c474904c66d" prefix="" category="inline-code"></block></block>
+  <block id="66c4ef86c3be5a6ace692d41b16bb6a0" category="list-text"><block ref="877efcd6cbcff5bef5736a55041d38cf" prefix=" " category="inline-code"></block> 옵션은 <block ref="6d9cf61db5ec1375b2846eaf8102c57d" prefix=" " category="inline-code"></block> 파일을 생성하는 데 사용됩니다.</block>
+  <block id="41b00f5e0e569d9d5e875f54e250641b" category="section-title">3단계: ONTAP Mediator 구성에서 새로운 타사 CA 인증서 및 서버 인증서 교체</block>
+  <block id="7dc4da8261ee50ff7c7bd7944a06d779" category="open-title">ONTAP Mediator 1.10 이상 버전</block>
+  <block id="6e64583261c5e7e30a02df50cd97906f" category="paragraph">인증서 구성은 <block ref="91f698a7212f808ea1123f2fea7d684b" prefix=" " category="inline-code"></block>에 위치한 구성 파일에서 ONTAP Mediator에 제공됩니다. 이 파일에는 다음과 같은 속성이 포함되어 있습니다.</block>
+  <block id="14b1bc5827810cb6388615660e9ef5e3" category="list-text"><block ref="57ec7fe7e85d1196b9f133d14ea5b50d" prefix="" category="inline-code"></block> 및 <block ref="0df75c07b8443071d006ab81cad1a19d" prefix=" " category="inline-code"></block>는 서버 인증서 변수입니다.</block>
+  <block id="3a4b60bb708e08a08669aba534057841" category="list-text"><block ref="b8cd01813c5850a747e7a03c9dcb43ed" prefix="" category="inline-code"></block>, <block ref="a93e5ca6615891464275e325959beec1" prefix=" " category="inline-code"></block> 및 <block ref="432981cc26072c8b71f348991372737a" prefix=" " category="inline-code"></block>는 CA 인증서 변수입니다.</block>
+  <block id="a9b4025ad224a247e726fcf76662b617" category="list-text">모든 <block ref="92ce94a27a4f217c948197cd04250986" prefix=" " category="inline-code"></block> 파일을 타사 인증서로 교체하십시오.</block>
+  <block id="31c0baa23b1af15a0d3a43d1b3ead845" category="list-text"><block ref="9e1f34d274d54e077ab71c2c0fe0badd" prefix=" " category="inline-code"></block> 및 <block ref="4d389575bb215bbefa0d6232cd02d8f9" prefix=" " category="inline-code"></block> 인증서를 사용하여 인증서 체인을 생성합니다:</block>
+  <block id="8e5154ac6950f78c89d2755da310ae26" category="paragraph"><block ref="458477685a61800dcd4658fcf77d60a9" prefix="" category="inline-code"></block></block>
+  <block id="a2c8eb7ec6335fdb2105ec3728a7548f" category="list-text"><block ref="49345d1bd9b5d2feb6e514601b3dc8b7" prefix=" " category="inline-code"></block> 파일을 업데이트하십시오.</block>
+  <block id="9a01db6fec1b512e701b180f131d6ca2" category="paragraph"><block ref="3bd8168dce3c8a50e907ce3aa9da865f" prefix=" " category="inline-code"></block>, <block ref="361c4929fae81af747b192247e803d9c" prefix=" " category="inline-code"></block> 및 <block ref="9c1fc3b79d60bf04b6085fe46e62f1c9" prefix=" " category="inline-code"></block>의 값을 업데이트하십시오:</block>
+  <block id="441da631466806866b84bbf585cebda6" category="paragraph"><block ref="3bd8168dce3c8a50e907ce3aa9da865f" prefix="" category="inline-code"></block>:<block ref="c65e9f7c554af033c2b73c5a83f1e7fa" prefix=" " category="inline-code"></block></block>
+  <block id="6f0a9ec41ae85f2ba2ea993c30486d8b" category="paragraph"><block ref="361c4929fae81af747b192247e803d9c" prefix="" category="inline-code"></block>:<block ref="65443649d2ad7f4ae3b991372ec6c8ce" prefix=" " category="inline-code"></block></block>
+  <block id="c94af72455438bfef22ce52ada3e551d" category="paragraph"><block ref="9c1fc3b79d60bf04b6085fe46e62f1c9" prefix="" category="inline-code"></block>:<block ref="facb85e3c9aed5e66abad45ae730b174" prefix=" " category="inline-code"></block></block>
+  <block id="90aff04b4f329338dab4a9e237950b47" category="list-text">해당 <block ref="3bd8168dce3c8a50e907ce3aa9da865f" prefix=" " category="inline-code"></block> 값은 <block ref="4d389575bb215bbefa0d6232cd02d8f9" prefix=" " category="inline-code"></block> 파일 내의 키 경로이며, 이는 <block ref="c648fd44a08bf7204571b21b362d1b5b" prefix=" " category="inline-code"></block>입니다.</block>
+  <block id="5cdd26074d389338639d49a748da994f" category="list-text">해당 <block ref="361c4929fae81af747b192247e803d9c" prefix=" " category="inline-code"></block> 값은 <block ref="da456ebfdb87aa0422fa8f40c550835d" prefix=" " category="inline-code"></block> 파일의 경로입니다.</block>
+  <block id="c448b3f163e6395c472bd71c11adfe4c" category="list-text">해당 <block ref="9c1fc3b79d60bf04b6085fe46e62f1c9" prefix=" " category="inline-code"></block> 값은 <block ref="f93035d1d7d45fa37bc8cf1cd447ea1b" prefix=" " category="inline-code"></block> 파일의 경로입니다.</block>
+  <block id="47632d3e542c2eaba8d5e3b109819af3" category="list-text">새로 생성된 인증서의 다음 속성이 올바르게 설정되었는지 확인하십시오:</block>
+  <block id="3bb1410f4281265568630f3742c3bc84" category="list-text">Linux 그룹 소유자:<block ref="3708396f823b6893b07f7e5bed8892eb" prefix=" " category="inline-code"></block></block>
+  <block id="4e9878f5163e140c8537d7d2ecd6d5c9" category="list-text">Linux 권한:<block ref="d490d7b4576290fa60eb31b5fc917ad1" prefix=" " category="inline-code"></block></block>
+  <block id="f3af4c47233f0bd4b7c00261caab487d" category="paragraph"><block ref="d7c845acea8f4035787257ee9cfe470d" prefix="" category="inline-code"></block></block>
+  <block id="415e1820b840c0d0ede8420176bf56e2" category="open-title">ONTAP Mediator 1.9.1 및 1.9</block>
+  <block id="f2fdb1f293c88941864aeb4c956fd32b" category="list-text"><block ref="ea8a01a633dad65525408f18e3468ce8" prefix=" " category="inline-code"></block> 파일을 업데이트하십시오.</block>
+  <block id="bf14ed2bbe3378e58d49b7d21a6d1b11" category="paragraph"><block ref="80eec318a13ef13c13e489b6b09462cd" prefix=" " category="inline-code"></block>, <block ref="8521272c5e36e1911c5d65be9dd77b78" prefix=" " category="inline-code"></block> 및 <block ref="295f5667864643d817199e63c98ccbf6" prefix=" " category="inline-code"></block>의 값을 업데이트하십시오:</block>
+  <block id="0649df909cdcd271bd4dbd108143f1b6" category="paragraph"><block ref="82ae415b080263fa26ac06124cc199b4" prefix="" category="inline-code"></block></block>
+  <block id="f51e176723c73018d1705c8a775dfe84" category="paragraph"><block ref="b39a99aaa7b7f40ba5ab3e91f3f508b1" prefix="" category="inline-code"></block></block>
+  <block id="d6e9bbdfd1fdd0672a9b22dc91abf647" category="paragraph"><block ref="b7ca3bb28daa2c50bbe6e73853da99bb" prefix="" category="inline-code"></block></block>
+  <block id="6714ad5ee542e0e273b4648f39a1d3eb" category="list-text">해당 <block ref="80eec318a13ef13c13e489b6b09462cd" prefix=" " category="inline-code"></block> 값은 <block ref="da456ebfdb87aa0422fa8f40c550835d" prefix=" " category="inline-code"></block> 파일의 경로입니다.</block>
+  <block id="1c7019ec7226d6b42b24c4d1b8e9b498" category="list-text"><block ref="9ae8234d8b9b531c084eefec58e3f9b6" prefix=" " category="inline-code"></block>은(는) <block ref="4d389575bb215bbefa0d6232cd02d8f9" prefix=" " category="inline-code"></block> 파일의 키 경로이며, 이는 <block ref="c648fd44a08bf7204571b21b362d1b5b" prefix=" " category="inline-code"></block>입니다.</block>
+  <block id="8b8cdeb1126557a15dfce94099cd2130" category="list-text">해당 <block ref="295f5667864643d817199e63c98ccbf6" prefix=" " category="inline-code"></block> 값은 <block ref="f93035d1d7d45fa37bc8cf1cd447ea1b" prefix=" " category="inline-code"></block> 파일의 경로입니다.</block>
+  <block id="8737e0e09e0ad91f9b0f08436f5d9c70" category="list-text">모든 <block ref="c9625f1e43d5d6ec06c65483eba6fad4" prefix=" " category="inline-code"></block> 파일을 타사 인증서로 교체하십시오.</block>
+  <block id="3cecfb9e6f37e19d5c11148e604542c1" category="list-text"><block ref="017ce4f89360621e0345c257b6136b21" prefix=" " category="inline-code"></block> 및 <block ref="4d389575bb215bbefa0d6232cd02d8f9" prefix=" " category="inline-code"></block> 인증서를 사용하여 인증서 체인을 생성합니다:</block>
+  <block id="b3ce9007661ed042561cc7c955a1d8de" category="paragraph"><block ref="76a7213342d2bf793b8f1b279683ec0f" prefix="" category="inline-code"></block></block>
+  <block id="8ef01d3d1d2e952cc3e2ca6ba338f5a6" category="section-title">4단계: 필요에 따라 타사 인증서에 다른 경로 또는 이름을 사용할 수 있습니다.</block>
+  <block id="1e9de302ab14768a09b778a5fcd99b37" category="paragraph"><block ref="92ce94a27a4f217c948197cd04250986" prefix=" " category="inline-code"></block> 이외의 다른 이름으로 타사 인증서를 사용하거나 다른 위치에 저장할 수 있습니다.</block>
+  <block id="745d7ec3b43958196d3a63e737310729" category="list-text"><block ref="27a6b24601b63526ffca2fd1c5f9a5c4" prefix=" " category="inline-code"></block> 파일을 구성하여 <block ref="5b85df10091f3a4731397680ace5150b" prefix=" " category="inline-code"></block> 파일의 기본 변수 값을 재정의합니다.</block>
+  <block id="dc45c049c75f00dce36ea121804fc675" category="paragraph">PKI 기관으로부터 <block ref="9e1f34d274d54e077ab71c2c0fe0badd" prefix=" " category="inline-code"></block>을(를) 발급받고 개인 키 <block ref="af1e9ae0e498fd55e57eee6b13df7e90" prefix=" " category="inline-code"></block>을(를) <block ref="d1310db41b53a4ee6e7ef6b2111028ed" prefix=" " category="inline-code"></block> 위치에 저장하는 경우, <block ref="e69236eb2aa5b1455dc0f88753a8a1a2" prefix=" " category="inline-code"></block> 파일은 다음 예와 같아야 합니다:</block>
+  <block id="760042a6666db7aa603c1759de3c17f8" category="admonition"><block ref="9e1f34d274d54e077ab71c2c0fe0badd" prefix=" " category="inline-code"></block>을(를) 사용하여 <block ref="4d389575bb215bbefa0d6232cd02d8f9" prefix=" " category="inline-code"></block> 인증서에 서명한 경우 <block ref="41799a9f1cb27f52842c90e3f9f9efdf" prefix=" " category="inline-code"></block> 파일이 생성됩니다. 자세한 내용은 <block ref="176f27458d3e2a3c3a9ec02498de4a9f" category="inline-xref-macro-rx"></block>을(를) 참조하십시오.</block>
+  <block id="7450bf402d187a456299363bc5c7bb24" category="list-text"><block ref="f93035d1d7d45fa37bc8cf1cd447ea1b" prefix=" " category="inline-code"></block> 인증서가 <block ref="4d389575bb215bbefa0d6232cd02d8f9" prefix=" " category="inline-code"></block> 인증서에 서명하는 <block ref="9e1f34d274d54e077ab71c2c0fe0badd" prefix=" " category="inline-code"></block> 인증서를 제공하는 인증서 구조를 사용하는 경우, <block ref="9e1f34d274d54e077ab71c2c0fe0badd" prefix=" " category="inline-code"></block> 및 <block ref="4d389575bb215bbefa0d6232cd02d8f9" prefix=" " category="inline-code"></block> 인증서에서 인증서 체인을 생성하십시오.</block>
+  <block id="a2a05dc741ed6dd746d7ee82a123267c" category="admonition">절차의 이전 단계에서 PKI 기관으로부터 <block ref="9e1f34d274d54e077ab71c2c0fe0badd" prefix=" " category="inline-code"></block> 및 <block ref="4d389575bb215bbefa0d6232cd02d8f9" prefix=" " category="inline-code"></block> 인증서를 발급받았어야 합니다.</block>
+  <block id="f5c77d84b5e3aa2e280ecc145b9c442b" category="list-text">구성 파일에서 인증서가 업데이트되면 ONTAP Mediator를 다시 시작합니다:</block>
+  <block id="c7faa766b1010320504eaee59d04d490" category="list-text">해당 <block ref="8521272c5e36e1911c5d65be9dd77b78" prefix=" " category="inline-code"></block> 값은 <block ref="4d389575bb215bbefa0d6232cd02d8f9" prefix=" " category="inline-code"></block> 파일의 키 경로이며, 이는 <block ref="c648fd44a08bf7204571b21b362d1b5b" prefix=" " category="inline-code"></block>입니다.</block>
+  <block id="b17bc8319d8420404947a9e6ce0bfd3e" category="admonition">SnapMirror Business Continuity(SM-BC) 클러스터의 경우 ONTAP 클러스터에 <block ref="9e1f34d274d54e077ab71c2c0fe0badd" prefix=" " category="inline-code"></block> 및 <block ref="f93035d1d7d45fa37bc8cf1cd447ea1b" prefix=" " category="inline-code"></block> 인증서를 추가해야 합니다. <block ref="969d110dc2acd5c775ecdf40865c816b" category="inline-link-macro-rx"></block>을(를) 참조하십시오.</block>
+  <block id="e581f49db842b173da229dfa389d04f3" category="paragraph"><block ref="c9625f1e43d5d6ec06c65483eba6fad4" prefix=" " category="inline-code"></block> 이외의 다른 이름으로 타사 인증서를 사용하거나 타사 인증서를 다른 위치에 저장할 수 있습니다.</block>
+  <block id="b227ac4c177690f1337f51db2dca7369" category="paragraph">PKI 기관으로부터 <block ref="017ce4f89360621e0345c257b6136b21" prefix=" " category="inline-code"></block>을(를) 발급받아 해당 개인 키<block ref="006bb7652a42584eed616d6cab6b5942" prefix=" " category="inline-code"></block>를 위치<block ref="d1310db41b53a4ee6e7ef6b2111028ed" prefix=" " category="inline-code"></block>에 저장한 경우, <block ref="e69236eb2aa5b1455dc0f88753a8a1a2" prefix=" " category="inline-code"></block> 파일은 다음 예와 같아야 합니다:</block>
+  <block id="757d497aac644c5208241004b9c07c58" category="admonition"><block ref="017ce4f89360621e0345c257b6136b21" prefix=" " category="inline-code"></block>을(를) 사용하여 <block ref="4d389575bb215bbefa0d6232cd02d8f9" prefix=" " category="inline-code"></block> 인증서에 서명한 경우 <block ref="6d9cf61db5ec1375b2846eaf8102c57d" prefix=" " category="inline-code"></block> 파일이 생성됩니다. 자세한 내용은 <block ref="4f20cf3f9f80bb54f26eaac3d64146c4" category="inline-xref-macro-rx"></block>을(를) 참조하십시오.</block>
+  <block id="7a51a601ead73ab7d3228537295b9cda" category="list-text"><block ref="f93035d1d7d45fa37bc8cf1cd447ea1b" prefix=" " category="inline-code"></block> 인증서가 <block ref="4d389575bb215bbefa0d6232cd02d8f9" prefix=" " category="inline-code"></block> 인증서에 서명하는 <block ref="017ce4f89360621e0345c257b6136b21" prefix=" " category="inline-code"></block> 인증서를 제공하는 인증서 구조를 사용하는 경우, <block ref="017ce4f89360621e0345c257b6136b21" prefix=" " category="inline-code"></block> 및 <block ref="4d389575bb215bbefa0d6232cd02d8f9" prefix=" " category="inline-code"></block> 인증서에서 인증서 체인을 생성하십시오.</block>
+  <block id="f9e6d688a8a27c940763126695c2660f" category="admonition">절차의 이전 단계에서 PKI 기관으로부터 <block ref="017ce4f89360621e0345c257b6136b21" prefix=" " category="inline-code"></block> 및 <block ref="4d389575bb215bbefa0d6232cd02d8f9" prefix=" " category="inline-code"></block> 인증서를 발급받았어야 합니다.</block>
+  <block id="7cf80fa79f251c77bc9b3f9550a9a81a" category="admonition">SnapMirror Business Continuity(SM-BC) 클러스터의 경우 ONTAP 클러스터에 <block ref="017ce4f89360621e0345c257b6136b21" prefix=" " category="inline-code"></block> 및 <block ref="f93035d1d7d45fa37bc8cf1cd447ea1b" prefix=" " category="inline-code"></block> 인증서를 추가해야 합니다. <block ref="969d110dc2acd5c775ecdf40865c816b" category="inline-link-macro-rx"></block>을(를) 참조하십시오.</block>
+  <block id="e58764e435e48d596747db269d4b5d30" category="summary">호스트에서 ONTAP Mediator 및 SCST를 시작하거나 중지합니다.</block>
+  <block id="25bfbef5696da67a2bc81fe0c0d39812" category="doc">ONTAP Mediator 시작 및 중지</block>
+  <block id="7add99166ebcb3cd72ed801ee22d4634" category="paragraph">호스트를 유지 관리하거나 서비스를 다시 활성화해야 할 때 ONTAP Mediator 및 SCST를 중지하거나 다시 시작하십시오.</block>
+  <block id="655b7872afeae68779acb74444402d9a" category="section-title">ONTAP 미디에이터 중지</block>
+  <block id="cea5aade9424395223b85baa1456cd09" category="paragraph">ONTAP Mediator를 중지하려면 다음 단계를 수행하십시오:</block>
+  <block id="fb85f149833e3eb7f2f1d7dcd1401d7d" category="list-text">ONTAP Mediator 중지:</block>
+  <block id="a63d7574a9973d3267f20b9ba574cae5" category="list-text">SCST 중지:</block>
+  <block id="446238b190643f093b6e98fab3a631aa" category="list-text">ONTAP Mediator 및 SCST를 비활성화합니다:</block>
+  <block id="aaa48dae5c5624655efe9a6801844167" category="section-title">ONTAP Mediator 시작하기</block>
+  <block id="f9737993deed4ea27689fb71deb7ee7e" category="paragraph">ONTAP Mediator를 다시 활성화하려면 다음 단계를 수행하십시오:</block>
+  <block id="1675ea84897c4b9a3be06c13d1a8e91a" category="list-text">ONTAP Mediator 및 SCST를 활성화합니다:</block>
+  <block id="bdf969c9539ce73d6e0e75f474c7d363" category="list-text">SCST 시작:</block>
+  <block id="18a1dd44b1efa4af080b4f3301bfa284" category="list-text">ONTAP Mediator 시작하기:</block>
+  <block id="f60728c80ea87603b776186896554e5c" category="summary">인증서 문제를 진단하려면 ONTAP Mediator 인증서 속성을 확인하십시오.</block>
+  <block id="f64581af1fd62e056f617c9d13d87f3b" category="doc">ONTAP Mediator 인증서 관련 문제 해결</block>
+  <block id="8f9526a9dae9e8db4c927b1be1d7e15a" category="paragraph">인증서 문제를 해결할 때 이러한 검사를 사용하여 인증서 속성을 확인하십시오.</block>
+  <block id="f716aaeccf7df02ecbff39c7de2812cb" category="section-title">인증서 만료 확인</block>
+  <block id="5028989626f45c864f9868006b3cf13b" category="paragraph">다음 명령어를 사용하여 인증서 유효 기간을 확인하십시오.</block>
+  <block id="e55c8833c3fc3b1d8308bf5a792aacf9" category="section-title">CA 인증에서 X509v3 확장 기능을 확인합니다.</block>
+  <block id="79f7acb74b8d1c327401d5ffb4dd1b7a" category="paragraph">CA 인증서의 X509v3 확장 기능을 확인하려면 다음 명령어를 사용하십시오.</block>
+  <block id="98c3d634ed1554dbd7e4a767529b49c0" category="paragraph"><block ref="b63fc2fe55e71700434cd5dded845bbe" prefix=" " category="inline-code"></block> 내의<block ref="2547e27347954d3e2694ca70610f773b" prefix=" " category="inline-code"></block>에 정의된 속성은<block ref="9e1f34d274d54e077ab71c2c0fe0badd" prefix=" " category="inline-code"></block>에서<block ref="72622591093aabcc83d5611f6d6a73ec" prefix=" " category="inline-code"></block>으로 표시됩니다.</block>
+  <block id="63861c1958c4623cddd28492e3ab0bac" category="paragraph"><block ref="b63fc2fe55e71700434cd5dded845bbe" prefix=" " category="inline-code"></block> 내의<block ref="2547e27347954d3e2694ca70610f773b" prefix=" " category="inline-code"></block>에서 정의된 속성은<block ref="017ce4f89360621e0345c257b6136b21" prefix=" " category="inline-code"></block> 내에서<block ref="72622591093aabcc83d5611f6d6a73ec" prefix=" " category="inline-code"></block>로 표시됩니다.</block>
+  <block id="76737c36b0223403b5dd102da0abf348" category="section-title">서버 인증서 및 주체 대체 이름에서 X509v3 확장 기능을 확인하십시오</block>
+  <block id="403d2119dd0fe592eab5feb267706f2e" category="paragraph"><block ref="da56d4f4b52097b490f238ec04ac5103" prefix=" " category="inline-code"></block> 구성 파일에 정의된<block ref="496704f0208fe5c8f78493ddd36eaef6" prefix=" " category="inline-code"></block> 속성은 인증서에<block ref="72622591093aabcc83d5611f6d6a73ec" prefix=" " category="inline-code"></block>으로 표시됩니다.</block>
+  <block id="75833dbf241ae98ba86aa1753f294bb5" category="paragraph">다음 예에서는 ONTAP Mediator가 설치된 Linux VM에서 <block ref="ea14150aa969c01b90ed08df79a8bb5f" prefix=" " category="inline-code"></block> 및 <block ref="980f3be04fb4e030898c599f757453e8" prefix=" " category="inline-code"></block> 명령을 실행하여 <block ref="36e960efb69c958d7271270e171e01e0" prefix=" " category="inline-code"></block> 섹션의 변수를 가져올 수 있습니다.</block>
+  <block id="8f2b21a5dd1a16e566944c5899909350" category="paragraph">변수의 정확한 값은 네트워크 관리자에게 문의하십시오.</block>
+  <block id="d0dbbceb37ab1014abb93b8586e4b3b2" category="section-title">개인 키가 인증서와 일치하는지 확인하십시오</block>
+  <block id="0f8b763d21734ba835386412251d4f43" category="paragraph">특정 개인 키가 인증서와 일치하는지 확인할 수 있습니다.</block>
+  <block id="4e0b7c052b98e91db00bdcb760cdd037" category="paragraph">다음 OpenSSL 명령어를 키와 인증서에 각각 적용하십시오.</block>
+  <block id="5c6e263274a2514f6b54f071fbffc9e7" category="paragraph">양쪽의 <block ref="e2e9c872aba8596f8c676cc27d22336f" prefix=" " category="inline-code"></block> 속성이 일치하면 개인 키와 인증서 쌍이 호환되어 서로 함께 작동할 수 있음을 나타냅니다.</block>
+  <block id="14030809a7e24dd5a0c9dcb4ee9006f7" category="section-title">서버 인증서가 특정 CA 인증서로부터 생성되었는지 확인하십시오</block>
+  <block id="a6adedca6bea42dfb0f60ae18407567e" category="paragraph">다음 명령어를 사용하여 서버 인증서가 특정 CA 인증서로부터 생성되었는지 확인할 수 있습니다.</block>
+  <block id="bc658cbeef646d198df1c8abaf4a15f7" category="inline-link-macro">openssl-verify</block>
+  <block id="dc83f0efa46dd3ce8abc6466a0559bce" category="paragraph">온라인 인증서 상태 프로토콜(OCSP) 유효성 검사를 사용하는 경우 <block ref="f6654ed683b4881ae426ff6569f1e182" category="inline-link-macro-rx"></block> 명령어를 사용하십시오.</block>
+  <block id="a6bd903d786933ec96826e892860a718" category="summary">호스트에서 ONTAP Mediator를 제거합니다.</block>
+  <block id="d696a0ff4c5bf37a6d499263b1e72efb" category="doc">ONTAP Mediator 제거</block>
+  <block id="6eece176f0b4a87f6d84de35351a0e4f" category="paragraph">필요한 경우 ONTAP에서 연결을 해제한 후 ONTAP Mediator를 제거하십시오.</block>
+  <block id="d94f0c0806ea596e6ab5ca6fbb186b3e" category="paragraph">ONTAP Mediator를 제거하기 전에 ONTAP에서 연결을 해제해야 합니다.</block>
+  <block id="04e18ededf9b4f7e991de51ad7fa228d" category="paragraph"><block ref="74ac5d826adfbc116b6ea064d73cb629" prefix="" category="inline-code"></block></block>
+  <block id="d18cfc983011c66b1d3c0c56f599f1ac" category="list-text">ONTAP Mediator를 제거하십시오:</block>
+  <block id="f44f7511403227c6d86bd02c4753c706" category="summary">설치 과정의 일부로 호스트 운영 체제를 업그레이드한 다음 ONTAP Mediator를 업그레이드합니다.</block>
+  <block id="33ddec60e94a5b1e351c678518710bc0" category="doc">호스트 운영 체제를 업그레이드하고 ONTAP Mediator를 다시 설치하거나 업그레이드하십시오.</block>
+  <block id="ffce34b1ff0e0f672d07e29eaf72f284" category="paragraph">SCST가 설치된 ONTAP Mediator의 호스트 OS를 최신 버전으로 업그레이드하려면 ONTAP Mediator를 제거해야 합니다. OS 업그레이드 후 현재 버전의 ONTAP Mediator를 다시 설치하거나 최신 버전으로 업그레이드할 수 있습니다.</block>
+  <block id="fd45b30ab0fd9eb87d5946a288f08752" category="list-text">이 작업은 SCST가 설치된 ONTAP Mediator 버전에 적용됩니다. HTTPS만 지원하는 ONTAP Mediator 1.12 이상을 설치한 경우 SCST 패키지가 설치되지 않으므로 ONTAP Mediator에 영향을 주지 않고 호스트 OS를 업그레이드할 수 있습니다. OS 업그레이드 지침은 호스트 OS 공급업체의 설명서를 참조하십시오.</block>
+  <block id="b554eba3d15932edfa85177eddbccb4c" category="list-text">새로운 OS 릴리스로 업그레이드하지 않고 호스트 OS 커널만 지원되는 버전으로 업데이트해야 하는 경우 대신 <block ref="b075934ff9d66de58a7e9f651299f048" category="inline-link-macro-rx"></block>을(를) 참조하십시오.</block>
+  <block id="3260cd4172586a75af4bf1da43704ced" category="inline-link-macro">ONTAP Mediator 제거</block>
+  <block id="aaba753df53928af5937fcb0c3a7ac00" category="list-text">leapp-upgrade 툴을 사용하여 ONTAP Mediator용 호스트 OS를 업그레이드하기 전에 <block ref="283ba49559acd27e546bb5bedd3d83b1" category="inline-link-macro-rx"></block>. 이 툴은 등록된 저장소에서 새로운 RPM 버전을 확인합니다.</block>
+  <block id="4d5a64ced52edea4ce2fcdc553fd7582" category="list-text">ONTAP Mediator 설치 프로그램은 .rpm 파일을 설치하며, leapp-upgrade 툴은 이를 검색에 포함합니다. 설치 프로그램이 등록된 리포지토리에서 파일을 다운로드하는 대신 압축을 풀기 때문에 툴이 업그레이드를 찾을 수 없습니다. 패키지를 제거하려면 leapp-upgrade 툴을 사용해야 합니다.</block>
+  <block id="b6336eece7eb2ead85373555f6cfcbdd" category="list-text">로그 파일을 백업하십시오:</block>
+  <block id="504c98b2a90ed39d6e9ed976902f2138" category="list-text">leapp-upgrade 툴로 업그레이드 수행:</block>
+  <block id="f0c7ca786eeae94af6cdf1924a08fee9" category="list-text">ONTAP Mediator를 다시 설치하십시오:</block>
+  <block id="cb7ad262254a095be82dbb0206979b90" category="admonition">로그 파일 손실을 방지하기 위해 ONTAP Mediator를 재설치한 직후 즉시 나머지 단계를 수행하십시오.</block>
+  <block id="68a6472fe8e21532a879138ee26953b1" category="list-text">ontap_mediator 중지:</block>
+  <block id="454f6dbfe7dcd2d66ce2fd7fa27e3ba9" category="list-text">로그 파일을 교체하십시오:</block>
+  <block id="eb1a5fc97f872516cfa636e7cdb2de6b" category="list-text">ontap_mediator 시작:</block>
+  <block id="c5472868bc47e1d56f7ebcad78b8baf1" category="list-text">업그레이드된 ONTAP Mediator에 모든 ONTAP 클러스터를 다시 연결하십시오:</block>
+  <block id="9606052688ba7ea8a292d061cb529730" category="open-title">IP 기반 MetroCluster</block>
+  <block id="c0b79db5f258f0c991a383cbdbf001dd" category="open-title">SnapMirror 액티브 동기화</block>
+  <block id="076bbc36fa1cec5319e57430a8b42d91" category="paragraph">SnapMirror 활성 동기화를 사용하는 경우 /opt/netapp 외부에 저장된 TLS 인증서를 다시 설치할 필요가 없습니다. /opt/netapp에 저장된 인증서를 백업하고 복원하십시오.</block>
+  <block id="30f60d67f457bb040dffde52197a54da" category="list-title">관련 정보</block>
+  <block id="b7081185ef66ac9a73da5ce749f082e2" category="inline-link-macro">security certificate delete</block>
+  <block id="d467323207417a6d7e0dd99c506b86e9" category="list-text"><block ref="d467323207417a6d7e0dd99c506b86e9" category="inline-link-macro-rx"></block></block>
+  <block id="a9768a1721be1abfec9928f99bc40b43" category="inline-link-macro">security certificate install</block>
+  <block id="6f4f6f44c7c7ad4e08bbe43aebddcad4" category="list-text"><block ref="6f4f6f44c7c7ad4e08bbe43aebddcad4" category="inline-link-macro-rx"></block></block>
+  <block id="d5fe3efc0a92a43a98f54ac24ef1b5dd" category="inline-link-macro">security certificate show</block>
+  <block id="922792ffe4073c0eb369aa9d94a253d1" category="list-text"><block ref="922792ffe4073c0eb369aa9d94a253d1" category="inline-link-macro-rx"></block></block>
+  <block id="47a733e59a59708c3179837a196fad15" category="inline-link-macro">snapmirror mediator add</block>
+  <block id="f320e7fc12684f536ec4a2c6bd95eed6" category="list-text"><block ref="f320e7fc12684f536ec4a2c6bd95eed6" category="inline-link-macro-rx"></block></block>
+  <block id="913e3fb6005d79d1e7e5eb2046a6fa4c" category="inline-link-macro">snapmirror mediator remove</block>
+  <block id="55394a49231c00367e205c42b064e980" category="list-text"><block ref="55394a49231c00367e205c42b064e980" category="inline-link-macro-rx"></block></block>
+  <block id="b537069c8a5aec356a63851186f912fe" category="inline-link-macro">storage iscsi-initiator show</block>
+  <block id="4865af58e3487fe0b7ed016935c64256" category="list-text"><block ref="4865af58e3487fe0b7ed016935c64256" category="inline-link-macro-rx"></block></block>
+  <block id="08a4fa0bb1e9083bfe68c6e407bbc0bc" category="summary">호스트 운영 체제를 업그레이드하지 않고 ONTAP Mediator를 업그레이드하려면 새 버전의 설치 패키지를 다운로드하고 기존 ONTAP Mediator 호스트에서 설치 프로그램을 실행하십시오.</block>
+  <block id="3be8e80430c46fc92e8eb95cc6f4a77a" category="doc">ONTAP Mediator 업그레이드</block>
+  <block id="d7ef71a44ebd836615f83aa9c1384993" category="paragraph">호스트 OS를 업그레이드하지 않고 ONTAP Mediator를 최신 버전으로 업그레이드하려면 새 버전의 설치 패키지를 다운로드하고 ONTAP Mediator가 이미 설치된 호스트에서 설치 프로그램을 실행하십시오.</block>
+  <block id="87f2ea870f9c143a692e27f36312166e" category="inline-link-macro">호스트 운영 체제 및 ONTAP Mediator를 업그레이드하십시오.</block>
+  <block id="43cd70ac79d4b9bc1ba20242c3be7e92" category="admonition">호스트 OS를 새 릴리스로 업그레이드하고 그 과정의 일부로 ONTAP Mediator를 다시 설치하거나 업그레이드해야 하는 경우, 대신 <block ref="e001b02d7be5296dda81681793d3b6f2" category="inline-link-macro-rx"></block>을(를) 참조하십시오.</block>
+  <block id="dfcddace895e6d15eaa29a365e239546" category="inline-link-macro">ONTAP Mediator 설치 준비</block>
+  <block id="fa9221fe0f2911e14b8b07da9bc2cb8f" category="list-text">호스트가 호스트, 방화벽 및 OS 요구 사항을 포함하여 <block ref="1436d225b9f0a111f3187830b0738fb5" category="inline-link-macro-rx"></block>에 설명된 필수 조건을 충족하는지 확인하십시오.</block>
+  <block id="1a08677cb099f004665a94af3d83f5ee" category="inline-link-macro">ONTAP Mediator 설치 패키지를 다운로드하십시오</block>
+  <block id="5078209699cbff5e3894f83ba0a0b275" category="list-text">새 버전의 설치 패키지를 다운로드하십시오. <block ref="0450d1e6df4787a73f1aab9873409f04" category="inline-link-macro-rx"></block>을(를) 참조하십시오.</block>
+  <block id="8e9334edba4acfa6425b88db3bf1cddd" category="inline-link-macro">ONTAP Mediator 설치 패키지의 코드 서명을 확인하십시오.</block>
+  <block id="4768475f5d3ac13982d0fafcf94fd214" category="list-text">NetApp은 새 설치 패키지의 코드 서명을 확인할 것을 권장합니다. <block ref="f72391a1de200afd87792e2472bd347d" category="inline-link-macro-rx"></block>을(를) 참조하십시오.</block>
+  <block id="1875d11cccf7bf59f58e709a1372067d" category="paragraph">ONTAP Mediator를 업그레이드하기 전에 다음 정보를 검토하십시오.</block>
+  <block id="e91dfd200f4c86ead4c9e3dc82714b50" category="list-text">ONTAP Mediator를 최신 버전으로 업그레이드해야 합니다. 이전 버전도 모든 ONTAP 릴리스와 호환되지만, 최신 버전에는 타사 구성 요소에 대한 보안 패치가 포함되어 있습니다.</block>
+  <block id="65abc13b981890914014752e0de128f3" category="inline-link-macro">SCST 지원 매트릭스</block>
+  <block id="54950270731c946c6ad58aec7c871abf" category="list-text">SCST 패키지가 포함된 새로운 ONTAP Mediator 버전으로 업그레이드할 경우, 설치 프로그램은 더 높은 버전이 없는 한 권장 SCST 버전으로 자동 업그레이드합니다. 더 높은 SCST 버전을 수동으로 설치하는 방법에 대한 지침은 <block ref="b075934ff9d66de58a7e9f651299f048" category="inline-link-macro-rx"></block>을 참조하십시오. 지원되는 버전은 <block ref="f1b6fd3bc38ee1ac29f0f346446f7ccf" category="inline-link-macro-rx"></block>을 참조하십시오.</block>
+  <block id="2299af78b9e92aa893c910b1e801c1d9" category="list-text">업그레이드가 실패하면 ONTAP Mediator의 최신 버전을 사용해 봐야 할 수도 있습니다.</block>
+  <block id="7065552dd837372222050dc693505675" category="list-text">2025년 6월 15일부터는 해당 코드 서명 인증서가 만료되었으므로 ONTAP Mediator 1.9 및 1.8을 설치하거나 업그레이드할 수 없습니다. 업그레이드에 실패할 경우 대신 ONTAP Mediator 1.9.1 패치 버전을 사용하십시오.</block>
+  <block id="387dea544fb9740e1b468fa28075b8cf" category="list-text">기존 ONTAP Mediator 설치 환경에서 설치 프로그램을 실행하면 현재 버전을 감지하고 업그레이드를 확인하라는 메시지가 표시됩니다:</block>
+  <block id="0f4bc86ea28cf8ca4442347baae28ed4" category="paragraph"><block ref="863dd28b869dd7f84629121ec2bd390a" prefix="" category="inline-code"></block></block>
+  <block id="2b3a52b0be4aa7a7514d96f48f3fbc1f" category="paragraph"><block ref="d32a8283057676562814e0ccbcbac013" prefix="" category="inline-code"></block></block>
+  <block id="0d90bdca469fcd2ce8bc51d64365ba14" category="list-text">업그레이드 과정의 일부로 설치 프로그램은 ONTAP Mediator 소프트웨어를 업그레이드하기 전에 업그레이드 전 구성의 지원 번들을 캡처하고 데이터베이스를 마이그레이션합니다.</block>
+  <block id="bc6ccd2a38c1da7dbabbd34e51736ca7" category="list-text">자동화 사용 사례의 경우, <block ref="e06c57956a1db62e945519ac48ec3f4f" prefix=" " category="inline-code"></block> 명령을 사용하여 설치 프로그램 프롬프트를 건너뛸 수 있습니다.</block>
+  <block id="03cef594048699e8bd8a0ea4afb2125a" category="list-text">새 버전의 설치 프로그램을 실행하고 필요에 따라 프롬프트에 응답하십시오:</block>
+  <block id="f1f7a8a0513234ffbeb83a09c905d204" category="paragraph">업그레이드 중 서명 확인을 건너뛰려면 <block ref="0909581c61d409342de86e60b8beeaa3" prefix=" " category="inline-code"></block> 명령을 사용하십시오.</block>
+  <block id="1dbcde616241e6573e23e89f6e275947" category="paragraph">설치 프로그램은 기존 설치를 감지하고 업그레이드하라는 메시지를 표시한 다음 필요한 패키지를 설치하고 구성을 마이그레이션합니다.</block>
+  <block id="9ac776b366c707188480de9a0924171b" category="example-title">HTTPS 및 iSCSI 지원을 포함한 ONTAP Mediator 업그레이드 예시(콘솔 출력)</block>
+  <block id="9c75661710d19b7b0d75931cb7183fce" category="example-title">HTTPS만 지원하는 ONTAP Mediator 업그레이드 예(콘솔 출력)</block>
+  <block id="b8d91021f64aedffb78e8515d8462201" category="summary">ONTAP Mediator가 정상적으로 작동하고 예상 포트에서 수신 대기 중인지 확인하십시오.</block>
+  <block id="ef7c72b3bcb0e4482a7a8a51117775f7" category="doc">ONTAP Mediator 상태를 확인하십시오.</block>
+  <block id="78846e32cbf8ddadc9a01c4f496d0e63" category="paragraph">ONTAP Mediator가 정상적으로 실행 중인지 확인하십시오.</block>
+  <block id="5ad8c9a67e1200e4dc0e940604442da0" category="section-title">서비스 상태를 확인하십시오</block>
+  <block id="07207539bc08a64df79f7473da1c8c44" category="list-text">ONTAP Mediator의 상태를 확인하십시오:</block>
+  <block id="ab4a60147a1ce71fb4340f4705f9a8ef" category="list-text">SCST 서비스 상태를 확인하십시오:</block>
+  <block id="4336dae7781b504dd8f932dd9b477157" category="section-title">수신 포트를 확인하십시오</block>
+  <block id="90b3e89b1b25d880f7740c45dd015a61" category="list-text">ONTAP Mediator에서 사용하는 포트를 확인하십시오:</block>
+  <block id="67736a7839fb8baf78b36886a2645cae" category="summary">설치 과정의 일부로 Mediator 설치 패키지를 다운로드하십시오.</block>
+  <block id="e2cffea506cf854be44e5d457f072c61" category="paragraph">ONTAP Mediator 설치 패키지를 다운로드하여 설치하십시오.</block>
+  <block id="fd121ec967192205344881af8b91ff04" category="list-text">ONTAP Mediator 다운로드 페이지에서 ONTAP Mediator 설치 패키지를 다운로드하십시오.</block>
+  <block id="b02f3046b150b191e2d899be132a42bf" category="inline-link">ONTAP Mediator 다운로드 페이지</block>
+  <block id="1c25284cbe99f20a5f633ae8ef6d7f53" category="paragraph"><block ref="1c25284cbe99f20a5f633ae8ef6d7f53" category="inline-link-rx"></block></block>
+  <block id="97408bd589697ae825126bad88423e59" category="list-text">Mediator 설치 패키지를 현재 작업 디렉터리에 배치하십시오.</block>
+  <block id="737d7724211eef6e4e13309c6a617c7e" category="admonition">ONTAP Mediator 버전 1.4 이하의 경우 설치 프로그램 이름은 <block ref="3bcf3b65a29824cd947da6753f413db8" prefix=" " category="inline-code"></block>입니다.</block>
+  <block id="cab4082b20a9fc65c51b5e138cc4635a" category="paragraph">시스템에 인터넷 연결이 없는 경우 설치 프로그램이 필요한 패키지에 액세스할 수 있는지 확인하십시오.</block>
+  <block id="4fd5ef884f9472a81e7dda94df098511" category="list-text">필요한 경우 Mediator 설치 패키지를 설치 디렉터리로 이동하십시오.</block>
+  <block id="fd9a4169695454df166acfefce214b42" category="list-text">설치 패키지의 압축을 풉니다:</block>
+  <block id="3f297ef15cde0668e93b35f2752fd4fd" category="paragraph-title">다음 단계는 무엇입니까?</block>
+  <block id="1c97e594d39c50275f1dcc5794374ed5" category="inline-link-macro">ONTAP Mediator 코드 서명을 확인하십시오.</block>
+  <block id="3aea0ced735f36e8385e7e160b98b29d" category="paragraph"><block ref="3aea0ced735f36e8385e7e160b98b29d" category="inline-link-macro-rx"></block></block>
+  <block id="d7d17752b4f3e432fdd5ca0d8ed3fde8" category="summary">ONTAP Mediator가 설치 과정 중에 필요한 패키지에 접근할 수 있도록 저장소 접근 권한을 활성화하십시오.</block>
+  <block id="5b7aa77a602ea4e2403c9e774cd03863" category="doc">ONTAP Mediator 설치를 위한 저장소 접근 권한을 제공하십시오.</block>
+  <block id="e1155388e2155ab3659320059d59e89c" category="paragraph">ONTAP Mediator가 설치 과정 중에 필요한 패키지에 접근할 수 있도록 저장소 접근 권한을 활성화해야 합니다.</block>
+  <block id="97718d343e9a9273140cba010da7af42" category="list-text">다음 표에 나와 있는 대로 액세스해야 하는 저장소를 결정하십시오:</block>
+  <block id="9f14218e5135dda7b7530841c740770a" category="cell">운영 체제가...인 경우</block>
+  <block id="c76eda301cb02c29a872a2edc87fac66" category="cell">이러한 저장소에 대한 접근 권한을 제공해야 합니다...</block>
+  <block id="5e626362780fb28d6a7f7c6adcd604c5" category="paragraph">Oracle Linux 10.x</block>
+  <block id="89411da6d576514b5c1d7d71eeb06263" category="list-text">ol-10-for-x86_64-baseos-rpms</block>
+  <block id="f6bd040ad793a14fdc1c3d3f2dc4a87a" category="list-text">ol-10-for-x86_64-appstream-rpms</block>
+  <block id="e4fc61fa9a616ca27d481649f48b573a" category="paragraph">Oracle Linux 9.x</block>
+  <block id="6d143f66fa04cfa6058347617afeb791" category="list-text">ol-9-for-x86_64-baseos-rpms</block>
+  <block id="9b19ec8e59bca40a4280260d9f57b34a" category="list-text">ol-9-for-x86_64-appstream-rpms</block>
+  <block id="4542a075cfbe696e680a2ad5c899bca3" category="paragraph">RHEL 10.x</block>
+  <block id="a67519effc34ff67f3e2439a5e3ff220" category="list-text">rhel-10-for-x86_64-baseos-rpms</block>
+  <block id="00602f0de8bdc71ea78136c55a6b81de" category="list-text">rhel-10-for-x86_64-appstream-rpms</block>
+  <block id="9f17458dfbe60319fd46bddd814d9474" category="paragraph">RHEL 9.x</block>
+  <block id="caf162fe8ddc7878a5a2a8ad77b61785" category="list-text">rhel-9-for-x86_64-baseos-rpms</block>
+  <block id="dc255cb9fdb2af34669e2d9d662519a2" category="list-text">rhel-9-for-x86_64-appstream-rpms</block>
+  <block id="9871c3e3eef10eb83f1020bf0f40a11c" category="paragraph">RHEL 8.x</block>
+  <block id="53edaf3b5c2db40d342cf9b501bc24c1" category="list-text">rhel-8-for-x86_64-baseos-rpms</block>
+  <block id="77e5c42f280ea35ee2926680eb9b47bd" category="list-text">rhel-8-for-x86_64-appstream-rpms</block>
+  <block id="886dab0e73d247379a1479ecce7a2e23" category="paragraph">RHEL 7.x</block>
+  <block id="3272bb50aa49abfece4d0ff5d7f2f1c9" category="list-text">rhel-7-server-optional-rpms</block>
+  <block id="66985170e641a7e20698bfec3c1d889f" category="paragraph">CentOS 7.x</block>
+  <block id="29bbf40549849d260ac98466712efae4" category="list-text">C7.6.1810 - 기본 저장소</block>
+  <block id="1f27018b2bb672b8cdc3ade88964fcd2" category="paragraph">Rocky Linux 10</block>
+  <block id="1b03221d3ade110dceff09478f544299" category="list-text">appstream</block>
+  <block id="6184b2e06a868cadf56b63eb8d1cbea8" category="list-text">baseos</block>
+  <block id="cf76271f717860ca93c6825568b0690d" category="paragraph">Rocky Linux 9</block>
+  <block id="074720cb7866529cf5ec3aad61198ac4" category="paragraph">Rocky Linux 8</block>
+  <block id="865a78beb67e115b4e9a10b3e81c8aab" category="list-text">ONTAP Mediator가 설치 과정 중에 필요한 패키지에 접근할 수 있도록 위에 나열된 저장소에 대한 접근 권한을 활성화하려면 다음 절차 중 하나를 사용하십시오.</block>
+  <block id="664b8a6266b90423babd29810b72c716" category="admonition">ONTAP Mediator가 "extras" 및 "optional" 저장소에 있는 Python 모듈에 대한 종속성이 있는 경우 <block ref="c181687dbc647a529ee6e45873223f46" prefix=" " category="inline-code"></block> 및 <block ref="634852998313a5befedabe157dfb58fc" prefix=" " category="inline-code"></block> 파일에 액세스해야 할 수 있습니다.</block>
+  <block id="6bcb63da68aa5b9cea93bc40d73fa960" category="example-title">Oracle Linux 10.x 운영 체제용 절차</block>
+  <block id="8db530726912d26a1cfdf24172b55426" category="paragraph">운영 체제가 *Oracle Linux 10.x*인 경우 이 절차를 사용하여 리포지토리에 대한 액세스를 활성화하십시오.</block>
+  <block id="ebb1c48020075aff153ff6902c0e37db" category="list-text">필요한 저장소를 구독하십시오:</block>
+  <block id="b89b54d5af46b251354ba0599e815d76" category="paragraph">다음 예는 이 명령의 실행을 보여줍니다:</block>
+  <block id="20274e52f6fdccab80b9a178af90c176" category="list-text">활성화된 저장소 목록을 보려면 다음 명령을 실행하십시오:</block>
+  <block id="3a1b4b15b3782aff48704dfaea19c4ca" category="paragraph">새로 구독한 저장소가 목록에 나타나야 합니다.</block>
+  <block id="b9c2b32337090e3118b0890c6c68a226" category="example-title">Oracle Linux 9.x 운영 체제용 절차</block>
+  <block id="e662521f1345ffe9a125202f3f2449c3" category="paragraph">운영 체제가 *Oracle Linux 9.x*인 경우 이 절차를 사용하여 리포지토리에 대한 액세스를 활성화하십시오.</block>
+  <block id="2abedefa05704ea06ac8f75a9db36736" category="example-title">RHEL 10.x 운영 체제용 절차</block>
+  <block id="3ff6c28e2672d10f63caadf95acf3d6c" category="paragraph">운영 체제가 *RHEL 10.x*인 경우 저장소에 대한 액세스를 활성화하려면 다음 절차를 사용하십시오:</block>
+  <block id="8618e857ab4b2026053ded75b2bd28c0" category="example-title">RHEL 9.x 운영 체제용 절차</block>
+  <block id="43c6a34cb6f80bb403440594179b3665" category="paragraph">운영 체제가 *RHEL 9.x*인 경우 저장소에 대한 액세스를 활성화하려면 다음 절차를 사용하십시오:</block>
+  <block id="99e8c68b889cb147e7d7f3a766bcbc08" category="example-title">RHEL 8.x 운영 체제용 절차</block>
+  <block id="02180ec4be18b377a44053f38b8e1d5e" category="paragraph">운영 체제가 *RHEL 8.x*인 경우 저장소에 대한 액세스를 활성화하려면 다음 절차를 사용하십시오:</block>
+  <block id="f9338b001083c1207b750f7ca56fb6ce" category="example-title">RHEL 7.x 운영 체제용 절차</block>
+  <block id="b0030d1a4069dea6cacf3124ddb747e9" category="paragraph">운영 체제가 *RHEL 7.x*인 경우 저장소에 대한 액세스를 활성화하려면 다음 절차를 사용하십시오:</block>
+  <block id="33a9644e5d2b91efae997de819a9f828" category="paragraph">다음 예는 이 명령의 실행을 보여줍니다. "rhel-7-server-optional-rpms" 저장소가 목록에 나타나야 합니다.</block>
+  <block id="aa3f631fc5c50fd8386f95cdb6d4a080" category="example-title">CentOS 7.x 운영 체제용 절차</block>
+  <block id="aece88aac342b5c1a91bde54de980d26" category="paragraph">운영 체제가 *CentOS 7.x*인 경우 저장소에 대한 액세스를 활성화하려면 다음 절차를 사용하십시오:</block>
+  <block id="d6d92b99d45ca9c6268cdadf83286802" category="admonition">다음 예시는 CentOS 7.6용 저장소를 보여주는 것으로, 다른 CentOS 버전에서는 작동하지 않을 수 있습니다. 사용 중인 CentOS 버전에 맞는 기본 저장소를 사용하십시오.</block>
+  <block id="6cfc4b30e18a129f054edaae54e53f37" category="list-text">C7.6.1810 - Base 리포지토리를 추가합니다. C7.6.1810 - Base vault 리포지토리에는 ONTAP Mediator에 필요한 "kernel-devel" 패키지가 포함되어 있습니다.</block>
+  <block id="a9a0d20bc8c82736f7aca5ab3b01ecdf" category="list-text">/etc/yum.repos.d/CentOS-Vault.repo 파일에 다음 줄을 추가하십시오.</block>
+  <block id="3642e1097e743420376709e69c45e113" category="paragraph">다음 예는 이 명령의 실행 결과를 보여줍니다. CentOS-7.6.1810 - Base 저장소가 목록에 나타나야 합니다.</block>
+  <block id="85ad6506ca7b0f3af555ca0f8912134a" category="example-title">Rocky Linux 10, 9 또는 8 운영 체제용 절차</block>
+  <block id="29662404da20e9b15e71b8c871e41d38" category="paragraph">운영 체제가 *Rocky Linux 10*, *Rocky Linux 9* 또는 *Rocky Linux 8*인 경우 저장소에 대한 액세스를 활성화하려면 다음 절차를 사용하십시오:</block>
+  <block id="67ffe93681371d2aa9c8f6ada07b835c" category="list-text">필요한 저장소를 구독하십시오:</block>
+  <block id="2efdf98177e53caf53c5b72b0c2e4175" category="list-text"><block ref="123402c04dcfb6625f688f771a5fc05d" prefix=" " category="inline-code"></block> 작업을 수행합니다:</block>
+  <block id="cdfab7326c2af031b81a1f5ecab8d97c" category="list-text">저장소 목록을 확인하십시오:</block>
+  <block id="c869120ace16eabfd77564c5b274c273" category="paragraph"><block ref="c869120ace16eabfd77564c5b274c273" category="inline-link-macro-rx"></block></block>
+  <block id="835e3e6fb5545ec688c50e9ad2bcda09" category="summary">ONTAP Mediator를 설치하려면 설치 패키지를 받아서 호스트에서 설치 프로그램을 실행해야 합니다.</block>
+  <block id="f7def9f508355bb00fa3a45cb1f5748c" category="doc">ONTAP Mediator 설치 패키지를 설치하십시오.</block>
+  <block id="1d8727f9f9bf45d433960701874a8c5b" category="admonition">기존 ONTAP Mediator 설치를 업그레이드하려면 대신 <block ref="f124e81a53a38f34d7f1c73c06a3602e" category="inline-link-macro-rx"></block>을 참조하십시오.</block>
+  <block id="158044eb8955c8a70d4bf0dd857c9f7d" category="list-text">ONTAP Mediator 1.12 이상 버전을 설치하거나 업그레이드하는 동안 설치 프로그램에서 다음 질문에 답변하라는 메시지가 표시됩니다.</block>
+  <block id="15afbc8f4de683d4fb1fae0933997793" category="paragraph"><block ref="de4f843df3ec4390b8f55b8342ad7f59" prefix="" category="inline-code"></block></block>
+  <block id="b58aca8487a4163da6d931d898d9e14e" category="list-text">iSCSI로 구성된 ONTAP Mediator를 사용하여 하나 이상의 MetroCluster IP 구성을 모니터링할 계획이라면 답변<block ref="93cba07454f06a4a960172bbd6e2a435" prefix=" " category="inline-code"></block>해 주십시오.</block>
+  <block id="10b2c55da479eba92cedc967836bc0c6" category="list-text">응답<block ref="bafd7322c6e97d25b6299b5d6fe8920b" prefix=" " category="inline-code"></block> ONTAP Mediator를 SnapMirror 활성 동기화에만 사용할 계획인지, 아니면 ONTAP Mediator를 HTTPS로 구성하여 하나 이상의 MetroCluster IP 구성을 모니터링할 계획인지 답변해 주십시오.</block>
+  <block id="f19487721cab9d8de852c771a3184694" category="paragraph">또는, <block ref="57d50f027c66afa1ed46336b1408221e" prefix=" " category="inline-code"></block> 옵션을 <block ref="fcd2585ca4e769848950b5d7a9a7d316" prefix=" " category="inline-code"></block> 명령어에서 사용하여 HTTPS만 지정할 수 있습니다.</block>
+  <block id="a7ba40d46b4078b475039877064f94df" category="list-text">설치 프로그램을 실행하고 필요에 따라 프롬프트에 응답하십시오:</block>
+  <block id="9bf9d999cf1c1072afb0a174778ef513" category="paragraph">설치 중 서명 확인을 건너뛰려면 <block ref="0909581c61d409342de86e60b8beeaa3" prefix=" " category="inline-code"></block> 명령을 사용하십시오.</block>
+  <block id="2dcbd5af105d1885a4c6cf9ec98331f3" category="paragraph">설치 프로그램은 필요한 계정을 생성하고 필요한 패키지를 설치합니다. ONTAP Mediator가 이미 설치되어 있는 경우 설치 프로그램은 대신 업그레이드하라는 메시지를 표시합니다. 업그레이드 관련 단계 및 예는 <block ref="f124e81a53a38f34d7f1c73c06a3602e" category="inline-link-macro-rx"></block>을(를) 참조하십시오.</block>
+  <block id="4384a2e942a15e1e210fa5de9a5a8236" category="example-title">HTTPS 및 iSCSI를 지원하는 ONTAP Mediator 설치 예시(콘솔 출력)</block>
+  <block id="344180bf5a5b07d855d14ad0da508af0" category="example-title">HTTPS만 지원하는 ONTAP Mediator 설치 예시(콘솔 출력)</block>
+  <block id="dc01eeb4ba6b49775c572c9b0d4a18b8" category="section-title">UEFI 보안 부팅을 위한 보안 키를 등록합니다</block>
+  <block id="fca93add5a881fe7a35de6842850e75f" category="paragraph">ONTAP Mediator 1.4 버전부터 UEFI 시스템에서 보안 부팅(Secure Boot) 기능이 활성화됩니다. 보안 부팅이 활성화된 경우, 설치 후 보안 키를 등록하기 위한 추가 단계를 수행해야 합니다.</block>
+  <block id="32c42386416b8d4f3a3d620ca5564ac3" category="list-text">README 파일의 지침에 따라 SCST 커널 모듈에 서명하십시오:</block>
+  <block id="91231d29d155624bc20b6bcecf7742d2" category="list-text">필요한 키를 찾으십시오:</block>
+  <block id="e6ca8604b3c2d3418d0ae833ba7c3824" category="admonition">설치가 완료되면 시스템 출력에 README 파일과 키 위치가 표시됩니다.</block>
+  <block id="501e9166bba98e9bb68360bdf8ed5a9c" category="list-text">공개 키를 MOK 목록에 추가하십시오:</block>
+  <block id="bce57b99a25982a803450c854fba34a1" category="paragraph">개인 키는 기본 위치에 그대로 두거나 안전한 위치로 옮길 수 있습니다. Boot Manager가 사용할 수 있도록 공개 키는 기존 위치에 보관해야 합니다. 자세한 내용은 README.module-signing 파일을 참조하십시오:</block>
+  <block id="69120c39afd1d34d835cb9d659398789" category="paragraph"><block ref="f3bd3892cb4bcfbc2c37a151c028b2ba" prefix="" category="inline-code"></block></block>
+  <block id="011324e3fabf39613f729fc82fa2d15b" category="inline-link-macro">UEFI 보안 부팅이 활성화된 경우 ONTAP Mediator를 설치하십시오.</block>
+  <block id="4331251f2cd849cd1b6657481bf9288f" category="list-text">호스트를 재부팅하고 장치의 UEFI Boot Manager를 사용하여 새 MOK를 승인하십시오. <block ref="65eb211afdeb726fe9aabe64d71f12d8" category="inline-link-macro-rx"></block>에서 <block ref="c9d0aaf4769a4f8a2886caf46cbce188" prefix=" " category="inline-code"></block> 유틸리티에 제공된 암호가 필요합니다.</block>
+  <block id="4ebf137569d3cd1deab0ecbc6bee7565" category="section-title">SCST 커널 모듈 서명</block>
+  <block id="e9b55344e0b79ae32afe968fb64b6ff5" category="paragraph">ONTAP Mediator를 설치한 후 systemctl status<block ref="4bdf8da8f1049dc51cf3bc06584503f2" prefix=" " category="inline-code"></block>가 실패(비활성)로 표시되면 다음 단계를 따라 SCST 커널 모듈에 서명하십시오.</block>
+  <block id="b9421dd7def9d6cc1f5f034ba4c23583" category="list-text">빌드 과정 중에 <block ref="42c92cd95a4d0bf1bdd8b9ef7721d870" prefix=" " category="inline-code"></block> 디렉터리에 공개/개인 키 쌍이 생성됩니다. 생성된 키를 보려면 다음 명령을 실행하십시오.</block>
+  <block id="1e7e5da7512b956f7214cae2c0ba8424" category="list-text">다음 명령어를 실행하여 공개 키를 UEFI 키 저장소로 가져오는 프로세스를 시작하십시오:</block>
+  <block id="61a410b55f4d475c255471c93c2fb347" category="paragraph">해당 <block ref="c9d0aaf4769a4f8a2886caf46cbce188" prefix=" " category="inline-code"></block> 유틸리티는 비밀번호를 두 번 입력하라는 메시지를 표시합니다.</block>
+  <block id="40ebc7291d47b5977dbe8a10b2e86705" category="list-text">mokutil 소프트웨어는 가져오기 과정 중에 이 키에 사용할 임시 암호를 요청합니다.</block>
+  <block id="af9913ae428beaa564fb4840336e86d4" category="list-text">다음 명령어를 사용하여 가져오기 프로세스가 시작되었는지 확인한 후 시스템을 재부팅하십시오. 부트로더가 EFI MOK 관리자를 시작합니다.</block>
+  <block id="f5d1b07f75bb02db5620a7175cae9710" category="list-text">화면의 메뉴를 사용하여 SCST 커널 모듈 키를 켜십시오. 부팅 후 다음 명령을 실행하십시오. 서비스가 시작되면 SCST 커널 모듈에 서명이 완료됩니다.</block>
+  <block id="6fdc5a87393886ec61413b05fd302117" category="inline-link-macro">ONTAP Mediator 설치 상태를 확인하십시오.</block>
+  <block id="9b6c041fcae2c33d9a56eed60d532b5a" category="paragraph"><block ref="9b6c041fcae2c33d9a56eed60d532b5a" category="inline-link-macro-rx"></block></block>
+  <block id="c686b28bf5db41368fef02cebddc3646" category="summary">ONTAP Mediator를 설치하려면 모든 필수 조건을 충족했는지 확인하고 설치 패키지를 다운로드한 후 호스트에서 설치 프로그램을 실행해야 합니다.</block>
+  <block id="7ab3c6ae086b6384f06963b5dd385c4f" category="paragraph">ONTAP Mediator를 설치하려면 모든 필수 조건을 충족하고 설치 패키지를 다운로드한 다음 호스트에서 설치 프로그램을 실행해야 합니다.</block>
+  <block id="4f523b7e971fd8cff29f3d68e70d50a4" category="list-text">ONTAP Mediator를 새 버전으로 업그레이드하려면 <block ref="f124e81a53a38f34d7f1c73c06a3602e" category="inline-link-macro-rx"></block>을(를) 참조하십시오.</block>
+  <block id="884d3254536962b6e4026a77ae095676" category="list-text">호스트 OS를 업그레이드하고 해당 과정의 일부로 ONTAP Mediator를 다시 설치하거나 업그레이드해야 하는 경우, <block ref="ba68b4751a3933e4758c984972f1c341" category="inline-link-macro-rx"></block>을(를) 참조하십시오.</block>
+  <block id="086af4a1a8e18c416fda306afd129ecc" category="section-title">설치 요구 사항</block>
+  <block id="8a4c16833b577a7d47be22e958070a82" category="paragraph">ONTAP Mediator를 설치하기 전에 다음 요구 사항을 검토하십시오.</block>
+  <block id="0ba11c88a4acd0d00058421371484eb6" category="list-text">ONTAP Mediator 1.8 및 이전 버전은 Red Hat Enterprise Linux(RHEL) FIPS 모드와 호환되지 않아 성공적으로 설치할 수 없습니다. <block ref="c0d465275cbc178239144c2e4ab915c9" prefix=" " category="inline-code"></block> 명령을 사용하여 FIPS 모드가 활성화되어 있는지 확인할 수 있습니다. <block ref="de14c46ab2c93014028a73584cbb1f24" prefix=" " category="inline-code"></block> 명령을 사용하여 FIPS 모드를 비활성화할 수 있습니다. ONTAP Mediator 1.8 및 이전 버전을 성공적으로 설치하려면 FIPS 모드를 비활성화한 후 재부팅하십시오.</block>
+  <block id="7e8539e100dbed00c00d774b9578cd64" category="list-text">설치가 실패하면 ONTAP Mediator의 최신 버전을 사용해 봐야 할 수도 있습니다.</block>
+  <block id="52d194593f2eee7e9a4dcebd561aee9c" category="list-text">2025년 6월 15일부터는 코드 서명 인증서가 만료되어 ONTAP Mediator 1.9 및 1.8을 설치하거나 업그레이드할 수 없습니다. 설치에 실패하는 경우 대신 ONTAP Mediator 1.9.1 패치 버전을 사용하십시오.</block>
+  <block id="a9cbabdcb2967fdb70170c1d75468ced" category="list-text"><block ref="964ff658eeb150fa1ca6d823c1c0c1a7" prefix=" " category="inline-code"></block> 패키지를 설치하면 <block ref="1af4b6d809a2f3d882d975f4b893400f" prefix=" " category="inline-code"></block> 명령어를 사용할 수 있습니다.</block>
+  <block id="0f047d1f30452312277a8c669c7ef932" category="list-text">ONTAP Mediator 1.11 버전부터 MetroCluster IP 구성에서 IPv6가 지원됩니다.</block>
+  <block id="aee8b11880bbfda9a19f6b5c0201bb10" category="section-title">ONTAP Mediator의 HTTPS 및 iSCSI 설치 옵션</block>
+  <block id="b54f912c79dc7569fd5ac2229f72b415" category="paragraph">ONTAP Mediator를 설치하기 전에 다음 정보를 검토하십시오:</block>
+  <block id="7cb7f9ad17bf22108d9e1856489069d7" category="list-text">ONTAP Mediator에서는 SCST 패키지를 사용하여 MetroCluster IP 구성에서 통신을 위한 iSCSI를 제공합니다. SCST 패키지는 설치 중에 컴파일되는 커널 모듈입니다. ONTAP 9.19.1 및 Mediator 1.12부터는 iSCSI 대신 HTTPS를 사용하여 MetroCluster IP 구성을 모니터링하는 ONTAP Mediator를 구성할 수 있습니다.</block>
+  <block id="fc076765cbc4aef219c970ffdd93f443" category="section-title">호스트 요구 사항</block>
+  <block id="7b93a2cffc32ecafd278bfcfcff93888" category="paragraph">RHEL 또는 Rocky Linux를 설치하고 관련 저장소를 구성할 때 다음 요구 사항을 준수하십시오.</block>
+  <block id="c1fb3f4ec6731d321cc725c2ad2bc582" category="paragraph">설치 또는 구성 프로세스를 수정하는 경우 추가 단계를 수행해야 할 수 있습니다.</block>
+  <block id="4197761a7c1beb184d68b153affb0111" category="list-title">Linux 배포판 요구 사항</block>
+  <block id="3f3ba3a77946edb48d0ee8ef109bc0af" category="list-text">Red Hat의 모범 사례에 따라 RHEL 또는 Rocky Linux를 설치하십시오. CentOS 8.x는 지원이 종료되었으므로 CentOS 8.x와 호환되는 버전은 권장하지 않습니다.</block>
+  <block id="9cd0509e40e104586f0aaaf8e2759ac2" category="list-text">ONTAP Mediator를 설치할 때 시스템이 필요한 저장소에 접근할 수 있는지 확인하여 설치 프로그램이 필요한 모든 소프트웨어 종속성을 검색하고 설치할 수 있도록 하십시오.</block>
+  <block id="2c7060a19ab32dde13d3a753179bde24" category="list-text">yum 설치 프로그램이 RHEL 저장소에서 종속 소프트웨어를 찾을 수 있도록 하려면 설치 중 또는 설치 후에 유효한 Red Hat 구독을 사용하여 시스템을 등록하십시오.</block>
+  <block id="87c0f2242d23a5ce83f92cb7ca0dd3c5" category="paragraph">자세한 내용은 Red Hat Subscription Manager 설명서를 참조하십시오.</block>
+  <block id="69cecc7a15b3f657e822c87c8fad2241" category="section-title">방화벽 및 네트워킹 요구 사항</block>
+  <block id="671e00f956495c99ae5aae5896e8542a" category="paragraph">ONTAP Mediator는 특정 서비스와 통신하기 위해 여러 포트를 사용합니다.</block>
+  <block id="861ef6676813cbc81369ee701ae73269" category="list-text">타사 방화벽을 사용 중인 경우:</block>
+  <block id="041f3a27fe8b40cc213210949eb4f036" category="list-text">HTTPS 액세스가 활성화되어 있어야 합니다.</block>
+  <block id="8b8101ed71d5bd32d2f9d4de05e470c1" category="list-text">포트 31784와 3260에 대한 액세스를 허용하도록 구성해야 합니다.</block>
+  <block id="cc1e6f116b4b45ffde821f0aef59e030" category="paragraph">기본 Red Hat 또는 CentOS 방화벽을 사용하는 경우 Mediator 설치 중에 방화벽이 자동으로 구성됩니다.</block>
+  <block id="dc6071f53aaa5ab966ff3f6f0a3d9d7f" category="list-text">인터넷에 접속할 수 없는 Linux 호스트의 경우, 필요한 패키지가 로컬 저장소에 있는지 확인하십시오.</block>
+  <block id="6c9beeeec2dc90ee994a4f168dc8e9da" category="paragraph">Linux 환경에서 Link Aggregation Control Protocol(LACP)을 사용하는 경우 커널을 구성하고 <block ref="864926420acef5f65ce14bc4f0d5c076" prefix=" " category="inline-code"></block>을(를) <block ref="c81e728d9d4c2f636f067f89cc14862c" prefix=" " category="inline-code"></block>(으)로 설정하십시오.</block>
+  <block id="fc4f6ae944c5fa7cfc47e0574373e3e8" category="paragraph">다음 표는 방화벽에서 허용해야 하는 port 목록입니다.</block>
+  <block id="43119522ff803c1f1fa88bdbaffe20b7" category="list-text">iSCSI 포트는 MetroCluster IP 구성에서만 필요합니다.</block>
+  <block id="d247a27201590148c4ea6bf493729fd1" category="list-text">22/tcp 포트는 정상 작동에는 필요하지 않지만 유지보수를 위해 일시적으로 활성화하고 유지보수 세션이 완료되면 비활성화할 수 있습니다.</block>
+  <block id="0656a530ae7a166be8f852431b35de15" category="cell">포트/서비스</block>
+  <block id="f31bbdd1b3e85bccd652680e16935819" category="cell">소스</block>
+  <block id="02674a4ef33e11c879283629996c8ff8" category="cell">방향</block>
+  <block id="12007e1d59f4d09c87dbe2c438256244" category="cell">목적지</block>
+  <block id="261addf78c7b2c961032b3dd08ba0b1f" category="cell">목적</block>
+  <block id="c5df47f9068f6d11f238ec77908abf18" category="paragraph">22/tcp</block>
+  <block id="b4825fee6cf9b39c67993b031d35ecf3" category="paragraph">관리 호스트</block>
+  <block id="6c7e3200049198face0d2648e9d1a27d" category="paragraph">인바운드</block>
+  <block id="58dc7db50a2e11a9de9e6cc092c59d4d" category="paragraph">ONTAP Mediator</block>
+  <block id="f292b24c43eb81e671b7289a23216f5a" category="paragraph">(선택 사항) SSH / ONTAP 미디에이터 관리</block>
+  <block id="5946d090ccc9cc4eb9c55cf3e9e8d35a" category="paragraph">31784/tcp</block>
+  <block id="5f41d8cf5282355fa3aefb7176c3f60e" category="paragraph">cluster-mgmt 및 node-mgmt LIF</block>
+  <block id="47c5e6a166f9432ff96681fa2a62c791" category="paragraph">ONTAP Mediator 웹 서버</block>
+  <block id="8603b1d76bc78c66209db5fd2107566f" category="paragraph">(필수) REST API (HTTPS)</block>
+  <block id="5395ab3ceab5345ee4a1117e436bec89" category="paragraph">3260/tcp</block>
+  <block id="adcf0c2ac79e72965c57c716ea214337" category="paragraph">노드 관리 LIF</block>
+  <block id="1c44912242a1c1688be9805f25a62dbd" category="paragraph">ONTAP Mediator iSCSI 타겟</block>
+  <block id="700695ecaadfcc4bf68ce2e0aa3b9258" category="paragraph">(MetroCluster IP 구성에 필요) 사서함용 iSCSI 데이터 연결</block>
+  <block id="82e6b9db099fc82f2c99cec991e25894" category="admonition">HTTPS를 사용하여 통신하는 SnapMirror 액티브 동기화 또는 MetroCluster IP ONTAP 미디에이터의 경우 ONTAP에서 포트 3260을 활성화하거나 연결할 필요가 없습니다.</block>
+  <block id="6e968857b32243865ebf039c1facf6cf" category="section-title">OS 요구 사항</block>
+  <block id="b11acfb94c15912ed0e1b57e83cbd57d" category="paragraph">사용 중인 OS는 다음 요구 사항을 충족해야 합니다:</block>
+  <block id="d55d8aaf12099eb46ec871f4ea80b39d" category="list-text">64비트 물리적 설치 또는 가상 머신</block>
+  <block id="83626eda7582435cdf0eb139d5cc8972" category="list-text">8GB RAM</block>
+  <block id="53c00243fb0fab591fe217c9f3478ffa" category="list-text">1 GB 디스크 공간(애플리케이션 설치, 서버 로그 및 데이터베이스에 사용됨)</block>
+  <block id="2f889d7364543ea941a8c61cfb8175f4" category="list-text">사용자: 루트 액세스 권한</block>
+  <block id="46c25558cd29394f473068319854e266" category="paragraph">ONTAP Mediator의 각 버전에 대해 지원되는 운영 체제에 대한 <block ref="bb335ec2b44f2431dd9a22d89009dea6" category="inline-link-macro-rx"></block>을(를) 검토하십시오.</block>
+  <block id="b97b4f6747cf1ff0db437565d0e2bfc1" category="paragraph-title">OS 필수 패키지</block>
+  <block id="be76e1094a50361f233e5ea6e4a01cbd" category="paragraph">ONTAP Mediator에는 다음 패키지가 필요합니다:</block>
+  <block id="dc8d94afeae6badcd37f8113b35891ba" category="admonition">해당 패키지는 사전 설치되어 있거나 ONTAP Mediator 설치 프로그램에서 자동으로 설치합니다.</block>
+  <block id="f813fcc7239eff34d867d55b252023dc" category="cell">모든 RHEL/CentOS 버전</block>
+  <block id="6044eabc79b89a31f51e7a10e1128a8f" category="cell">RHEL 10.x / Rocky Linux 10용 추가 패키지</block>
+  <block id="567d54d98ea999683b3e623848da4282" category="cell">RHEL 9.x / Rocky Linux 9용 추가 패키지</block>
+  <block id="3e68612400fcf20c02f89d597452db1d" category="cell">RHEL 8.x / Rocky Linux 8용 추가 패키지</block>
+  <block id="50955d4b2031271f8fda1764c1a66ac3" category="list-text">openssl</block>
+  <block id="bfb048701bda18c214ce545e4c956329" category="list-text">openssl-devel</block>
+  <block id="432dcaee8a851fc53af2488d5d0f4b0b" category="list-text">kernel-devel-$ (uname -r)</block>
+  <block id="e0d511356bd44120af49cc96c9dcf3b3" category="list-text">gcc</block>
+  <block id="099dafc678df7d266c25f95ccf6cde22" category="list-text">만들다</block>
+  <block id="d40270eef8bab470027aedc1b59294ef" category="list-text">libselinux-utils</block>
+  <block id="e5c5e6dae38b284e8cf0bd1fb0efac03" category="list-text">패치</block>
+  <block id="03ce1ba314f367fdd09887fc8f60578b" category="list-text">bzip2</block>
+  <block id="017b459c471455ea6ffb7b32b1598286" category="list-text">perl-Data-Dumper</block>
+  <block id="6d290149925db69430ede61961477f82" category="list-text">perl-ExtUtils-MakeMaker</block>
+  <block id="b86f5cd6fe819c3343d4067073c76641" category="list-text">efibootmgr</block>
+  <block id="c9d0aaf4769a4f8a2886caf46cbce188" category="list-text">mokutil</block>
+  <block id="5ded47091038bcd836e256520c8792d0" category="list-text">python3.12</block>
+  <block id="208a718dcb634b845b4950cdbad35924" category="list-text">python3.12-devel</block>
+  <block id="6461c12b2a26dbd0adddb0db161c7020" category="list-text">elfutils-libelf-devel</block>
+  <block id="c8dff58175a7ddfedf00d77953ef42dd" category="list-text">policycoreutils-python-utils</block>
+  <block id="6e8efbe3a442748b716644025479aab5" category="list-text">python3</block>
+  <block id="6adf41d67f17b06828a3db0bbbb14b38" category="list-text">python3-devel</block>
+  <block id="d8ccd8a2339a5abdfd1aa26a18065592" category="list-text">redhat-lsb-core</block>
+  <block id="cb8bf1b2c10a632817af48cb36bd0bbe" category="list-text">python39</block>
+  <block id="5ad3764a01a8e8d4dfbed6e3f933b853" category="list-text">python39-devel</block>
+  <block id="970e1040f661445042b9cc4524e79084" category="paragraph">Mediator 설치 패키지는 다음 내용을 포함하는 자체 압축 해제 tar 파일입니다:</block>
+  <block id="40ee7f81efc7bee0246bfd8b4313ff05" category="list-text">지원되는 릴리스의 저장소에서 얻을 수 없는 모든 종속성을 포함하는 RPM 파일입니다.</block>
+  <block id="8bbf3efceb42cd45e316987343509e73" category="list-text">설치 스크립트입니다.</block>
+  <block id="1eb98924c27ab3a518e1bc733049fbba" category="paragraph">유효한 SSL 인증서를 사용하는 것이 좋습니다.</block>
+  <block id="7ca10fe4adcfe26c58b56f49be56e4d0" category="list-text">커널 버전은 운영 체제 버전과 일치해야 합니다.</block>
+  <block id="11574e872b788c4c0b90d661ea7ca7e4" category="list-text">ONTAP Mediator 릴리스에서 지원하는 OS 버전 이상으로 커널을 업그레이드하지 마십시오. 테스트를 거친 SCST 모듈이 작동하지 않을 수 있습니다.</block>
+  <block id="371f30b9be87449dd3511d3e35482aee" category="paragraph">ONTAP Mediator는 UEFI 보안 부팅이 활성화된 시스템과 활성화되지 않은 시스템 모두에 설치할 수 있습니다.</block>
+  <block id="5aef9fef307f5564edba042b763a9b59" category="list-text">ONTAP Mediator 설치 전에 UEFI 보안 부팅이 필요하지 않거나 ONTAP Mediator 설치 문제를 해결하는 경우 UEFI 보안 부팅을 비활성화할 수 있습니다. 컴퓨터 설정에서 UEFI 보안 부팅 옵션을 비활성화하십시오.</block>
+  <block id="9ddcf210d89fa62ee3277e8c855512dc" category="paragraph">UEFI 보안 부팅을 비활성화하는 방법에 대한 자세한 내용은 호스트 운영 체제의 설명서를 참조하십시오.</block>
+  <block id="1f854976b0b9c24d7989c479765b9365" category="paragraph">UEFI 보안 부팅이 활성화된 상태에서 ONTAP Mediator를 설치하려면 서비스가 시작되기 전에 보안 키를 등록해야 합니다. 이 키는 SCST 설치의 컴파일 단계에서 생성되며 시스템에 개인-공개 키 쌍으로 저장됩니다. <block ref="c9d0aaf4769a4f8a2886caf46cbce188" prefix=" " category="inline-code"></block> 유틸리티를 사용하여 공개 키를 MOK(Machine Owner Key)로 UEFI 펌웨어에 추가하여 시스템이 서명된 모듈을 신뢰하고 로드할 수 있도록 하십시오. MOK를 활성화하기 위해 시스템을 재부팅할 때 필요하므로<block ref="c9d0aaf4769a4f8a2886caf46cbce188" prefix=" " category="inline-code"></block> 암호를 안전한 위치에 저장하십시오.</block>
+  <block id="1a50ae749cf89735e80505c749b5af0d" category="list-text">[[step_1_uefi]]시스템에서 UEFI 보안 부팅이 활성화되어 있는지 확인하십시오:</block>
+  <block id="59c0b01533b5d338dbaf59f9472d4b65" category="paragraph">이 결과는 해당 시스템에서 UEFI Secure Boot가 활성화되어 있는지 여부를 나타냅니다.</block>
+  <block id="bfa9de45095a3a90ebc55708a5ee6dd2" category="cell">만약...</block>
+  <block id="ec434af0a2786fa23b468584c5622fe1" category="cell">다음으로 이동...</block>
+  <block id="c910e9270eda71a22399f6123860c2a9" category="paragraph">UEFI 보안 부팅이 활성화되었습니다</block>
+  <block id="c420cea00ff916034c896d77f608abb3" category="inline-xref">&lt;block ref="c9d0aaf4769a4f8a2886caf46cbce188" prefix=" " category='inline-code'/&gt; 유틸리티를 실행하는 단계</block>
+  <block id="a5dc0bfa8a98ab1f239671ec95e2f479" category="paragraph"><block ref="3c9772e59258f22d908b63cf3ec0c288" category="inline-xref-macro-rx"></block></block>
+  <block id="83003305d7683f47acfcffa47f90a666" category="paragraph">UEFI 보안 부팅이 비활성화되었습니다</block>
+  <block id="0eb3c6c685457e8032693f53bd237935" category="paragraph"><block ref="0eb3c6c685457e8032693f53bd237935" category="inline-link-macro-rx"></block></block>
+  <block id="f722828638ac4b5f00969a786f497a9a" category="list-text">안전한 위치에 저장해야 하는 암호를 생성하라는 메시지가 표시됩니다. UEFI 부트 관리자에서 키를 활성화하려면 이 암호가 필요합니다.</block>
+  <block id="849c5ead738146da1f092df848c2a718" category="list-text">ONTAP Mediator 1.2.0 이하 버전은 이 모드를 지원하지 않습니다.</block>
+  <block id="43b25c2e0d56d4fc146f59ecc73f5495" category="list-text">[[step_2_uefi]]<block ref="c9d0aaf4769a4f8a2886caf46cbce188" prefix=" " category="inline-code"></block> 유틸리티가 설치되어 있지 않으면 다음 명령을 실행하십시오.</block>
+  <block id="e4affa1757c0df8c1a5bf82c97781c6d" category="summary">Mediator 설치 패키지를 설치하기 전에 ONTAP Mediator 코드 서명을 확인해야 합니다.</block>
+  <block id="560c233241deb90642d67353dd0aad6e" category="paragraph">NetApp은 설치 전에 ONTAP Mediator 코드 서명을 확인할 것을 권장합니다. 이 단계는 선택 사항입니다.</block>
+  <block id="e13794ad439ee00ab157cea16159a70a" category="paragraph">ONTAP Mediator 코드 서명을 확인하기 전에 시스템이 이러한 요구 사항을 충족하는지 확인하십시오.</block>
+  <block id="e39f589bfe0d589e13f53fb7f5bddebd" category="list-text">2025년 6월 15일부터는 코드 서명 확인 인증서가 만료되었으므로 ONTAP Mediator 1.9 및 1.8을 설치하거나 업그레이드할 수 없습니다. 대신 ONTAP Mediator 1.10 이상을 설치하거나 업그레이드하십시오.</block>
+  <block id="b1adbea18c0e0d4e261e15828b721e49" category="list-text">시스템이 아래 요구 사항을 충족하지 않는 경우 검증 절차가 필요하지 않으며 바로 <block ref="7bbc278d4f7076df8bbc2b54bf8e89a2" category="inline-link-macro-rx"></block>(으)로 이동할 수 있습니다.</block>
+  <block id="9106c3452826490ddd9d07010f2173a5" category="list-text">기본 검증을 위한 openssl 버전 1.0.2~3.0</block>
+  <block id="c0fac2047cbe56c123704cb4b3da32b2" category="list-text">타임스탬핑 기관(TSA) 작업을 위한 openssl 버전 1.1.0 이상</block>
+  <block id="e98552aa21f6925f5574bfdba32ea161" category="list-text">OCSP 검증을 위한 공용 인터넷 접속</block>
+  <block id="a94572a14362fed22e33e27f5993fcad" category="paragraph">다운로드 패키지에는 다음 파일이 포함되어 있습니다:</block>
+  <block id="0b27918290ff5323bea1e3b78a9cf04e" category="cell">파일</block>
+  <block id="b5a7adde1af5c87d7fd797b6245c2a39" category="cell">설명</block>
+  <block id="ac187656f3be4f6002bd8c832d2a1d52" category="paragraph"><block ref="fc1d3aa2d72a65f8bdd5073680cc2c40" prefix="" category="inline-code"></block></block>
+  <block id="0c5b27f73c23e39de503a3b96e1f76a5" category="paragraph">서명을 확인하는 데 사용되는 공개 키</block>
+  <block id="b0826d321ab9e0500888238f5df2b3f3" category="paragraph"><block ref="70f54161b450e448d033a626bcb4f02d" prefix="" category="inline-code"></block></block>
+  <block id="141978143677358a548da31a39c1be88" category="paragraph">공개 인증 기관(CA)의 신뢰 체인</block>
+  <block id="d14d716769ebc25416523fef51abd9b8" category="paragraph"><block ref="363d3474e22d7db66173e78c91f91e7f" prefix="" category="inline-code"></block></block>
+  <block id="9cbdb840a113ea7b5dcb298deaa05b7e" category="paragraph">키를 생성하는 데 사용된 인증서</block>
+  <block id="59695863d263b33f206a381bcc6ce261" category="paragraph"><block ref="0c59cbf13b1608fef86b59cc0e6967de" prefix="" category="inline-code"></block></block>
+  <block id="c4512ba85ce34c6480617c484914f747" category="paragraph">버전 1.12용 제품 설치 실행 파일</block>
+  <block id="0c55f368e18cfaa6fe2b014acbea4986" category="paragraph"><block ref="4618732bcabe7114d848c5006bfb9ab6" prefix="" category="inline-code"></block></block>
+  <block id="2e8527e57b678d1e86dfcd907d502c93" category="paragraph">SHA-256 해시 후 csc-prod 키를 사용하여 RSA 서명된 설치 프로그램 서명</block>
+  <block id="b8fd0eeaf6e764870e4573b8912bf427" category="paragraph"><block ref="711633bfbf4618fe03e72b5449b8e205" prefix="" category="inline-code"></block></block>
+  <block id="1acf93481e84a4e4c609c4546137aee9" category="paragraph">OCSCP에서 설치자 서명에 사용하기 위한 취소 요청</block>
+  <block id="868bb91b10f53c614e4fe4c994eb89b5" category="paragraph"><block ref="d5a2e42625d9ed2e19dc1ed5ae810d2e" prefix="" category="inline-code"></block></block>
+  <block id="5a46f8ae3f6e839360f746d5fa5e480b" category="paragraph">타임스탬프 서명 요청 파일</block>
+  <block id="ea43322ff7094ad7629e24cbe40c3e9c" category="paragraph"><block ref="4e9f36f85cfdfb83b20958a929957bbf" prefix="" category="inline-code"></block></block>
+  <block id="3ff1067ef040350863cd35305c0cd651" category="paragraph">TSR에 대한 공개 인증서</block>
+  <block id="f03046f86ea75e1e226102a08ecd5cbf" category="paragraph"><block ref="c3887b7a23291dac4d7a1b7efc818208" prefix="" category="inline-code"></block></block>
+  <block id="4e3deff3b9081f7fedc2007265693564" category="paragraph">TSR에 대한 공개 인증서 CA 체인</block>
+  <block id="341d08a2cb17f811a5caa71530ce388f" category="list-text">온라인 인증서 상태 프로토콜(OCSP)을 사용하여 <block ref="363d3474e22d7db66173e78c91f91e7f" prefix=" " category="inline-code"></block>에서 인증서 폐지 여부를 확인하십시오.</block>
+  <block id="08274516b7632a2f17f664632e418b9f" category="list-text">인증서의 OCSP URL을 찾으십시오. 개발자 인증서에는 URI가 제공되지 않을 수 있습니다:</block>
+  <block id="8bf1d39a34c4c8aba9e7682948d83d2d" category="list-text">인증서에 대한 OCSP 요청을 생성합니다.</block>
+  <block id="21755208d8a4421549597f7a6e97d778" category="list-text">OCSP 요청을 보내려면 OCSP 관리자에 연결하십시오:</block>
+  <block id="5c583e4141833d6e7db2838d568f5323" category="list-text">로컬 호스트에 대해 CSC의 신뢰 체인 및 만료 날짜를 확인하십시오:</block>
+  <block id="c81eb6c983032e3d49e6b571c2794296" category="admonition">PATH에 있는 <block ref="50955d4b2031271f8fda1764c1a66ac3" prefix=" " category="inline-code"></block> 버전에는 유효한 <block ref="691869bca85baab2f31b7f268617f791" prefix=" " category="inline-code"></block>(자체 서명되지 않음)가 있어야 합니다.</block>
+  <block id="620bc19067c74879a4e4f7bf199ea37e" category="paragraph">코드 서명 확인 인증서 또는 타임스탬프 인증서가 만료되었거나 유효하지 않은 경우 명령이 실패합니다. ONTAP Mediator의 최신 버전을 다운로드하십시오.</block>
+  <block id="b4e9ec58d3ef956e8fc1a9fc7b82974b" category="list-text">관련 인증서를 사용하여 <block ref="711633bfbf4618fe03e72b5449b8e205" prefix=" " category="inline-code"></block> 및 <block ref="d5a2e42625d9ed2e19dc1ed5ae810d2e" prefix=" " category="inline-code"></block> 파일을 확인하십시오.</block>
+  <block id="195bddf21d18e6684827f26df294c1eb" category="open-title">OpenSSL 3.x</block>
+  <block id="414fe320287d05243bfc22a1d19c8b98" category="open-title">OpenSSL 1.x</block>
+  <block id="2809839371385d16108fa0cee4cee699" category="admonition"><block ref="c40361447c48e9b3eaa3ba6ba4896af0" prefix="" category="inline-code"></block> 파일에는 설치 프로그램 및 코드 서명과 관련된 타임스탬프 응답이 포함되어 있습니다. 처리 과정에서 타임스탬프에 TSA의 유효한 서명이 있는지, 그리고 입력 파일이 변경되지 않았는지 확인합니다. 사용자의 컴퓨터는 로컬에서 검증을 수행합니다. TSA 서버에 액세스할 필요가 없습니다.</block>
+  <block id="98007cd8efbd426b4ad5bdcb7778ca03" category="list-text">서명을 키와 대조하여 확인합니다:</block>
+  <block id="7bbc278d4f7076df8bbc2b54bf8e89a2" category="paragraph"><block ref="7bbc278d4f7076df8bbc2b54bf8e89a2" category="inline-link-macro-rx"></block></block>
+  <block id="e2d1f5937c4878355c3c739ffbb45800" category="summary">ONTAP Mediator를 설치한 후에 ONTAP Mediator가 실행 중인지 확인해야 합니다.</block>
+  <block id="25a6b1d95d3277b7c1bd3f7b97307081" category="paragraph">ONTAP Mediator를 설치한 후 정상적으로 실행되는지 확인하십시오.</block>
+  <block id="253a9d448fe2c1ea3fd6968f5e1a7805" category="list-text">SCST 상태를 확인하십시오:</block>
+  <block id="3483ec1cb6a837bd4464bc4c69d6cc47" category="admonition">ONTAP Mediator 1.12 이상 버전을 HTTPS만 지원하도록 설치한 경우 SCST 패키지가 설치되지 않으므로 이 단계를 건너뛸 수 있습니다.</block>
+  <block id="58eaebf972358f1cf03d386a4ade1a0f" category="paragraph-title">다음 단계</block>
+  <block id="dcff6129bbd301d782b50aa40e1a0f79" category="paragraph">ONTAP Mediator 설치 및 검증이 완료되면 다음과 같은 설치 후 구성 작업을 진행할 수 있습니다:</block>
+  <block id="5a762e0a3caaba57aa6e78e424dd2661" category="inline-link-macro">SnapMirror 활성 동기화 및 MetroCluster IP를 위해 ONTAP Mediator를 사용하십시오.</block>
+  <block id="54d23f74bb1c8fdc1bf5cfe1d26cb066" category="list-text"><block ref="54d23f74bb1c8fdc1bf5cfe1d26cb066" category="inline-link-macro-rx"></block></block>
+  <block id="ae001e3f1ffe7f045dd5732a8b8d8668" category="list-text"><block ref="dcb0081a923ee4c70e4e3f6dfbd9776f" category="inline-link-macro-rx"></block> (선택 사항)</block>
+  <block id="10e1d24f7d73ad263d36af8b1ec3544c" category="summary">NetApp은 새 클러스터를 설정할 때 System Manager를 사용할 것을 권장합니다. System Manager는 노드 관리 IP 주소 할당 및 클러스터 초기화 등 클러스터 설정을 위한 간단하고 쉬운 워크플로를 제공합니다.</block>
+  <block id="a512b4ce296503b2b999a8e8376418ea" category="doc">ONTAP Mediator 설치 워크플로 요약</block>
+  <block id="9178449d1a9b329335d788862055c61c" category="paragraph">ONTAP Mediator 설치에는 설치 준비, 저장소 접근 권한 제공, 설치 패키지 다운로드, 코드 서명 확인 및 ONTAP Mediator 패키지 설치가 포함됩니다.</block>
+  <block id="06c2cea18679d64399783748fa367bdd" category="inline-image-macro">하나</block>
+  <block id="7290a497df570b86538ae98972302505" category="paragraph-title"><block ref="58f667aaf05f87159670e12bd9bc076b" category="inline-image-macro-rx" type="image"></block><block ref="0bf216691155fc8de347221d4553ab8f" category="inline-link-macro-rx"></block></block>
+  <block id="5562e3b4a040a906c78e131000ad3c52" category="paragraph">ONTAP Mediator를 설치하려면 모든 필수 조건을 충족해야 합니다.</block>
+  <block id="aada29daee1d64ed0fe907043855cb7e" category="inline-image-macro">둘</block>
+  <block id="ae300de494eb6f048e943dc94db5193f" category="inline-link-macro">저장소 액세스 제공</block>
+  <block id="e0922d77b9bc10da1b1f1c3e7eedd476" category="paragraph-title"><block ref="54f425ce8d89f4ed6b8a546561af5d60" category="inline-image-macro-rx" type="image"></block><block ref="bbc4460d23041d413de577a8a9063521" category="inline-link-macro-rx"></block></block>
+  <block id="ca8a2087e5557e317599344687a57391" category="inline-image-macro">3</block>
+  <block id="b14a15fa83a110077ee887343b803f7c" category="paragraph-title"><block ref="05b2444faffd66d76e88602ea7dd353f" category="inline-image-macro-rx" type="image"></block><block ref="c869120ace16eabfd77564c5b274c273" category="inline-link-macro-rx"></block></block>
+  <block id="981b8fcee42e1e726a67a2b9a98ea6e9" category="inline-image-macro">네</block>
+  <block id="409e0449e7e7b293fc49c94106745ae9" category="paragraph-title"><block ref="beadfa85a2fdca06b91edc1131c603e6" category="inline-image-macro-rx" type="image"></block><block ref="ab4c972d0f4ada73cacc7722e34e0678" category="inline-link-macro-rx"></block></block>
+  <block id="681252b161cda69fc0a8ea855f0ce4ed" category="paragraph">NetApp은 ONTAP Mediator 설치 패키지를 설치하기 전에 ONTAP Mediator 코드 서명을 확인할 것을 권장합니다.</block>
+  <block id="e5d9de39f7ca1ba2637e5640af3ae8aa" category="inline-image-macro">다섯</block>
+  <block id="c01ddbfb33b9c8d797ae84faf59e4d15" category="paragraph-title"><block ref="99e8b2f00e172bfcff96afdce69907bc" category="inline-image-macro-rx" type="image"></block><block ref="7bbc278d4f7076df8bbc2b54bf8e89a2" category="inline-link-macro-rx"></block></block>
+  <block id="cd011d3f6c5fb4dcec84e1f7c421d22d" category="paragraph">설치 패키지를 다운로드하고 호스트에서 설치 프로그램을 실행하십시오.</block>
+  <block id="e6fbc0b9673f8c86726688d7607fc8f5" category="inline-image-macro">6</block>
+  <block id="f2e79d36f60ee64b18f8ce31a73c86d8" category="inline-link-macro">ONTAP Mediator 설치를 확인하십시오</block>
+  <block id="b7ae5153b74815ef79cdbd22f4cc2cb0" category="paragraph-title"><block ref="ef78558f80439832e0f51cc22cee8b8c" category="inline-image-macro-rx" type="image"></block><block ref="007404c80f3bb40ff0837ce0c5463388" category="inline-link-macro-rx"></block></block>
+  <block id="b709d6253b567b7235606deb0c2395bf" category="summary">ONTAP Mediator에 대해 알아보세요.</block>
+  <block id="92d375ae13aef349145e8dc2877f3c76" category="doc">ONTAP Mediator에 대해 알아보십시오</block>
+  <block id="326a75b8c793efc45996057c8f51b5d4" category="paragraph">ONTAP Mediator는 고가용성(HA) 메타데이터를 위한 영구적이고 펜싱된 저장소 및 쿼럼 결정을 돕는 동기식 노드 상태 쿼리 기능을 제공하고 컨트롤러 활성 상태를 위한 핑 프록시 역할을 수행하여 ONTAP 기능을 지원합니다.</block>
+  <block id="76538e55d69b12bb4a71177e6f12d7af" category="inline-link-macro">SnapMirror 액티브 싱크 문서</block>
+  <block id="901813bbb11021af43dee4148c16d7d3" category="admonition">이 문서는 ONTAP Mediator의 온프레미스 버전을 참조합니다. ONTAP 9.17.1부터 사용 가능한 ONTAP Cloud Mediator에 대한 자세한 내용은 <block ref="4943a2316d8b919a678f5eb2aeeed318" category="inline-link-macro-rx"></block>을 참조하십시오.</block>
+  <block id="42e9ee2096bab8214f21c708db5062bd" category="section-title">ONTAP Mediator 작동 방식</block>
+  <block id="8b50bed86f101df37d16ed78d60ed284" category="paragraph">ONTAP Mediator는 ONTAP 클러스터와는 별도의 제3 장애 도메인에 있는 Linux 호스트에서 실행되며, HA 메타데이터를 위한 영구적이고 펜싱된 저장소를 제공합니다. ONTAP은 이 저장소와 Mediator의 노드 상태 쿼리 및 핑 프록시 기능을 사용하여 SnapMirror 활성 동기화 관계 및 MetroCluster IP 구성을 모니터링합니다.</block>
+  <block id="7e8f3706222b098ad48cabe16894f827" category="list-text">ONTAP Mediator는 노드 관리 LIF와 클러스터 관리 LIF를 사용하여 여러 개의 이중화된 경로를 통해 각 클러스터와 통신합니다. 이를 통해 ONTAP은 전체 사이트 장애와 단일 InterSwitch 링크(ISL) 장애를 구분할 수 있습니다.</block>
+  <block id="3b8c87fa9b9abce4ddce62d23eca868a" category="list-text">SnapMirror 활성 동기화에서 클러스터가 피어 및 ONTAP Mediator와의 연결을 모두 잃으면 ONTAP은 피어에 연결할 수 없는 것으로 간주하고 자동으로 남아 있는 복사본으로 페일오버할 수 있습니다.</block>
+  <block id="2a43a085e6d2089e75c2c18a4b8ea8af" category="list-text">MetroCluster IP 구성에서 ONTAP Mediator는 MetroCluster 노드에 대한 상태 정보를 저장하고 장애 발생 시 적절한 조치를 결정하는 데 도움을 줌으로써 MAUSO(Mediator 지원 자동 계획되지 않은 스위치오버)를 지원합니다.</block>
+  <block id="2a61fd8c8d20f7245177988f689e77e8" category="section-title">ONTAP 중재자 서비스</block>
+  <block id="877c7d4cc585cbd94114496e0df7fecb" category="paragraph">ONTAP Mediator는 두 가지 추가 systemctl 서비스를 제공합니다:</block>
+  <block id="5a4ca2392a1b3d83aa38c7968e334573" category="list-text"><block ref="c990bfbba7825c9db39cef7f4a350cfc" prefix="*" category="inline-code"></block>*</block>
+  <block id="06e323d4373aabd0af3131b9474ab662" category="paragraph">ONTAP 관계 관리를 위한 REST API 서버를 유지 관리합니다.</block>
+  <block id="7cfb89286bde7b3d84c90ce91303e01c" category="list-text"><block ref="1721bbd0d59d9a230ad8b4681faefffb" prefix="*" category="inline-code"></block>*</block>
+  <block id="507695508843fb2f9cb9084a154ecda3" category="paragraph">iSCSI 모듈(SCST)의 시작 및 종료를 제어합니다.</block>
+  <block id="a1f7f9889c07ad11a711e8b9d0c93fd7" category="section-title">시스템 관리자를 위해 제공되는 툴</block>
+  <block id="9597511ebb4a2575fad9eb1694641b3b" category="paragraph">시스템 관리자에게 제공되는 툴:</block>
+  <block id="bcdb3e2c0b472defbdefd1325c20b15a" category="list-text"><block ref="ba521b806beb44396f87bbc58c6fcd4d" prefix="*" category="inline-code"></block>*</block>
+  <block id="f9a957978e46df680d8a1331bce02aab" category="paragraph">현재 API 사용자 이름과 비밀번호가 제공되면 새 API 비밀번호를 설정합니다.</block>
+  <block id="061ab59fedb35e48d8d834e130bc4c17" category="list-text"><block ref="1a45494ade6dc6e1a9790be9200aa869" prefix="*" category="inline-code"></block>*</block>
+  <block id="38d794b25e411892f39343c210971007" category="paragraph">현재 API 사용자 이름과 비밀번호가 제공되면 새 API 사용자 이름을 설정합니다.</block>
+  <block id="09507a13e5f8f03b22c9b72a6824779e" category="list-text"><block ref="5594a11c6e2dabb8e9beebf27dd7846b" prefix="*" category="inline-code"></block>*</block>
+  <block id="4e735f1f9d62e034c5ef9c0c7a496b19" category="paragraph">NetApp 고객 지원과 통신하는 데 필요한 모든 유용한 지원 정보가 포함된 로컬 tgz 파일을 생성합니다. 여기에는 애플리케이션 구성, 로그 및 일부 시스템 정보가 포함됩니다. 이 번들은 로컬 디스크에 생성되며 필요에 따라 수동으로 전송할 수 있습니다. 저장 위치: /opt/netapp/data/support_bundles/</block>
+  <block id="bf751df278f4ef7a015642dfa4978407" category="list-text"><block ref="74ac5d826adfbc116b6ea064d73cb629" prefix="*" category="inline-code"></block>*</block>
+  <block id="b1c9afeac2615d7d419269c18341ff95" category="paragraph">ONTAP Mediator 패키지와 SCST 커널 모듈을 제거합니다. 여기에는 모든 구성, 로그 및 메일박스 데이터가 포함됩니다.</block>
+  <block id="c699ae1aabd5a8c0718f582a5085febc" category="list-text"><block ref="7174f35f333fadf99cb4247e429bcda4" prefix="*" category="inline-code"></block>*</block>
+  <block id="f274c99ca726ffb2b3a916f4e019bcfa" category="paragraph">인증 재시도 횟수 제한에 도달하면 API 사용자 계정에 대한 잠금을 해제합니다. 이 기능은 무차별 대입 공격을 통한 비밀번호 유추를 방지하는 데 사용됩니다. 사용자에게 올바른 사용자 이름과 비밀번호를 입력하라는 메시지가 표시됩니다.</block>
+  <block id="c15bcd72ca8abaee355754c4815267f0" category="list-text"><block ref="4e1d61591890d0d4ccfdca8463a6106c" prefix="*" category="inline-code"></block>*</block>
+  <block id="1d52b3ad050da5ff4130abb7cd105b59" category="paragraph">(지원 전용) 설치 시 API 사용자를 추가하는 데 사용됩니다.</block>
+  <block id="d6df8af7f544a2958e6757912c0dbd0f" category="section-title">SCST 및 커널 업데이트</block>
+  <block id="2fa10ff98f1c645a56f1fdef1413d6c9" category="inline-link-macro">SCST: Linux용 범용 SCSI 타겟 하위 시스템</block>
+  <block id="9e5f52fbf54a88f3546daad7843dad0a" category="paragraph">ONTAP Mediator는 MetroCluster IP 구성에서 통신을 위해 iSCSI를 제공하기 위해 SCST를 사용합니다. SCST 패키지는 설치 중에 컴파일되는 커널 모듈입니다. 커널 업데이트 후 SCST를 다시 설치해야 할 수 있습니다. 또는 ONTAP Mediator를 제거한 다음 다시 설치하고 ONTAP 관계를 재구성합니다. SCST에 대한 자세한 내용은 <block ref="6c6c0b982087c71ca9a00a75bd9ab966" category="inline-link-macro-rx"></block>을(를) 참조하십시오.</block>
+  <block id="34e5e47f5c7b2affb68fc3b25008aa3a" category="admonition">서버 OS 커널 업데이트는 ONTAP의 유지보수 윈도우와 조정해야 합니다.</block>
+  <block id="0d99e45d04eeac38e25baf7e6e2d48b9" category="section-title">HTTPS 및 iSCSI 지원</block>
+  <block id="f90b665758a0946c798b8211c5eea691" category="paragraph">ONTAP 9.19.1 및 ONTAP Mediator 1.12 버전부터 HTTPS 또는 iSCSI를 사용하여 MetroCluster IP 구성을 모니터링하는 ONTAP Mediator를 구성할 수 있습니다. ONTAP Mediator를 iSCSI와 HTTPS를 모두 지원하도록 설치하거나 HTTPS만 지원하도록 설치할 수 있습니다. ONTAP Mediator를 HTTPS만 지원하도록 설치하는 경우 SCST 패키지는 설치되지 않습니다. 자세한 내용은 <block ref="9f4b39d31886e48b8c4dd6f78f5449d8" category="inline-link-macro-rx"></block>을 참조하십시오.</block>
+  <block id="30d965eef5ba25c6b9998ae38270b43e" category="doc">법적 고지</block>
+  <block id="e9c44bbfd795a5d63d74c6a77afee70d" category="paragraph">법적 고지사항은 저작권 표시, 상표, 특허 등에 대한 접근을 제공합니다.</block>
+  <block id="6016a2b341113bf496b719905398ecd2" category="section-title">저작권</block>
+  <block id="52009bb7ee17227f566cd26a02caee56" category="inline-link-macro"><block ref="52009bb7ee17227f566cd26a02caee56" category="inline-link-rx"></block></block>
+  <block id="a1a9afcf552a769c282769271829889a" category="paragraph"><block ref="a1a9afcf552a769c282769271829889a" category="inline-link-macro-rx"></block></block>
+  <block id="126a02652da6de02962cf1b654fd6376" category="section-title">상표</block>
+  <block id="c4ce4761e466527d26b3e3d5ed1006fd" category="paragraph">NETAPP, NETAPP 로고 및 NetApp 상표 페이지에 나열된 마크는 NetApp, Inc.의 상표입니다. 다른 회사 및 제품 이름은 해당 소유자의 상표일 수 있습니다.</block>
+  <block id="f99aa604031e5049799e73b5c3748a98" category="inline-link-macro"><block ref="f99aa604031e5049799e73b5c3748a98" category="inline-link-rx"></block></block>
+  <block id="5d545fe5152641e2ebe654e336e520e5" category="paragraph"><block ref="5d545fe5152641e2ebe654e336e520e5" category="inline-link-macro-rx"></block></block>
+  <block id="be89498d2f8a22ce47c02ba9795fe2af" category="section-title">특허</block>
+  <block id="d0b19d36be2c5f16e9aef46c8a452d3d" category="paragraph">NetApp이 소유한 특허의 현재 목록은 다음에서 확인할 수 있습니다:</block>
+  <block id="88e5eabd3917048b6927c42496b98f86" category="inline-link-macro"><block ref="88e5eabd3917048b6927c42496b98f86" category="inline-link-rx"></block></block>
+  <block id="dd38f906b37d412de7d1c1dcf4cbf31c" category="paragraph"><block ref="dd38f906b37d412de7d1c1dcf4cbf31c" category="inline-link-macro-rx"></block></block>
+  <block id="56c34c6410dd45c5cec44149ad0ce037" category="section-title">개인정보 보호정책</block>
+  <block id="8acb58cbd50ef1b468a020ee0bd351d3" category="inline-link-macro"><block ref="8acb58cbd50ef1b468a020ee0bd351d3" category="inline-link-rx"></block></block>
+  <block id="2352c4e1f4d0024ade0869e00e6243f4" category="paragraph"><block ref="2352c4e1f4d0024ade0869e00e6243f4" category="inline-link-macro-rx"></block></block>
+  <block id="c0227cef6f07a8cd2ac72f2945b031aa" category="section-title">오픈 소스</block>
+  <block id="9b73989307c1975dfa4d5e1581e4afe8" category="paragraph">고지 파일에는 NetApp 소프트웨어에 사용된 타사 저작권 및 라이선스에 대한 정보가 포함되어 있습니다.</block>
+  <block id="909f0fe6adf79c0d00245b4615d8e65d" category="section-title">MetroCluster IP 및 SnapMirror 활성 동기화를 위한 ONTAP Mediator</block>
+  <block id="f4a03af8341b001c2d5921087e6acdae" category="inline-link-macro">ONTAP Mediator 1.12.1 관련 공지</block>
+  <block id="c932859452a4d21cd8b2409c4b266c64" category="list-text"><block ref="c932859452a4d21cd8b2409c4b266c64" category="inline-link-macro-rx"></block></block>
+  <block id="23e832f016b25042f077bf69d3f4c7f0" category="inline-link-macro">ONTAP Mediator 1.11 관련 공지</block>
+  <block id="677bfcb200a25242e458dd0b6429d82f" category="list-text"><block ref="677bfcb200a25242e458dd0b6429d82f" category="inline-link-macro-rx"></block></block>
+  <block id="b36e1b8d747340ff716228fd88522c06" category="inline-link-macro">ONTAP Mediator 1.10 관련 공지</block>
+  <block id="5543c32a8ccc35d4c3933c375789476b" category="list-text"><block ref="5543c32a8ccc35d4c3933c375789476b" category="inline-link-macro-rx"></block></block>
+  <block id="139f1b20204848bfd0e3274f772bb733" category="inline-link-macro">ONTAP Mediator 1.9.1 관련 공지</block>
+  <block id="f1d7ffd223ec82e15d8172ed4c13f856" category="list-text"><block ref="f1d7ffd223ec82e15d8172ed4c13f856" category="inline-link-macro-rx"></block></block>
+  <block id="8d685ddfb9d20c953bad7b1bfbae053e" category="inline-link-macro">ONTAP Mediator 1.8 관련 공지</block>
+  <block id="fb745e243220ba289a5790d22d8c23a0" category="list-text"><block ref="fb745e243220ba289a5790d22d8c23a0" category="inline-link-macro-rx"></block></block>
+  <block id="97eb5e225501b9db5f932ecf16b701ed" category="inline-link-macro">ONTAP Mediator 1.7 관련 공지</block>
+  <block id="e488c599aba4b5ac56806477809fa821" category="list-text"><block ref="e488c599aba4b5ac56806477809fa821" category="inline-link-macro-rx"></block></block>
+  <block id="1e0475ec995218e0382bd6976e903bb1" category="inline-link-macro">ONTAP Mediator 1.5 관련 공지</block>
+  <block id="dc3228f917510c58b4a72ba2e7a91210" category="list-text"><block ref="dc3228f917510c58b4a72ba2e7a91210" category="inline-link-macro-rx"></block></block>
+  <block id="b33e0edd711cf439d3a06b2c984e1755" category="doc">ONTAP Mediator 빠른 시작</block>
+  <block id="ede7e8aabb49529e0f399e4890ce118f" category="paragraph">ONTAP Mediator를 시작하려면 소프트웨어를 설치하고 ONTAP 환경과 연동되도록 구성해야 합니다.</block>
+  <block id="b938000789ff25f73dc19bc3edcb4c8b" category="paragraph-title"><block ref="58f667aaf05f87159670e12bd9bc076b" category="inline-image-macro-rx" type="image"></block> ONTAP Mediator 설치</block>
+  <block id="305e7e49ade15c0cfc57375e188c0f62" category="inline-link-macro">ONTAP Mediator를 설치합니다</block>
+  <block id="37ce828d354958a2db78397599a4a69f" category="paragraph">시스템에서 <block ref="44d4e7f0bedd4ffbf3db5ac1f6a4aa7f" category="inline-link-macro-rx"></block> 필요한 모든 종속성이 충족되는지 확인하십시오.</block>
+  <block id="4662e5c2962f44a995bdfe8230f4f317" category="paragraph-title"><block ref="54f425ce8d89f4ed6b8a546561af5d60" category="inline-image-macro-rx" type="image"></block> ONTAP Mediator 설치를 확인하십시오</block>
+  <block id="98d33dc6b8be9abc6b3e7920199167df" category="inline-link-macro">ONTAP Mediator 설치가 성공적으로 완료되었는지 확인하십시오.</block>
+  <block id="dc2fd6b1c573ac483da94fda7660ccf4" category="paragraph"><block ref="38f6a5b99838e359694246e1dce469b8" category="inline-link-macro-rx"></block> 서비스 상태를 확인하고 로그에서 오류나 경고가 있는지 검토하여 문제를 해결할 수 있습니다.</block>
+  <block id="1f901ac22f0969ee8cd8f1117b67ea3f" category="paragraph-title"><block ref="05b2444faffd66d76e88602ea7dd353f" category="inline-image-macro-rx" type="image"></block> ONTAP 환경에 맞게 ONTAP Mediator를 구성하십시오</block>
+  <block id="e25128fcc48d6c157fb6bc6ff4d52707" category="inline-link-macro">MetroCluster IP, SnapMirror 활성 동기화 또는 둘 다를 위해 ONTAP Mediator를 사용하십시오.</block>
+  <block id="74424ec35cb22218784c442e440b71de" category="paragraph"><block ref="a68fef87da2c2c6f2af6eb756c624d4b" category="inline-link-macro-rx"></block>하기를 원하는지 여부에 따라 적절한 구성 단계를 따라 필요한 모든 설정이 올바르게 적용되도록 하십시오.</block>
+  <block id="119be031ef4485d20c7683d291d0e9f6" category="inline-link-macro">MetroCluster 문서</block>
+  <block id="d20bb8889a94d82bf2e2779edad21bc1" category="paragraph">이제 ONTAP Mediator를 사용하여 MetroCluster IP 구성, SnapMirror 활성 동기화 구성 또는 둘 다를 모니터링할 수 있습니다. 자세한 내용은 <block ref="4943a2316d8b919a678f5eb2aeeed318" category="inline-link-macro-rx"></block> 및 <block ref="e2d897561354b5f8fa12d007008008f5" category="inline-link-macro-rx"></block>을(를) 참조하십시오.</block>
+  <block id="95d547e645780d5c6d1082c62c90b5d2" category="summary">ONTAP Mediator의 운영 체제 및 SCST 지원 정보입니다.</block>
+  <block id="9aa82443628a5371ab66a68f70dd137e" category="doc">ONTAP 미디에이터 지원 매트릭스</block>
+  <block id="63b82b65fc5a63b22cb2bb0aeed9b9a7" category="paragraph">ONTAP Mediator 지원 매트릭스에는 운영 체제 및 SCST 버전 지원 정보가 포함되어 있습니다.</block>
+  <block id="60a1a4aab2ae24644a3954b9d2615d6b" category="paragraph">다음 표는 ONTAP Mediator의 각 버전에서 지원되는 운영 체제를 나열합니다.</block>
+  <block id="6f73041b016f05fc7cdb400654b60fa6" category="cell">ONTAP Mediator용 OS</block>
+  <block id="5c6cf7677a346751407101ee18e6a4dd" category="cell">1.12.1</block>
+  <block id="b12cb2f95b2516af000240d2ebc65c26" category="cell">1.12</block>
+  <block id="cb9cc8981898224a2fe45ac6ff7d4244" category="cell">1.11</block>
+  <block id="bdca6efb043178ef172612dd1e173dde" category="cell">1.10</block>
+  <block id="966dc08e28d5fec45c3b38645b1a92ab" category="cell">1.9.1</block>
+  <block id="4885938bbcc8f927854e4d0307d4467c" category="cell">1.9</block>
+  <block id="f932bed2d12442d21507b51d22b88dd7" category="cell">1.8</block>
+  <block id="7fd3cdaaba74a0b0ef3d707a8545df7c" category="cell">1.7</block>
+  <block id="4341447b6ad78bf4d7eb59ebb5a53d63" category="cell">1.6</block>
+  <block id="6008647277c4454cecd97d33c069f0ca" category="cell">1.5</block>
+  <block id="9e605ce3bb6ad134bb55c54d861ceb6a" category="cell">1.4</block>
+  <block id="0b0ec9f1cc28b3c19dc6c36dcd5af7cc" category="cell">1.3</block>
+  <block id="56765472680401499c79732468ba4340" category="cell">1.2</block>
+  <block id="777d45bbbcdf50d49c42c70ad7acf5fe" category="cell">1.1</block>
+  <block id="e4c2e8edac362acab7123654b9e73432" category="cell">1.0</block>
+  <block id="6a45ab2d50d54128463e81fc0f03e79a" category="paragraph">RHEL 10.2</block>
+  <block id="93cba07454f06a4a960172bbd6e2a435" category="paragraph">예</block>
+  <block id="bafd7322c6e97d25b6299b5d6fe8920b" category="paragraph">아니요</block>
+  <block id="45afd4c5b0dc7b30b48f8b9aae635710" category="paragraph">RHEL 10.1</block>
+  <block id="923b5fd7dc0ac6f70f77bcc7ec3f5546" category="paragraph">호환 가능</block>
+  <block id="f50ad339a2fcf7aedfe431f3ae3ef107" category="paragraph">RHEL 10.0</block>
+  <block id="c61087ddd0786db46fcf8e5ee69955f4" category="paragraph">RHEL 9.8</block>
+  <block id="98a29f5bf0873759f56944b3340bbae0" category="paragraph">RHEL 9.7</block>
+  <block id="e56f72be69020404183f694aed8e176b" category="paragraph">RHEL 9.6</block>
+  <block id="92a9848c1fb5697892193dd4ff6e8f2d" category="paragraph">RHEL 9.5</block>
+  <block id="b225d9c59432e8a8fb3706648e471b89" category="paragraph">RHEL 9.4</block>
+  <block id="5a4423695d5636fb42d9142a09b58340" category="paragraph">RHEL 9.3</block>
+  <block id="c87e38c84927fcd003b4fdc775e74821" category="paragraph">RHEL 9.2</block>
+  <block id="7634c90e743798b216d4cc2f1dd7eaa0" category="paragraph">RHEL 9.1</block>
+  <block id="10589d446fc419a4e9df55b253195dd9" category="paragraph">RHEL 9.0</block>
+  <block id="c48cc40f38f8bc361e9a53b83a812d48" category="paragraph">RHEL 8.10</block>
+  <block id="9ca217a808fa091455fd04ec20df21d9" category="paragraph">RHEL 8.9</block>
+  <block id="bd5893e98d53053996565ec48fc2b6bb" category="paragraph">RHEL 8.8</block>
+  <block id="00eb07c3f424101a44a3e3143456bd52" category="paragraph">RHEL 8.7</block>
+  <block id="0f3fc83c719bd7b7276c755b6562b34c" category="paragraph">RHEL 8.6</block>
+  <block id="757de8b2f5629d9eb783b0c8f7e8b4ff" category="paragraph">RHEL 8.5</block>
+  <block id="dffb1e1e6a570b0fb14cea1bd56c79d8" category="paragraph">RHEL 8.4</block>
+  <block id="de5525e18a94a51e3609173c8c069b5e" category="paragraph">RHEL 8.3</block>
+  <block id="ec30c235d0eb792797af1aa1d11759a7" category="paragraph">구식</block>
+  <block id="9f99749c637e4a85a7e16a3041a8beeb" category="paragraph">RHEL 8.2</block>
+  <block id="2e3750c608ef9c088598a72e91ddb608" category="paragraph">RHEL 8.1</block>
+  <block id="d7618fc64ca0575c8bba9e58bdc253d3" category="paragraph">RHEL 8.0</block>
+  <block id="8cffde85f666d275e71d9b314565a686" category="paragraph">RHEL 및 CentOS 7.9</block>
+  <block id="71a730801af5263780cae77c91bb7982" category="paragraph">RHEL 및 CentOS 7.8</block>
+  <block id="c168e750d8241dcaed1ee9bc17e3f294" category="paragraph">RHEL 및 CentOS 7.7</block>
+  <block id="8339525fe79a8130f43fc81405e9812f" category="paragraph">RHEL 및 CentOS 7.6</block>
+  <block id="fb1dbcf8128090987e569bf651313243" category="paragraph">예 (RHEL만 해당)</block>
+  <block id="574ea4c991e6ef7f20d7f1c11ae22d02" category="paragraph">CentOS 8 및 stream</block>
+  <block id="382b0f5185773fa0f67a8ed8056c7759" category="paragraph">해당 없음</block>
+  <block id="0929d852cfa2d35a82477186fd055160" category="paragraph">예(10.2)</block>
+  <block id="9df743054dfbdcad631028afabd38b41" category="paragraph">예(10.0 및 10.1)</block>
+  <block id="26d40bd113f37177261b00ebc25b0a8d" category="paragraph">예(9.8)</block>
+  <block id="e1b00cf1bcb2d955314fe2ef4af8274c" category="paragraph">예(9.7)</block>
+  <block id="566f46b059c4de391cee99ce8136e76b" category="paragraph">예(9.6 및 9.4)</block>
+  <block id="7fca9982db840b682ff1fa91de6f4d50" category="paragraph">예(9.5)</block>
+  <block id="fcd381c940dd826de21615b02a93e5ac" category="paragraph">예(9.4)</block>
+  <block id="972aed38f4a8421387e44e9f84512a50" category="paragraph">예(9.3)</block>
+  <block id="ff9810a447cf239493544dc7cacf0d8b" category="paragraph">예(9.2)</block>
+  <block id="c2ebd4f97347c9dbfc716a9616ea4032" category="paragraph">예(8.10)</block>
+  <block id="3ad2bf2515345e4c2c50be588ffe9d4b" category="paragraph">예(8.9)</block>
+  <block id="33e0d04ca44c83074297dff134d10cfb" category="paragraph">예(8.8)</block>
+  <block id="391c0ec02bf618798be411c9c8aa3445" category="paragraph">Oracle Linux 10</block>
+  <block id="5ca9c92221c0bb6df58f938c56b5e08c" category="paragraph">예(10.1)</block>
+  <block id="226b4ec4b046f4597e56f6820be16221" category="paragraph">예(10.0)</block>
+  <block id="4588ab094dff9b2456ca757278cf07ed" category="paragraph">Oracle Linux 9</block>
+  <block id="f12212efe7b442a1ec6f7d94dde4272e" category="paragraph">예(9.6)</block>
+  <block id="5c5f846c7bbce41735591248a7e03ae2" category="list-text">"예"는 해당 운영 체제가 ONTAP Mediator 설치에 권장되며 완벽하게 호환되고 지원됨을 의미합니다.</block>
+  <block id="42bf268ce6824f5c15433c63f78e0e15" category="list-text">"아니요"는 운영 체제와 ONTAP Mediator가 호환되지 않음을 의미합니다.</block>
+  <block id="e047d5afa17bbc643bc56cef323f85b6" category="list-text">"호환 가능"이란 Red Hat에서 더 이상 이러한 RHEL 버전을 지원하지 않지만 ONTAP Mediator는 여전히 설치할 수 있음을 의미합니다.</block>
+  <block id="3a750aeb7d41934423dea6e53773bd12" category="list-text">ONTAP Mediator 1.6은 Rocky Linux 9 및 8에 대한 지원을 추가합니다.</block>
+  <block id="a3026e4493cfd57bdc13ba786b0cae1f" category="list-text">ONTAP Mediator 1.5는 RHEL 7.x 계열 운영 체제에서 지원되는 마지막 릴리스였습니다.</block>
+  <block id="a3030782bfe07ab8ab13c96edb732a9b" category="list-text">Centos 8은 리브랜칭으로 인해 모든 릴리스에서 제거되었습니다. Centos Stream은 적합한 프로덕션 대상 OS가 아닌 것으로 판단되었습니다. 지원은 계획되어 있지 않습니다.</block>
+  <block id="833ee63cad8709c693aa56f3f6f2f931" category="paragraph">다음 표는 ONTAP Mediator의 각 버전에서 지원되는 SCST 버전을 보여줍니다.</block>
+  <block id="c5c31e0edabd430de173af2cac963c86" category="cell">ONTAP Mediator 버전</block>
+  <block id="4107429f6766d57b694d585cfdd160f8" category="cell">지원되는 SCST 버전</block>
+  <block id="1be471030891cbc39e234b1a80d41701" category="cell">ONTAP Mediator 1.2</block>
+  <block id="298ba785f6f7f916e8a8e98b883ac6e6" category="summary">ONTAP Mediator의 새로운 기능은 각 릴리스에 포함됩니다.</block>
+  <block id="0f7c73e85014bc5dcd0067a1abb5a71c" category="doc">ONTAP Mediator의 새로운 기능</block>
+  <block id="706f100d1cbe7864b3149ff92cf62d49" category="paragraph">각 릴리스마다 ONTAP Mediator에 대한 새로운 기능 향상이 제공됩니다.</block>
+  <block id="097269d68dda9a5a6965173c16acef55" category="inline-link-macro">지원 매트릭스</block>
+  <block id="1f840207417dd3f3c58182bbb07f7d4d" category="admonition">OS 및 SCST 버전 정보는 <block ref="c149c010c58bed396877e76753dfe3da" category="inline-link-macro-rx"></block>을(를) 참조하십시오.</block>
+  <block id="c1748037d10cffabb8e95e4ccf77c613" category="cell">향상된 기능</block>
+  <block id="63c1378a540c130ed6526f15004717aa" category="list-text">RHEL 지원:</block>
+  <block id="e8a8a0fc3a01794e8d25d6aed862ebc4" category="list-text">호환: 10.1 및 9.7.</block>
+  <block id="60d802407741b6aa93912645b95973d3" category="list-text">권장 사항: 10.2, 10.0, 9.8, 9.6, 9.4, 8.10.</block>
+  <block id="1a1727a6918fd3fa55075b30a8c19c43" category="list-text">Rocky Linux 10.2, 9.8 및 8.10을 지원합니다.</block>
+  <block id="37816537c169d0bac0ac457e8611211a" category="list-text">rhck 및 uek 커널을 모두 사용하는 Oracle Linux 10.1 및 9.8 지원.</block>
+  <block id="9a4a53cef7b15442ebf61d83809a82f4" category="list-text">ONTAP Mediator 1.12.1 및 ONTAP 9.19.1부터 HTTPS로 구성된 단일 ONTAP Mediator 인스턴스는 다음 구성을 동시에 모니터링할 수 있습니다.</block>
+  <block id="2ef6e8f0d5d66d492a2b23a3bb0ad174" category="list-text">8코어 CPU와 최소 16GB RAM을 갖춘 호스트에 설치하는 경우 최대 10개의 4노드 또는 5개의 8노드 MetroCluster IP 구성을 사용할 수 있습니다. <block ref="23c736ffefe2c88d617ae89ae44b32de" category="inline-link-macro-rx"></block>을(를) 참조하십시오.</block>
+  <block id="17d08083fc04aacdeb93bd44277678c6" category="inline-link-macro">SnapMirror 활성 동기화를 위해 ONTAP Mediator를 구성합니다.</block>
+  <block id="9c758998783d5deea1d83f8a17b3acea" category="list-text">2코어 CPU를 탑재한 호스트에 설치된 경우, 4노드 MetroCluster IP 구성 하나와 SnapMirror 활성 동기화 피어 관계 하나. <block ref="1e99a23f0ff254289bb966022cc5ead3" category="inline-link-macro-rx"></block>을(를) 참조하십시오.</block>
+  <block id="defcb96c4b9d8094e49d27abc0d7ba6c" category="list-text">손상된 SCST 설치를 복구하는 새로운 도구가 포함되어 있습니다. ONTAP Mediator를 설치한 후 해당 도구를 다음 위치에서 찾을 수 있습니다<block ref="711a32ad400471be43668bfcda3244b2" prefix=" " category="inline-code"></block>. OS 업그레이드 후, 업그레이드된 OS에 기본 SCST 패키지에 포함되지 않은 SCST 패치가 필요한 경우 이 도구를 사용할 수 있습니다.</block>
+  <block id="6082f1d9d6234f1a22ac348bcaf40bfc" category="list-text">rhck 및 uek 커널을 모두 사용하는 Oracle Linux 10.1 및 9.7 지원.</block>
+  <block id="f891556a6688c140ff5a993b15949efd" category="inline-link-macro">ONTAP Mediator의 HTTPS 및 iSCSI 설치 옵션에 대해 자세히 알아보십시오</block>
+  <block id="2132cc27a065b478c6073807667d8821" category="list-text">ONTAP 9.19.1 및 ONTAP Mediator 1.12 버전부터 MetroCluster IP 구성에서 HTTPS를 사용하여 통신하는 ONTAP Mediator를 구성할 수 있습니다. HTTPS는 SSL/TLS를 사용하여 전체 세션을 암호화함으로써 보안을 강화합니다. HTTPS만 지원하도록 ONTAP Mediator를 설치할 수도 있습니다. 이 설치 방법을 사용하는 경우 SCST 패키지는 설치되지 않습니다. <block ref="c2201c8820baa97aa8e2ad6d6bbe796b" category="inline-link-macro-rx"></block>.</block>
+  <block id="098e6488f292a2a967f044215af1d052" category="list-text">RHEL 10.1, 10.0, 9.7, 9.6, 9.4 및 8.10 지원.</block>
+  <block id="cac276a9e96f3c0963f96b1a6f677ed4" category="list-text">Rocky Linux 10.1, 9.7 및 8.10을 지원합니다.</block>
+  <block id="684a4237791e6b7accb3359916149a47" category="list-text">rhck 및 uek 커널을 모두 사용하는 Oracle Linux 10.0 및 9.6 지원.</block>
+  <block id="b157fc40cc8a93b02f24b6090bc14033" category="list-text">MetroCluster IP 구성에 대한 IPv6 지원을 추가합니다.</block>
+  <block id="46837ff5597d19a05270b6ca1fa2a504" category="list-text">fapolicyd에 대한 지원을 추가합니다.</block>
+  <block id="91c808163778b1252a5964a6166084bb" category="list-text">RHEL 10.0, 9.6, 9.4 및 8.10을 지원합니다.</block>
+  <block id="bc04dd412f2394730e2fbce62160ee42" category="list-text">Rocky Linux 10.0, 9.6 및 8.10을 지원합니다.</block>
+  <block id="c8ac2fa8a1351efab1af118900283acf" category="list-text">기본 Python 버전을 Python 3.9에서 Python 3.12로 업그레이드합니다.</block>
+  <block id="dbe5333de3a60f1c199904055a1f72b5" category="list-text">호환 가능: 9.3, 9.1, 8.9, 8.7, 8.6, 8.5 및 8.4.</block>
+  <block id="118ed9268d9cd782d2d31ba313aad13c" category="list-text">권장 사항: 9.5, 9.4, 9.2, 9.0, 8.10, 8.8.</block>
+  <block id="7e63e98b1c2bb4da8e19cd22fbcf38f8" category="list-text">Rocky Linux 9.5 및 8.10을 지원합니다.</block>
+  <block id="77f43b2671d5490ff8fb4ca358c08f3c" category="list-text">코드 서명 검증을 위한 새로운 인증서를 추가합니다.</block>
+  <block id="427ed2152eb68669767965c6995623ff" category="list-text"><block ref="88e57dba5ad35a846f8226c98dea04cb" prefix=" " category="inline-code"></block> 플래그를 사용하여 코드 서명 검사를 건너뛸 수 있도록 지원을 추가했습니다.</block>
+  <block id="b54bfd24b58f39cbae9ccbfeb57b4a52" category="list-text">설치 프로그램은 만료된 코드 서명 인증서를 감지하면 경고를 표시합니다.</block>
+  <block id="b713efaac064c3477427790c7f25c28f" category="list-text">RHEL 및 Rocky Linux에 대한 FIPS 지원.</block>
+  <block id="71de89881e6ed27948bb06179d0a8540" category="list-text">확장성을 높이기 위해 성능이 향상되었습니다.</block>
+  <block id="4b7aa15061a264c275e2d2a90175a52b" category="list-text">PKI 서명 인증서 설정을 간소화하기 위해 파일 이름을 개선했습니다.</block>
+  <block id="bb6431d39782643eba51257f3e365953" category="list-text">호환: 8.7, 8.6, 8.5 및 8.4.</block>
+  <block id="39b35f44655044497df352f5ccf0444f" category="list-text">권장: 9.4, 9.3, 9.2, 9.1, 9.0, 8.10, 8.9 및 8.8.</block>
+  <block id="82a2215d1b4abab41c76725fd019024e" category="list-text">Rocky Linux 9.4 및 8.10을 지원합니다.</block>
+  <block id="1eb1ab2ad3f6725a903cabc153916101" category="list-text">권장 사항: 9.3, 9.2, 9.1, 9.0, 8.9, 8.8.</block>
+  <block id="e403eca1fdb8b44db92d38b23a620580" category="list-text">Rocky Linux 9.3 및 8.9 버전을 지원합니다.</block>
+  <block id="eeae80d26915b9299cd26aff120dbb9c" category="list-text">자체 서명 인증서 및 타사 서명 인증서의 SAN(주체 대체 이름) 데이터 지원.</block>
+  <block id="78b75efa2fd35c3ed7b2557b51a12892" category="list-text">Python 3.9 업데이트.</block>
+  <block id="86c9bb8f93c86ceca3c2431fa7cafcd1" category="list-text">권장 사항: 9.2, 9.1, 9.0, 8.8.</block>
+  <block id="11c36d7aff5a3ea3c001cba50b944d5b" category="list-text">Rocky Linux 9.2 및 8.8 버전을 지원합니다.</block>
+  <block id="8ae02e171030d0bbaf996dab38ed5a13" category="list-text">RHEL 7.x / CentOS 모든 릴리스에 대한 지원이 중단되었습니다.</block>
+  <block id="e11ef0855a5adaac78857186ee735999" category="list-text">RHEL 8.5, 8.4, 8.3, 8.2, 8.1, 8.0, 7.9, 7.8, 7.7 및 7.6 버전을 지원합니다.</block>
+  <block id="6381bdc101357fdc0df337549a01ee62" category="list-text">CentOS 7.9, 7.8, 7.7 및 7.6을 지원합니다.</block>
+  <block id="5f72b640707a5d07a5578ceab0322661" category="list-text">RHEL 7.x / CentOS 7.x에 대한 사용 중단 경고가 포함되어 있습니다.</block>
+  <block id="5d682c8af595f2350e86ed1258048f89" category="list-text">대규모 SnapMirror 활성 동기화 시스템의 속도를 최적화합니다.</block>
+  <block id="914f23f08713afb7cbaacf3966247fe8" category="list-text">설치 프로그램에 암호화 코드 서명이 추가되었습니다.</block>
+  <block id="f2c672a7d3333fdd21e34b228a571fb2" category="list-text">UFEI 기반 펌웨어의 보안 부팅(SB) 지원이 추가되었습니다.</block>
+  <block id="5f1087bded124ec9ddcb70b9f3ecdd0d" category="list-text">RHEL 8.3, 8.2, 8.1, 8.0, 7.9, 7.8, 7.7 및 7.6 버전을 지원합니다.</block>
+  <block id="268005e8c9a38b341eec12fb83a56dd7" category="list-text">RHEL 8.1, 8.0, 7.9, 7.8, 7.7 및 7.6 지원.</block>
+  <block id="4fa13e5b3e6fce6c36412aca95cef0ed" category="list-text">HTTPs 메일함 지원.</block>
+  <block id="0cde76c281b193199202b79cd6b31c1e" category="list-text">ONTAP 9.8+ MCC-IP AUSO 및 SnapMirror 액티브 싱크 ZRTO와 함께 사용하십시오.</block>
+  <block id="75b105e969b3595c96ecb38f5f6a4e3d" category="list-text">RHEL 8.0 및 7.6을 지원합니다.</block>
+  <block id="8c382fb753012ccff6bc97505d4af52b" category="list-text">CentOS 7.6을 지원합니다.</block>
+  <block id="22be24e9429ce5f9b8cce8ad8f59bac5" category="list-text">Perl 의존성을 제거합니다.</block>
+  <block id="aaa8ca93d68b9efbf0f45ab1bad6a50d" category="list-text">iSCSI 메일함 지원.</block>
+  <block id="d2009039de5347ec838e5b352689b40e" category="list-text">ONTAP 9.7+ MCC-IP AUSO와 함께 사용하십시오.</block>
+  <block id="e699fc193cfa030f26300d0bab481dde" category="list-text">RHEL/CentOS 7.6을 지원합니다.</block>
+  <block id="fadaf2b5ff146e9a96c3843dbfac450e" category="summary">ONTAP Mediator가 SnapMirror 활성 동기화 관계 및 MetroCluster IP 구성을 모니터링하는 방법과 단일 인스턴스가 동시에 모니터링할 수 있는 각 항목의 개수에 대해 알아보십시오.</block>
+  <block id="af353eb26c9f4a289089dbb70f3e3267" category="paragraph">ONTAP Mediator는 ONTAP 클러스터와는 별도의 제3 장애 도메인에 있는 Linux 호스트에서 실행되며, 고가용성(HA) 메타데이터를 위한 영구적이고 펜싱된 저장소를 제공합니다. ONTAP은 이 저장소와 Mediator의 노드 상태 조회 및 핑 프록시 기능을 사용하여 SnapMirror 활성 동기화 관계 및 MetroCluster IP 구성을 모니터링합니다.</block>
+  <block id="1011e12128ad565cd37816222d73936b" category="admonition">이 문서는 온프레미스 버전의 ONTAP Mediator에 대한 내용입니다. ONTAP 9.17.1부터 사용 가능한 ONTAP Cloud Mediator에 대한 자세한 내용은 <block ref="4943a2316d8b919a678f5eb2aeeed318" category="inline-link-macro-rx"></block>를 참조하십시오.</block>
+  <block id="42992ec7640fbb21fca327b11346edc3" category="section-title">SnapMirror 활성 동기화 관계를 모니터링합니다.</block>
+  <block id="eabbf76b0849c0d8b0b7ff59d4e699e3" category="paragraph">SnapMirror active sync는 일관성 그룹의 운영 및 미러 복사본에 대한 수동 감시자로 ONTAP Mediator를 사용합니다. 네트워크 분할이 발생하거나 한 복사본을 사용할 수 없게 되면 SnapMirror active sync는 ONTAP Mediator에 쿼리를 보내 어떤 복사본이 계속해서 I/O를 처리할지 결정하고, 다른 복사본의 I/O 처리를 중단합니다.</block>
+  <block id="ecd88dd354ce9fc8fc63524f4951e442" category="paragraph">ONTAP 9.8부터는 모든 버전의 ONTAP Mediator를 사용하여 SnapMirror 활성 동기화 관계를 모니터링할 수 있습니다.</block>
+  <block id="ba348dde3947c2f06b825aa4327cf62d" category="inline-link-macro">ONTAP SnapMirror 활성 동기화에 대한 오브젝트 제한</block>
+  <block id="9350a76a80ee8a2ea53f104cb8fcf184" category="admonition">단일 ONTAP Mediator 인스턴스가 모니터링할 수 있는 SnapMirror 활성 동기화 클러스터 쌍 수에 대한 제한 사항은 <block ref="8dfbc303a57231f71470fa602ad1ddc0" category="inline-link-macro-rx"></block>을(를) 참조하십시오.</block>
+  <block id="effce48346873f15242a0410a058ada7" category="paragraph"><block ref="effce48346873f15242a0410a058ada7" category="inline-link-macro-rx"></block></block>
+  <block id="b3b5af089e0f5628ed01ae5560bd46b0" category="section-title">MetroCluster IP 구성을 모니터링합니다</block>
+  <block id="b2340e262d9bf143ce3553cc54d44336" category="paragraph">MetroCluster IP 구성에서 ONTAP Mediator는 MetroCluster 노드에 대한 상태 정보를 메일박스 LUN에 저장하고 재해 또는 특정 장애 시나리오 발생 시 Mediator 지원 자동 비계획 스위치오버(MAUSO)를 통해 노드를 지원합니다.</block>
+  <block id="575844baf72ff6d7f61f0710aa0807ab" category="paragraph">ONTAP 9.19.1 및 ONTAP Mediator 1.12부터 통신에 HTTPS를 사용하는 ONTAP Mediator를 구성하여 MetroCluster IP 구성을 모니터링할 수 있습니다. iSCSI 프로토콜로 ONTAP Mediator를 구성하는 경우, 모든 버전의 ONTAP Mediator를 사용하여 MetroCluster IP 구성을 모니터링할 수 있습니다.</block>
+  <block id="5baae96b103c91b9f857c87285299132" category="admonition">단일 ONTAP Mediator 인스턴스가 모니터링할 수 있는 MetroCluster IP 구성 수에 대한 제한 사항은 <block ref="23c736ffefe2c88d617ae89ae44b32de" category="inline-link-macro-rx"></block>을(를) 참조하십시오.</block>
+  <block id="42f362146dbe8748970967efe562f3c8" category="inline-link-macro">MetroCluster IP 구성을 위한 ONTAP Mediator 구성</block>
+  <block id="a35bcdcd4abeb9e60e10ec1ddd40fb73" category="paragraph"><block ref="a35bcdcd4abeb9e60e10ec1ddd40fb73" category="inline-link-macro-rx"></block></block>
+  <block id="6b0096a280c04de21fb5d2ef96df1cb7" category="inline-link-macro">ONTAP SnapMirror 액티브 동기화 아키텍처</block>
+  <block id="2dfb829fe1e40af1cb9ddc839717eb0e" category="list-text"><block ref="2dfb829fe1e40af1cb9ddc839717eb0e" category="inline-link-macro-rx"></block></block>
+  <block id="48596b9855b161c0fdcfc7b5380b949d" category="inline-link-macro">MetroCluster IP 구성에서 자동 비계획 전환을 위한 ONTAP Mediator 지원에 대해 알아보십시오.</block>
+  <block id="06d2f43e26cf7c245bd2b9fdde4f760c" category="list-text"><block ref="06d2f43e26cf7c245bd2b9fdde4f760c" category="inline-link-macro-rx"></block></block>
+  <block id="d579e2d2fbd0efbbbd9c45317b15f8a7" category="sidebar">ONTAP Mediator는 고가용성(HA) 메타데이터를 위한 영구적이고 격리된 저장소와 쿼럼 결정을 돕는 동기식 노드 상태 쿼리 기능을 제공하고 컨트롤러 활성 상태를 위한 핑 프록시 역할을 수행하여 SnapMirror 활성 동기화 및 MetroCluster IP를 지원합니다.</block>
+  <block id="bddcb25dc0af4e702a0790b39f1edab8" category="sidebar">ONTAP Mediator 문서</block>
+  <block id="be11c74c1dd7f307bb80183a90dc2067" category="sidebar">시작하기</block>
+  <block id="06ad314b340900d226b1196e1fe289e9" category="sidebar">빠른 시작</block>
+  <block id="7d0ee6fed10d3d4e5c9ee496729ab519" category="sidebar">릴리스 노트</block>
+  <block id="109e97d9e7194e57379972a9c16df8c1" category="sidebar">설치, 업그레이드 및 구성</block>
+  <block id="dfcc398099d6a64026e51ab282e16253" category="sidebar">추가 자료</block>
+  <block id="c09b5be4c2da04f4040eef1878f258aa" category="sidebar">ONTAP 9 문서</block>
+  <block id="8162203e3ec38c896e5f6d688115d731" category="sidebar">ONTAP REST API 참조</block>
+  <block id="37888f4436a67135b7af33cedc29e2a9" category="sidebar">ONTAP CLI 참조</block>
+  <block id="74b199dea2b5c14988081c29006ba269" category="sidebar">ONTAP Mediator 문서</block>
+  <block id="7f29812fdda9b63b5432343e48888f3e" category="sidebar">ONTAP Mediator의 새로운 기능</block>
+  <block id="7ff4995c299eff1168d2cf4a88aff450" category="sidebar">설치 및 설정</block>
+  <block id="24f47cdbe9ddba774a7cc53e51d9032e" category="sidebar">워크플로우</block>
+  <block id="f76aaf3aaa7b30238e7a3e2b1a04493b" category="sidebar">설치 준비</block>
+  <block id="79953e35d982730fbecf7aa03d92a762" category="sidebar">저장소 접근 권한 활성화</block>
+  <block id="5313f1fcf99dc353ee486b3dc232c221" category="sidebar">설치 패키지 다운로드</block>
+  <block id="e0dc7a3d7049ad7cc30fc55836cba658" category="sidebar">코드 서명을 확인하십시오</block>
+  <block id="d6279d2e34516b777db3ee2a047ea050" category="sidebar">ONTAP Mediator 패키지를 설치합니다</block>
+  <block id="b15a013c4977a2a96afedafe316664b2" category="sidebar">설치 확인</block>
+  <block id="6584e4216667df6aaf19447e73148932" category="sidebar">ONTAP Mediator를 사용하십시오</block>
+  <block id="08fee060c62a97cd00596d47ec113fe1" category="sidebar">ONTAP Mediator 관리</block>
+  <block id="fdb2ff0d7d656c49f4eae4e190dfcd66" category="sidebar">ONTAP Mediator 시작 또는 중지</block>
+  <block id="951d3fc54a28f9f46798897467d96a5b" category="sidebar">인증서 관리</block>
+  <block id="00cc153f515f430662efd70403c7ba56" category="sidebar">임시 자체 서명 인증서를 다시 생성합니다</block>
+  <block id="d847c50d8e20b1cbb0c7d007c82bb436" category="sidebar">자체 서명 인증서를 신뢰할 수 있는 인증서로 교체하십시오</block>
+  <block id="aa4366187e22f05be41c6094e57cf220" category="sidebar">인증서 관련 문제 해결</block>
+  <block id="f5fc8b69026eddce9248be43141a3d30" category="sidebar">호스트 OS 유지 관리</block>
+</blocks>

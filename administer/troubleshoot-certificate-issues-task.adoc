@@ -1,0 +1,279 @@
+---
+permalink: administer/troubleshoot-certificate-issues-task.html 
+sidebar: sidebar 
+keywords: mediator, certificate, troubleshoot, verify, expiration, x509, OpenSSL 
+summary: 인증서 문제를 진단하려면 ONTAP Mediator 인증서 속성을 확인하십시오. 
+---
+= ONTAP Mediator 인증서 관련 문제 해결
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+인증서 문제를 해결할 때 이러한 검사를 사용하여 인증서 속성을 확인하십시오.
+
+
+
+[[verify-certificate-expiration]]
+== 인증서 만료 확인
+
+다음 명령어를 사용하여 인증서 유효 기간을 확인하십시오.
+
+[role="tabbed-block"]
+====
+.ONTAP Mediator 1.9 이상 버전
+--
+[listing]
+----
+[root@mediator_host server_config]# openssl x509 -in intermediate.crt -text -noout
+Certificate:
+    Data:
+...
+        Validity
+            Not Before: Feb 22 19:57:25 2024 GMT
+            Not After : Feb 15 19:57:25 2029 GMT
+----
+--
+.ONTAP Mediator 1.8 이하 버전
+--
+[listing]
+----
+[root@mediator_host server_config]# openssl x509 -in ca.crt -text -noout
+Certificate:
+    Data:
+...
+        Validity
+            Not Before: Feb 22 19:57:25 2024 GMT
+            Not After : Feb 15 19:57:25 2029 GMT
+----
+--
+====
+
+
+[[verify-x509v3-extensions-in-ca-certification]]
+== CA 인증에서 X509v3 확장 기능을 확인합니다.
+
+CA 인증서의 X509v3 확장 기능을 확인하려면 다음 명령어를 사용하십시오.
+
+[role="tabbed-block"]
+====
+.ONTAP Mediator 1.9 이상 버전
+--
+ `openssl_ca.cnf` 내의 `*v3_ca*`에 정의된 속성은 `intermediate.crt`에서 `X509v3 extensions`으로 표시됩니다.
+
+[listing, subs="+quotes"]
+----
+[root@mediator_host server_config]# pwd
+/opt/netapp/lib/ontap_mediator/ontap_mediator/server_config
+
+[root@mediator_host server_config]# cat openssl_ca.cnf
+...
+[ v3_ca ]
+*subjectKeyIdentifier = hash*
+*authorityKeyIdentifier = keyid:always,issuer*
+*basicConstraints = critical, CA:true*
+*keyUsage = critical, cRLSign, digitalSignature, keyCertSign*
+
+[root@mediator_host server_config]# openssl x509 -in intermediate.crt -text -noout
+Certificate:
+    Data:
+...
+        *X509v3 extensions:*
+            X509v3 Subject Key Identifier:
+                9F:06:FA:47:00:67:BA:B2:D4:82:70:38:B8:48:55:B5:24:DB:FC:27
+            X509v3 Authority Key Identifier:
+                keyid:9F:06:FA:47:00:67:BA:B2:D4:82:70:38:B8:48:55:B5:24:DB:FC:27
+
+            X509v3 Basic Constraints: critical
+                CA:TRUE
+            X509v3 Key Usage: critical
+                Digital Signature, Certificate Sign, CRL Sign
+----
+--
+.ONTAP Mediator 1.8 이하 버전
+--
+ `openssl_ca.cnf` 내의 `*v3_ca*`에서 정의된 속성은 `ca.crt` 내에서 `X509v3 extensions`로 표시됩니다.
+
+[listing, subs="+quotes"]
+----
+[root@mediator_host server_config]# pwd
+/opt/netapp/lib/ontap_mediator/ontap_mediator/server_config
+
+[root@mediator_host server_config]# cat openssl_ca.cnf
+...
+[ v3_ca ]
+*subjectKeyIdentifier = hash*
+*authorityKeyIdentifier = keyid:always,issuer*
+*basicConstraints = critical, CA:true*
+*keyUsage = critical, cRLSign, digitalSignature, keyCertSign*
+
+[root@mediator_host server_config]# openssl x509 -in ca.crt -text -noout
+Certificate:
+    Data:
+...
+        *X509v3 extensions:*
+            X509v3 Subject Key Identifier:
+                9F:06:FA:47:00:67:BA:B2:D4:82:70:38:B8:48:55:B5:24:DB:FC:27
+            X509v3 Authority Key Identifier:
+                keyid:9F:06:FA:47:00:67:BA:B2:D4:82:70:38:B8:48:55:B5:24:DB:FC:27
+
+            X509v3 Basic Constraints: critical
+                CA:TRUE
+            X509v3 Key Usage: critical
+                Digital Signature, Certificate Sign, CRL Sign
+----
+--
+====
+
+
+[[verify-x509v3-extensions-in-server-certificate-and-subject-alt-names]]
+== 서버 인증서 및 주체 대체 이름에서 X509v3 확장 기능을 확인하십시오
+
+ `openssl_server.cnf` 구성 파일에 정의된 `v3_req` 속성은 인증서에 `X509v3 extensions`으로 표시됩니다.
+
+다음 예에서는 ONTAP Mediator가 설치된 Linux VM에서  `hostname -A` 및  `hostname -I` 명령을 실행하여  `alt_names` 섹션의 변수를 가져올 수 있습니다.
+
+변수의 정확한 값은 네트워크 관리자에게 문의하십시오.
+
+[role="tabbed-block"]
+====
+.ONTAP Mediator 1.9 이상 버전
+--
+[listing]
+----
+[root@mediator_host server_config]# pwd
+/opt/netapp/lib/ontap_mediator/ontap_mediator/server_config
+
+[root@mediator_host server_config]# cat openssl_server.cnf
+...
+[ v3_req ]
+basicConstraints       = CA:false
+extendedKeyUsage       = serverAuth
+keyUsage               = keyEncipherment, dataEncipherment
+subjectAltName         = @alt_names
+
+[ alt_names ]
+DNS.1 = abc.company.com
+DNS.2 = abc-v6.company.com
+IP.1 = 1.2.3.4
+IP.2 = abcd:abcd:abcd:abcd:abcd:abcd
+
+[root@mediator_host server_config]# openssl x509 -in intermediate.crt -text -noout
+Certificate:
+    Data:
+...
+
+        X509v3 extensions:
+            X509v3 Basic Constraints:
+                CA:FALSE
+            X509v3 Extended Key Usage:
+                TLS Web Server Authentication
+            X509v3 Key Usage:
+                Key Encipherment, Data Encipherment
+            X509v3 Subject Alternative Name:
+                DNS:abc.company.com, DNS:abc-v6.company.com, IP Address:1.2.3.4, IP Address:abcd:abcd:abcd:abcd:abcd:abcd
+----
+--
+.ONTAP Mediator 1.8 이하 버전
+--
+[listing]
+----
+[root@mediator_host server_config]# pwd
+/opt/netapp/lib/ontap_mediator/ontap_mediator/server_config
+
+[root@mediator_host server_config]# cat openssl_server.cnf
+...
+[ v3_req ]
+basicConstraints       = CA:false
+extendedKeyUsage       = serverAuth
+keyUsage               = keyEncipherment, dataEncipherment
+subjectAltName         = @alt_names
+
+[ alt_names ]
+DNS.1 = abc.company.com
+DNS.2 = abc-v6.company.com
+IP.1 = 1.2.3.4
+IP.2 = abcd:abcd:abcd:abcd:abcd:abcd
+
+[root@mediator_host server_config]# openssl x509 -in ca.crt -text -noout
+Certificate:
+    Data:
+...
+
+        X509v3 extensions:
+            X509v3 Basic Constraints:
+                CA:FALSE
+            X509v3 Extended Key Usage:
+                TLS Web Server Authentication
+            X509v3 Key Usage:
+                Key Encipherment, Data Encipherment
+            X509v3 Subject Alternative Name:
+                DNS:abc.company.com, DNS:abc-v6.company.com, IP Address:1.2.3.4, IP Address:abcd:abcd:abcd:abcd:abcd:abcd
+----
+--
+====
+
+
+[[verify-that-a-private-key-matches-with-a-certificate]]
+== 개인 키가 인증서와 일치하는지 확인하십시오
+
+특정 개인 키가 인증서와 일치하는지 확인할 수 있습니다.
+
+다음 OpenSSL 명령어를 키와 인증서에 각각 적용하십시오.
+
+[role="tabbed-block"]
+====
+.ONTAP Mediator 1.9 이상 버전
+--
+[listing]
+----
+[root@mediator_host server_config]# openssl rsa -noout -modulus -in intermediate.key | openssl md5
+Enter pass phrase for intermediate.key:
+(stdin)= 14c6b98b0c7c59012b1de89eee4a9dbc
+[root@mediator_host server_config]# openssl x509 -noout -modulus -in intermediate.crt | openssl md5
+(stdin)= 14c6b98b0c7c59012b1de89eee4a9dbc
+----
+--
+.ONTAP Mediator 1.8 이하 버전
+--
+[listing]
+----
+[root@mediator_host server_config]# openssl rsa -noout -modulus -in ca.key | openssl md5
+Enter pass phrase for ca.key:
+(stdin)= 14c6b98b0c7c59012b1de89eee4a9dbc
+[root@mediator_host server_config]# openssl x509 -noout -modulus -in ca.crt | openssl md5
+(stdin)= 14c6b98b0c7c59012b1de89eee4a9dbc
+----
+--
+====
+양쪽의  `-modulus` 속성이 일치하면 개인 키와 인증서 쌍이 호환되어 서로 함께 작동할 수 있음을 나타냅니다.
+
+
+
+[[verify-that-a-server-certificate-is-created-from-a-particular-ca-certificate]]
+== 서버 인증서가 특정 CA 인증서로부터 생성되었는지 확인하십시오
+
+다음 명령어를 사용하여 서버 인증서가 특정 CA 인증서로부터 생성되었는지 확인할 수 있습니다.
+
+[role="tabbed-block"]
+====
+.ONTAP Mediator 1.9 이상 버전
+--
+[listing]
+----
+[root@mediator_host server_config]# openssl verify -CAfile root_ca.crt --untrusted intermediate.crt ontap_mediator_server.crt
+ontap_mediator_server.crt: OK
+[root@mediator_host server_config]#
+----
+--
+.ONTAP Mediator 1.8 이하 버전
+--
+[listing]
+----
+[root@mediator_host server_config]# openssl verify -CAfile ca.crt ontap_mediator_server.crt
+ontap_mediator_server.crt: OK
+----
+--
+====
+온라인 인증서 상태 프로토콜(OCSP) 유효성 검사를 사용하는 경우 link:https://www.openssl.org/docs/manmaster/man1/openssl-verify.html["openssl-verify"^] 명령어를 사용하십시오.

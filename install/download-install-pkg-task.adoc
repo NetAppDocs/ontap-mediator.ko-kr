@@ -1,0 +1,61 @@
+---
+permalink: install/download-install-pkg-task.html 
+sidebar: sidebar 
+keywords: mediator, new, release, update, install, download, package 
+summary: 설치 과정의 일부로 Mediator 설치 패키지를 다운로드하십시오. 
+---
+= ONTAP Mediator 설치 패키지를 다운로드하십시오
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+ONTAP Mediator 설치 패키지를 다운로드하여 설치하십시오.
+
+.단계
+. ONTAP Mediator 다운로드 페이지에서 ONTAP Mediator 설치 패키지를 다운로드하십시오.
++
+https://mysupport.netapp.com/site/products/all/details/ontap-mediator/downloads-tab["ONTAP Mediator 다운로드 페이지"^]
+
+. Mediator 설치 패키지를 현재 작업 디렉터리에 배치하십시오.
++
+[source, cli]
+----
+ls ontap-mediator-1.12.1.tgz
+----
++
+....
+ontap-mediator-1.12.1.tgz
+....
++
+
+NOTE: ONTAP Mediator 버전 1.4 이하의 경우 설치 프로그램 이름은  `ontap-mediator`입니다.
+
++
+시스템에 인터넷 연결이 없는 경우 설치 프로그램이 필요한 패키지에 액세스할 수 있는지 확인하십시오.
+
+. 필요한 경우 Mediator 설치 패키지를 설치 디렉터리로 이동하십시오.
+. 설치 패키지의 압축을 풉니다:
++
+[source, cli]
+----
+tar xvfz ontap-mediator-1.12.1.tgz
+----
++
+....
+ontap-mediator-1.12.1/
+ontap-mediator-1.12.1/csc-prod-ONTAP-Mediator.pem
+ontap-mediator-1.12.1/csc-prod-chain-ONTAP-Mediator.pem
+ontap-mediator-1.12.1/tsa-prod-ONTAP-Mediator.pem
+ontap-mediator-1.12.1/tsa-prod-chain-ONTAP-Mediator.pem
+ontap-mediator-1.12.1/ONTAP-Mediator-production.pub
+ontap-mediator-1.12.1/ontap-mediator-1.12.1
+ontap-mediator-1.12.1/ontap-mediator-1.12.1.sig.tsr
+ontap-mediator-1.12.1/ontap-mediator-1.12.1.tsr
+ontap-mediator-1.12.1/ontap-mediator-1.12.1.sig
+....
+
+
+.다음 단계는 무엇입니까?
+link:verify-code-signature-task.html["ONTAP Mediator 코드 서명을 확인하십시오."]

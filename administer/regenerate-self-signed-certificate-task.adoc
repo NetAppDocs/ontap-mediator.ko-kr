@@ -1,0 +1,55 @@
+---
+permalink: administer/regenerate-self-signed-certificate-task.html 
+sidebar: sidebar 
+keywords: mediator, certificate, self-signed, regenerate, hostname, IP address 
+summary: 호스트 이름이나 IP 주소가 변경될 때 임시 자체 서명 인증서를 다시 생성합니다. 
+---
+= ONTAP Mediator 호스트용 임시 자체 서명 인증서를 다시 생성합니다.
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+호스트 이름이나 IP 주소 변경으로 기존 인증서가 무효화될 경우 현재 호스트에 대한 임시 자체 서명 인증서를 다시 생성합니다.
+
+
+NOTE: 이 절차는 ONTAP Mediator 1.7 이상 버전이 실행되는 시스템에서만 지원됩니다.
+
+.이 작업 정보
+* ONTAP Mediator를 설치한 Linux 호스트에서 이 작업을 수행하십시오.
+* ONTAP Mediator를 설치한 후 호스트의 호스트 이름이나 IP 주소가 변경되어 생성된 자체 서명 인증서가 더 이상 유효하지 않게 된 경우에만 이 작업을 수행할 수 있습니다.
+* 임시 자체 서명 인증서를 신뢰할 수 있는 타사 인증서로 교체한 후에는 이 작업을 사용하여 인증서를 다시 생성해서는 _안_ 됩니다. 자체 서명 인증서가 없으면 이 절차가 실패합니다.
+
+
+.단계
+현재 호스트에 대한 새 임시 자체 서명 인증서를 다시 생성하려면 다음 단계를 수행하십시오:
+
+. ONTAP Mediator를 재시작하십시오:
++
+`./make_self_signed_certs.sh overwrite`
+
++
+[listing]
+----
+[root@xyz000123456 ~]# cd /opt/netapp/lib/ontap_mediator/ontap_mediator/server_config
+[root@xyz000123456 server_config]# ./make_self_signed_certs.sh overwrite
+
+Adding Subject Alternative Names to the self-signed server certificate
+#
+# OpenSSL example configuration file.
+Generating self-signed certificates
+Generating RSA private key, 4096 bit long modulus (2 primes)
+..................................................................................................................................................................++++
+........................................................++++
+e is 65537 (0x010001)
+Generating a RSA private key
+................................................++++
+.............................................................................................................................................++++
+writing new private key to 'ontap_mediator_server.key'
+-----
+Signature ok
+subject=C = US, ST = California, L = San Jose, O = "NetApp, Inc.", OU = ONTAP Core Software, CN = ONTAP Mediator, emailAddress = support@netapp.com
+Getting CA Private Key
+----
+

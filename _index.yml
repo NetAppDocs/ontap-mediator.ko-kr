@@ -1,0 +1,36 @@
+---
+indexpage:
+  title: ONTAP Mediator 문서
+  summary: ONTAP Mediator는 고가용성(HA) 메타데이터를 위한 영구적이고 펜싱된 저장소 및 쿼럼 결정을 돕는 동기식 노드 상태
+    쿼리 기능을 제공하고 컨트롤러 활성 상태를 위한 핑 프록시 역할을 수행하여 ONTAP 기능을 지원합니다.
+  keywords: mediator, ONTAP, high-availability, HA, metadata, quorum, controller,
+    liveliness, smbc, metrocluster, snapmirrror active sync
+  lead: ONTAP Mediator는 고가용성(HA) 메타데이터를 위한 영구적이고 격리된 저장소와 쿼럼 결정을 돕는 동기식 노드 상태 쿼리 기능을
+    제공하고 컨트롤러 활성 상태를 위한 핑 프록시 역할을 수행하여 SnapMirror 활성 동기화 및 MetroCluster IP를 지원합니다.
+  tiles:
+  - title: 시작하기
+    links:
+    - title: ONTAP Mediator에 대해 알아보십시오
+      url: "/learn-about.html"
+    - title: 빠른 시작
+      url: "/quick-start.html"
+    - title: 릴리스 노트
+      url: "/release-notes/whats-new-in-ontap-mediator.html"
+  - title: 설치, 업그레이드 및 구성
+    links:
+    - title: ONTAP Mediator를 설치합니다
+      url: "/install/workflow-summary.html"
+    - title: ONTAP Mediator 업그레이드
+      url: "/administer/upgrade-ontap-mediator-task.html"
+    - title: SnapMirror 활성 동기화 및 MetroCluster IP를 위해 ONTAP Mediator를 사용하십시오.
+      url: "/use-mediator-snapmirror-metrocluster-task.html"
+  - title: 추가 자료
+    links:
+    - title: ONTAP 9 문서
+      url: https://docs.netapp.com/us-en/ontap/
+    - title: MetroCluster 문서
+      url: https://docs.netapp.com/us-en/ontap-metrocluster/
+    - title: ONTAP REST API 참조
+      url: https://docs.netapp.com/us-en/ontap-restapi/
+    - title: ONTAP CLI 참조
+      url: https://docs.netapp.com/us-en/ontap-cli/

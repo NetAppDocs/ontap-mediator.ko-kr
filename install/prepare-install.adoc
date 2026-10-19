@@ -1,0 +1,313 @@
+---
+permalink: install/prepare-install.html 
+sidebar: sidebar 
+keywords: ontap mediator, install requirements, mediator requirements 
+summary: ONTAP Mediator를 설치하려면 모든 필수 조건을 충족했는지 확인하고 설치 패키지를 다운로드한 후 호스트에서 설치 프로그램을 실행해야 합니다. 
+---
+= ONTAP Mediator 설치 준비
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+ONTAP Mediator를 설치하려면 모든 필수 조건을 충족하고 설치 패키지를 다운로드한 다음 호스트에서 설치 프로그램을 실행해야 합니다.
+
+[NOTE]
+====
+* ONTAP Mediator를 새 버전으로 업그레이드하려면 link:../administer/upgrade-ontap-mediator-task.html["ONTAP Mediator 업그레이드"]을(를) 참조하십시오.
+* 호스트 OS를 업그레이드하고 해당 과정의 일부로 ONTAP Mediator를 다시 설치하거나 업그레이드해야 하는 경우, link:../administer/upgrade-host-os-mediator-task.html["호스트 운영 체제 및 ONTAP Mediator를 업그레이드하십시오."]을(를) 참조하십시오.
+
+
+====
+
+
+[[installation-requirements]]
+== 설치 요구 사항
+
+ONTAP Mediator를 설치하기 전에 다음 요구 사항을 검토하십시오.
+
+[NOTE]
+====
+* ONTAP Mediator 1.8 및 이전 버전은 Red Hat Enterprise Linux(RHEL) FIPS 모드와 호환되지 않아 성공적으로 설치할 수 없습니다.  `fips-mode-setup --check` 명령을 사용하여 FIPS 모드가 활성화되어 있는지 확인할 수 있습니다.  `fips-mode-setup --disable` 명령을 사용하여 FIPS 모드를 비활성화할 수 있습니다. ONTAP Mediator 1.8 및 이전 버전을 성공적으로 설치하려면 FIPS 모드를 비활성화한 후 재부팅하십시오.
+* 설치가 실패하면 ONTAP Mediator의 최신 버전을 사용해 봐야 할 수도 있습니다.
+* 2025년 6월 15일부터는 코드 서명 인증서가 만료되어 ONTAP Mediator 1.9 및 1.8을 설치하거나 업그레이드할 수 없습니다. 설치에 실패하는 경우 대신 ONTAP Mediator 1.9.1 패치 버전을 사용하십시오.
+
+
+====
+*  `yum-utils` 패키지를 설치하면  `needs-restarting` 명령어를 사용할 수 있습니다.
+* ONTAP Mediator 1.11 버전부터 MetroCluster IP 구성에서 IPv6가 지원됩니다.
+
+
+
+
+[[https-and-iscsi-installation-options-for-ontap-mediator]]
+[[https-iscsi-installation]]
+=== ONTAP Mediator의 HTTPS 및 iSCSI 설치 옵션
+
+ONTAP Mediator를 설치하기 전에 다음 정보를 검토하십시오:
+
+* ONTAP Mediator에서는 SCST 패키지를 사용하여 MetroCluster IP 구성에서 통신을 위한 iSCSI를 제공합니다. SCST 패키지는 설치 중에 컴파일되는 커널 모듈입니다. ONTAP 9.19.1 및 Mediator 1.12부터는 iSCSI 대신 HTTPS를 사용하여 MetroCluster IP 구성을 모니터링하는 ONTAP Mediator를 구성할 수 있습니다.
+* ONTAP 9.19.1 및 ONTAP Mediator 1.12 버전부터는 iSCSI 및 HTTPS 지원 또는 HTTPS만 지원하는 ONTAP Mediator 설치 옵션을 선택할 수 있습니다. HTTPS만 지원하는 ONTAP Mediator를 설치하는 경우 SCST 패키지는 설치되지 않습니다.
+* SCST가 설치된 ONTAP Mediator 1.11 이하 버전에서 업그레이드할 때 HTTPS 전용 옵션을 선택하면 SCST 패키지가 제거되고 새 ONTAP Mediator 버전에는 SCST 패키지가 포함되지 않습니다.
+* ONTAP Mediator를 사용하여 여러 MetroCluster IP 구성을 모니터링하려는 경우 지원 여부는 Mediator 유형, ONTAP 버전 및 운영 체제에 따라 다릅니다. 자세한 내용은 link:https://docs.netapp.com/us-en/ontap-metrocluster/install-ip/concept_mediator_requirements.html#mediator-multiple-mccip["ONTAP Mediator를 사용하여 여러 MetroCluster IP 구성을 모니터링합니다"^]을 참조하십시오.
+* HTTPS만 지원하는 ONTAP Mediator 설치는 다음과 같은 사용 사례에 한해 지원됩니다.
++
+** ONTAP Mediator를 SnapMirror 액티브 동기화 클러스터 모니터링에만 사용할 계획입니다.
+** ONTAP Mediator를 HTTPS로 구성하여 하나 이상의 MetroCluster IP 구성을 모니터링할 계획입니다.
+
+
+* 다음 시나리오에서는 ONTAP Mediator를 iSCSI 및 HTTPS 지원과 함께 설치해야 합니다.
++
+** 하나 이상의 MetroCluster IP 구성을 모니터링하기 위해 ONTAP Mediator를 iSCSI로 구성할 계획입니다.
+
+
+
+
+
+
+[[host-requirements]]
+== 호스트 요구 사항
+
+RHEL 또는 Rocky Linux를 설치하고 관련 저장소를 구성할 때 다음 요구 사항을 준수하십시오.
+
+[NOTE]
+====
+설치 또는 구성 프로세스를 수정하는 경우 추가 단계를 수행해야 할 수 있습니다.
+
+====
+.Linux 배포판 요구 사항
+* Red Hat의 모범 사례에 따라 RHEL 또는 Rocky Linux를 설치하십시오. CentOS 8.x는 지원이 종료되었으므로 CentOS 8.x와 호환되는 버전은 권장하지 않습니다.
+* ONTAP Mediator를 설치할 때 시스템이 필요한 저장소에 접근할 수 있는지 확인하여 설치 프로그램이 필요한 모든 소프트웨어 종속성을 검색하고 설치할 수 있도록 하십시오.
+* yum 설치 프로그램이 RHEL 저장소에서 종속 소프트웨어를 찾을 수 있도록 하려면 설치 중 또는 설치 후에 유효한 Red Hat 구독을 사용하여 시스템을 등록하십시오.
++
+[NOTE]
+====
+자세한 내용은 Red Hat Subscription Manager 설명서를 참조하십시오.
+
+====
+
+
+
+
+[[firewall-and-networking-requirements]]
+== 방화벽 및 네트워킹 요구 사항
+
+ONTAP Mediator는 특정 서비스와 통신하기 위해 여러 포트를 사용합니다.
+
+* 타사 방화벽을 사용 중인 경우:
++
+** HTTPS 액세스가 활성화되어 있어야 합니다.
+** 포트 31784와 3260에 대한 액세스를 허용하도록 구성해야 합니다.
++
+기본 Red Hat 또는 CentOS 방화벽을 사용하는 경우 Mediator 설치 중에 방화벽이 자동으로 구성됩니다.
+
+
+
+* 인터넷에 접속할 수 없는 Linux 호스트의 경우, 필요한 패키지가 로컬 저장소에 있는지 확인하십시오.
++
+Linux 환경에서 Link Aggregation Control Protocol(LACP)을 사용하는 경우 커널을 구성하고  `sysctl net.ipv4.conf.all.arp_ignore`을(를)  `2`(으)로 설정하십시오.
+
+
+
+다음 표는 방화벽에서 허용해야 하는 port 목록입니다.
+
+[NOTE]
+====
+* iSCSI 포트는 MetroCluster IP 구성에서만 필요합니다.
+* 22/tcp 포트는 정상 작동에는 필요하지 않지만 유지보수를 위해 일시적으로 활성화하고 유지보수 세션이 완료되면 비활성화할 수 있습니다.
+
+
+====
+|===
+
+
+| 포트/서비스 | 소스 | 방향 | 목적지 | 목적 
+
+
+ a| 
+22/tcp
+ a| 
+관리 호스트
+ a| 
+인바운드
+ a| 
+ONTAP Mediator
+ a| 
+(선택 사항) SSH / ONTAP 미디에이터 관리
+
+
+
+ a| 
+31784/tcp
+ a| 
+cluster-mgmt 및 node-mgmt LIF
+ a| 
+인바운드
+ a| 
+ONTAP Mediator 웹 서버
+ a| 
+(필수) REST API (HTTPS)
+
+
+
+ a| 
+3260/tcp
+ a| 
+노드 관리 LIF
+ a| 
+인바운드
+ a| 
+ONTAP Mediator iSCSI 타겟
+ a| 
+(MetroCluster IP 구성에 필요) 사서함용 iSCSI 데이터 연결
+
+|===
+
+NOTE: HTTPS를 사용하여 통신하는 SnapMirror 액티브 동기화 또는 MetroCluster IP ONTAP 미디에이터의 경우 ONTAP에서 포트 3260을 활성화하거나 연결할 필요가 없습니다.
+
+
+
+[[os-requirements]]
+== OS 요구 사항
+
+사용 중인 OS는 다음 요구 사항을 충족해야 합니다:
+
+* 64비트 물리적 설치 또는 가상 머신
+* 8GB RAM
+* 1 GB 디스크 공간(애플리케이션 설치, 서버 로그 및 데이터베이스에 사용됨)
+* 사용자: 루트 액세스 권한
+
+
+ONTAP Mediator의 각 버전에 대해 지원되는 운영 체제에 대한 link:../release-notes/support-matrix.html["OS 지원 매트릭스"]을(를) 검토하십시오.
+
+.OS 필수 패키지
+ONTAP Mediator에는 다음 패키지가 필요합니다:
+
+
+NOTE: 해당 패키지는 사전 설치되어 있거나 ONTAP Mediator 설치 프로그램에서 자동으로 설치합니다.
+
+[cols="25,25,25,25"]
+|===
+
+
+| 모든 RHEL/CentOS 버전 | RHEL 10.x / Rocky Linux 10용 추가 패키지 | RHEL 9.x / Rocky Linux 9용 추가 패키지 | RHEL 8.x / Rocky Linux 8용 추가 패키지 
+
+
+ a| 
+* openssl
+* openssl-devel
+* kernel-devel-$ (uname -r)
+* gcc
+* 만들다
+* libselinux-utils
+* 패치
+* bzip2
+* perl-Data-Dumper
+* perl-ExtUtils-MakeMaker
+* efibootmgr
+* mokutil
+
+ a| 
+* python3.12
+* python3.12-devel
+
+ a| 
+* elfutils-libelf-devel
+* policycoreutils-python-utils
+* python3
+* python3-devel
+
+ a| 
+* elfutils-libelf-devel
+* policycoreutils-python-utils
+* redhat-lsb-core
+* python39
+* python39-devel
+
+
+|===
+Mediator 설치 패키지는 다음 내용을 포함하는 자체 압축 해제 tar 파일입니다:
+
+* 지원되는 릴리스의 저장소에서 얻을 수 없는 모든 종속성을 포함하는 RPM 파일입니다.
+* 설치 스크립트입니다.
+
+
+유효한 SSL 인증서를 사용하는 것이 좋습니다.
+
+[NOTE]
+====
+* 커널 버전은 운영 체제 버전과 일치해야 합니다.
+* ONTAP Mediator 릴리스에서 지원하는 OS 버전 이상으로 커널을 업그레이드하지 마십시오. 테스트를 거친 SCST 모듈이 작동하지 않을 수 있습니다.
+
+
+====
+
+
+[[install-ontap-mediator-when-uefi-secure-boot-is-enabled]]
+== UEFI 보안 부팅이 활성화된 경우 ONTAP Mediator를 설치하십시오.
+
+ONTAP Mediator는 UEFI 보안 부팅이 활성화된 시스템과 활성화되지 않은 시스템 모두에 설치할 수 있습니다.
+
+.이 작업 정보
+* ONTAP Mediator 설치 전에 UEFI 보안 부팅이 필요하지 않거나 ONTAP Mediator 설치 문제를 해결하는 경우 UEFI 보안 부팅을 비활성화할 수 있습니다. 컴퓨터 설정에서 UEFI 보안 부팅 옵션을 비활성화하십시오.
+* HTTPS만 지원하는 ONTAP Mediator 1.12 이상을 설치한 경우 SCST 패키지가 설치되지 않으므로 이 작업을 건너뛸 수 있습니다.
+
+
+[NOTE]
+====
+UEFI 보안 부팅을 비활성화하는 방법에 대한 자세한 내용은 호스트 운영 체제의 설명서를 참조하십시오.
+
+====
+UEFI 보안 부팅이 활성화된 상태에서 ONTAP Mediator를 설치하려면 서비스가 시작되기 전에 보안 키를 등록해야 합니다. 이 키는 SCST 설치의 컴파일 단계에서 생성되며 시스템에 개인-공개 키 쌍으로 저장됩니다.  `mokutil` 유틸리티를 사용하여 공개 키를 MOK(Machine Owner Key)로 UEFI 펌웨어에 추가하여 시스템이 서명된 모듈을 신뢰하고 로드할 수 있도록 하십시오. MOK를 활성화하기 위해 시스템을 재부팅할 때 필요하므로 `mokutil` 암호를 안전한 위치에 저장하십시오.
+
+.단계
+. [[step_1_uefi]]시스템에서 UEFI 보안 부팅이 활성화되어 있는지 확인하십시오:
++
+[source, cli]
+----
+mokutil --sb-state
+----
++
+이 결과는 해당 시스템에서 UEFI Secure Boot가 활성화되어 있는지 여부를 나타냅니다.
+
++
+[cols="40,60"]
+|===
+
+
+| 만약... | 다음으로 이동... 
+
+
+ a| 
+UEFI 보안 부팅이 활성화되었습니다
+ a| 
+
+
+
+
+ a| 
+UEFI 보안 부팅이 비활성화되었습니다
+ a| 
+link:enable-access-repos-task.html["ONTAP Mediator 설치를 위한 저장소 접근 권한을 제공하십시오."]
+
+|===
++
+[NOTE]
+====
+** 안전한 위치에 저장해야 하는 암호를 생성하라는 메시지가 표시됩니다. UEFI 부트 관리자에서 키를 활성화하려면 이 암호가 필요합니다.
+** ONTAP Mediator 1.2.0 이하 버전은 이 모드를 지원하지 않습니다.
+
+
+====
+. [[step_2_uefi]] `mokutil` 유틸리티가 설치되어 있지 않으면 다음 명령을 실행하십시오.
++
+[source, cli]
+----
+yum install mokutil
+----
++
+.다음 단계는 무엇입니까?
+link:enable-access-repos-task.html["ONTAP Mediator 설치를 위한 저장소 접근 권한을 제공하십시오."]
+
+
