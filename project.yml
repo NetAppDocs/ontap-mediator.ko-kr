@@ -65,6 +65,8 @@ sidebar:
         url: "/administer/regenerate-self-signed-certificate-task.html"
       - title: 자체 서명 인증서를 신뢰할 수 있는 인증서로 교체하십시오
         url: "/administer/replace-self-signed-certificates-task.html"
+      - title: 기존 CA 인증서의 일반 이름으로 전환하세요
+        url: "/administer/switch-ca-certificate-naming-task.html"
       - title: 인증서 관련 문제 해결
         url: "/administer/troubleshoot-certificate-issues-task.html"
     - title: 호스트 OS 유지 관리

@@ -18,7 +18,7 @@ summary: 인증서 관련 설정 및 호스트 측 구성 재정의를 포함하
 [[ontap-mediator-configurable-settings]]
 == ONTAP Mediator 구성 가능 설정
 
-ONTAP Mediator는 여러 구성 가능한 설정을 지원합니다. 이러한 설정의 기본값은  `low_space_threshold_mib: 10`읽기 전용 파일에 제공됩니다. 해당 파일의 위치는 다음과 같습니다.
+ONTAP Mediator는 여러 구성 가능한 설정을 지원합니다. 이러한 설정의 기본값은  `ontap_mediator.config.yaml`읽기 전용 파일에 제공됩니다. 해당 파일의 위치는 다음과 같습니다.
 
 `/opt/netapp/lib/ontap_mediator/ontap_mediator/server_config/ontap_mediator.user_config.yaml`
 

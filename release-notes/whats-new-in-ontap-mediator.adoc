@@ -24,15 +24,31 @@ NOTE: OS 및 SCST 버전 정보는 link:support-matrix.html["지원 매트릭스
 
 
  a| 
+1.13
+ a| 
+* RHEL 지원:
++
+** 호환: 10.1, 9.7 및 9.5.
+** 권장: 10.3, 10.2, 10.0, 9.9, 9.8, 9.6, 9.4 및 8.10.
+
+
+* Rocky Linux 10.2, 10.1, 10.0, 9.8, 9.7, 9.6, 9.4 및 8.10 버전을 지원합니다.
+* Oracle Linux 10.2(rhck 커널), 10.1(rhck 및 uek 커널), 10.0(uek 커널), 9.8(uek 커널), 9.7(rhck 및 uek 커널) 및 9.6(rhck 커널)을 지원합니다.
+* 이제 자체 서명된 CA 인증서에는 일반 이름에 설치별 고유 식별자가 포함됩니다(예:  `ONTAP Mediator CA 1a2b3c4d`). 이를 통해 동일한 ONTAP 클러스터에 여러 ONTAP Mediator 인스턴스를 등록할 수 있습니다. ONTAP Mediator가 해당 식별자를 인식하지 못하는 ONTAP 릴리스와 페어링해야 하는 경우 기존의 고정된 일반 이름으로 전환할 수 있습니다. link:../administer/switch-ca-certificate-naming-task.html["기존 CA 인증서의 일반 이름으로 전환하는 방법을 알아보세요"].
+
+
+
+
+ a| 
 1.12.1
  a| 
 * RHEL 지원:
 +
-** 호환: 10.1 및 9.7.
+** 호환: 10.1, 9.7 및 9.5.
 ** 권장 사항: 10.2, 10.0, 9.8, 9.6, 9.4, 8.10.
 
 
-* Rocky Linux 10.2, 9.8 및 8.10을 지원합니다.
+* Rocky Linux 10.2, 10.1, 10.0, 9.8 및 8.10 버전을 지원합니다.
 * rhck 및 uek 커널을 모두 사용하는 Oracle Linux 10.1 및 9.8 지원.
 * ONTAP Mediator 1.12.1 및 ONTAP 9.19.1부터 HTTPS로 구성된 단일 ONTAP Mediator 인스턴스는 다음 구성을 동시에 모니터링할 수 있습니다.
 +
@@ -50,11 +66,11 @@ NOTE: OS 및 SCST 버전 정보는 link:support-matrix.html["지원 매트릭스
  a| 
 * RHEL 지원:
 +
-** 호환: 10.1 및 9.7.
+** 호환: 10.1, 9.7 및 9.5.
 ** 권장 사항: 10.2, 10.0, 9.8, 9.6, 9.4, 8.10.
 
 
-* Rocky Linux 10.2, 9.8 및 8.10을 지원합니다.
+* Rocky Linux 10.1, 10.0, 9.8 및 8.10 버전을 지원합니다.
 * rhck 및 uek 커널을 모두 사용하는 Oracle Linux 10.1 및 9.7 지원.
 * ONTAP 9.19.1 및 ONTAP Mediator 1.12 버전부터 MetroCluster IP 구성에서 HTTPS를 사용하여 통신하는 ONTAP Mediator를 구성할 수 있습니다. HTTPS는 SSL/TLS를 사용하여 전체 세션을 암호화함으로써 보안을 강화합니다. HTTPS만 지원하도록 ONTAP Mediator를 설치할 수도 있습니다. 이 설치 방법을 사용하는 경우 SCST 패키지는 설치되지 않습니다. link:../install/prepare-install.html#https-iscsi-installation["ONTAP Mediator의 HTTPS 및 iSCSI 설치 옵션에 대해 자세히 알아보십시오"].
 
@@ -64,8 +80,13 @@ NOTE: OS 및 SCST 버전 정보는 link:support-matrix.html["지원 매트릭스
  a| 
 1.11
  a| 
-* RHEL 10.1, 10.0, 9.7, 9.6, 9.4 및 8.10 지원.
-* Rocky Linux 10.1, 9.7 및 8.10을 지원합니다.
+* RHEL 지원:
++
+** 호환 가능: 9.5.
+** 권장 사항: 10.1, 10.0, 9.7, 9.6, 9.4, 8.10.
+
+
+* Rocky Linux 10.1, 10.0, 9.7 및 8.10 버전을 지원합니다.
 * rhck 및 uek 커널을 모두 사용하는 Oracle Linux 10.0 및 9.6 지원.
 * MetroCluster IP 구성에 대한 IPv6 지원을 추가합니다.
 * fapolicyd에 대한 지원을 추가합니다.
@@ -76,8 +97,13 @@ NOTE: OS 및 SCST 버전 정보는 link:support-matrix.html["지원 매트릭스
  a| 
 1.10
  a| 
-* RHEL 10.0, 9.6, 9.4 및 8.10을 지원합니다.
-* Rocky Linux 10.0, 9.6 및 8.10을 지원합니다.
+* RHEL 지원:
++
+** 호환 가능: 9.5.
+** 권장 사항: 10.0, 9.6, 9.4, 8.10.
+
+
+* Rocky Linux 10.0, 9.6, 9.4 및 8.10 버전을 지원합니다.
 * 기본 Python 버전을 Python 3.9에서 Python 3.12로 업그레이드합니다.
 
 
@@ -88,7 +114,7 @@ NOTE: OS 및 SCST 버전 정보는 link:support-matrix.html["지원 매트릭스
  a| 
 * RHEL 지원:
 +
-** 호환 가능: 9.3, 9.1, 8.9, 8.7, 8.6, 8.5 및 8.4.
+** 호환 가능: 8.9, 8.7, 8.6, 8.5 및 8.4.
 ** 권장 사항: 9.5, 9.4, 9.2, 9.0, 8.10, 8.8.
 
 
@@ -105,8 +131,8 @@ NOTE: OS 및 SCST 버전 정보는 link:support-matrix.html["지원 매트릭스
  a| 
 * RHEL 지원:
 +
-** 호환 가능: 9.3, 9.1, 8.9, 8.7, 8.6, 8.5 및 8.4.
-** 권장 사항: 9.5, 9.4, 9.2, 9.0, 8.10, 8.8.
+** 호환 가능: 8.9, 8.7, 8.6, 8.5 및 8.4.
+** 권장: 9.4, 9.2, 9.0, 8.10 및 8.8.
 
 
 * Rocky Linux 9.5 및 8.10을 지원합니다.

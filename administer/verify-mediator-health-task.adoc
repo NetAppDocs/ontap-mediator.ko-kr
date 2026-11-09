@@ -83,6 +83,10 @@ systemctl status mediator-scst
 
 . ONTAP Mediator에서 사용하는 포트를 확인하십시오:
 +
+
+NOTE: HTTPS 전용 설치의 경우 포트 31784만 사용됩니다. 아래 예시의 포트 3260 리스너는 SCST가 설치된 경우에 적용됩니다.
+
++
 [source, cli]
 ----
 netstat -anlt | grep -E '3260|31784'

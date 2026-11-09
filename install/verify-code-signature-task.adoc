@@ -59,28 +59,28 @@ ONTAP Mediator 코드 서명을 확인하기 전에 시스템이 이러한 요�
 
 
  a| 
-`ontap-mediator-1.12.1`
+`ontap-mediator-1.13.0`
  a| 
-버전 1.12용 제품 설치 실행 파일
+버전 1.13용 제품 설치 실행 파일
 
 
 
  a| 
-`ontap-mediator-1.12.1.sig`
+`ontap-mediator-1.13.0.sig`
  a| 
 SHA-256 해시 후 csc-prod 키를 사용하여 RSA 서명된 설치 프로그램 서명
 
 
 
  a| 
-`ontap-mediator-1.12.1.sig.tsr`
+`ontap-mediator-1.13.0.sig.tsr`
  a| 
 OCSCP에서 설치자 서명에 사용하기 위한 취소 요청
 
 
 
  a| 
-`ontap-mediator-1.12.1.tsr`
+`ontap-mediator-1.13.0.tsr`
  a| 
 타임스탬프 서명 요청 파일
 
@@ -141,7 +141,7 @@ openssl verify -untrusted tsa-prod-chain-ONTAP-Mediator.pem -CApath ${OPENSSLDIR
 +
 코드 서명 확인 인증서 또는 타임스탬프 인증서가 만료되었거나 유효하지 않은 경우 명령이 실패합니다. ONTAP Mediator의 최신 버전을 다운로드하십시오.
 
-. 관련 인증서를 사용하여  `ontap-mediator-1.12.1.sig.tsr` 및  `ontap-mediator-1.12.1.tsr` 파일을 확인하십시오.
+. 관련 인증서를 사용하여  `ontap-mediator-1.13.0.sig.tsr` 및  `ontap-mediator-1.13.0.tsr` 파일을 확인하십시오.
 +
 [role="tabbed-block"]
 ====
@@ -149,14 +149,14 @@ openssl verify -untrusted tsa-prod-chain-ONTAP-Mediator.pem -CApath ${OPENSSLDIR
 --
 [source, cli]
 ----
-openssl ts -verify -data ontap-mediator-1.12.1.sig -in ontap-mediator-1.12.1.sig.tsr -CAfile tsa-prod-chain-ONTAP-Mediator.pem -untrusted tsa-prod-ONTAP-Mediator.pem
+openssl ts -verify -data ontap-mediator-1.13.0.sig -in ontap-mediator-1.13.0.sig.tsr -CAfile tsa-prod-chain-ONTAP-Mediator.pem -untrusted tsa-prod-ONTAP-Mediator.pem
 ----
 --
 .OpenSSL 1.x
 --
 [source, cli]
 ----
-openssl ts -verify -data ontap-mediator-1.12.1 -in ontap-mediator-1.12.1.tsr -CAfile tsa-prod-chain-ONTAP-Mediator.pem -partial_chain
+openssl ts -verify -data ontap-mediator-1.13.0 -in ontap-mediator-1.13.0.tsr -CAfile tsa-prod-chain-ONTAP-Mediator.pem -partial_chain
 ----
 --
 ====
@@ -173,7 +173,7 @@ openssl -dgst -verify
 +
 [source, cli]
 ----
-openssl dgst -sha256 -verify ONTAP-Mediator-production.pub -signature ontap-mediator-1.12.1.sig ontap-mediator-1.12.1
+openssl dgst -sha256 -verify ONTAP-Mediator-production.pub -signature ontap-mediator-1.13.0.sig ontap-mediator-1.13.0
 ----
 
 
